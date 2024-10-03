@@ -1,4 +1,4 @@
-package edu.icet.util;
+package util;
 
 public enum DaoType {
 }

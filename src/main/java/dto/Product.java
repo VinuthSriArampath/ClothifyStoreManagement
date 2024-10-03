@@ -1,4 +1,4 @@
-package edu.icet.dto;
+package dto;
 
 public class Product {
     private int id;

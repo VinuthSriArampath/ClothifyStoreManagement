@@ -1,4 +1,4 @@
-package edu.icet.service;
+package service;
 
 public class ServiceFactory {
 }

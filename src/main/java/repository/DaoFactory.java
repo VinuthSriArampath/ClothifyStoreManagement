@@ -1,4 +1,4 @@
-package edu.icet.repository;
+package repository;
 
 public class DaoFactory {
 }
