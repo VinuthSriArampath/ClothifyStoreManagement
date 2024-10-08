@@ -1,11 +1,11 @@
 package controller;
 
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -15,13 +15,13 @@ import javafx.scene.layout.AnchorPane;
 public class EmployeeMainFormController {
 
     @FXML
-    private AnchorPane employeeReportPage;
+    private BarChart<?, ?> chartEmployeeReport;
 
     @FXML
-    private AnchorPane productReportPage;
+    private PieChart chartProductMovement;
 
     @FXML
-    private AnchorPane supplierReportPage;
+    private BarChart<?, ?> chartSupplierReport;
 
     @FXML
     private JFXComboBox<?> cmbAddItemCategory;
@@ -48,10 +48,10 @@ public class EmployeeMainFormController {
     private JFXComboBox<?> cmbUpdateOrderItemId;
 
     @FXML
-    private JFXComboBox<?> cmbViewItemSupplierId;
+    private JFXComboBox<?> cmbViewItemCategory;
 
     @FXML
-    private JFXComboBox<?> cmbViewItemCategory;
+    private JFXComboBox<?> cmbViewItemSupplierId;
 
     @FXML
     private JFXComboBox<?> cmdAddItemSize;
@@ -144,24 +144,6 @@ public class EmployeeMainFormController {
     private TableColumn<?, ?> collUpdateSupplierUnitPrice;
 
     @FXML
-    private TableColumn<?, ?> collViewEmployeeListAddress;
-
-    @FXML
-    private TableColumn<?, ?> collViewEmployeeListContact;
-
-    @FXML
-    private TableColumn<?, ?> collViewEmployeeListEmail;
-
-    @FXML
-    private TableColumn<?, ?> collViewEmployeeListId;
-
-    @FXML
-    private TableColumn<?, ?> collViewEmployeeListName;
-
-    @FXML
-    private TableColumn<?, ?> collViewEmployeeListPassword;
-
-    @FXML
     private TableColumn<?, ?> collViewItemListItemCategory;
 
     @FXML
@@ -240,6 +222,9 @@ public class EmployeeMainFormController {
     private DatePicker dpViewOrderDate;
 
     @FXML
+    private AnchorPane employeeReportPage;
+
+    @FXML
     private Label lblDashboardEmployeeAddress;
 
     @FXML
@@ -258,9 +243,6 @@ public class EmployeeMainFormController {
     private Label lblDate;
 
     @FXML
-    private Label lblDeleteEmployeeHiredDate;
-
-    @FXML
     private Label lblDeleteOrderFinalTotalAmount;
 
     @FXML
@@ -270,16 +252,7 @@ public class EmployeeMainFormController {
     private Label lblTime;
 
     @FXML
-    private Label lblUpdateEmployeeHiredDate;
-
-    @FXML
     private Label lblUpdateOrderFinalTotalAmount;
-
-    @FXML
-    private Label lblViewEmployeeHiredDate;
-
-    @FXML
-    private AnchorPane pageAddEmployee;
 
     @FXML
     private AnchorPane pageAddInventory;
@@ -291,9 +264,6 @@ public class EmployeeMainFormController {
     private AnchorPane pageDashboard;
 
     @FXML
-    private AnchorPane pageDeleteEmployee;
-
-    @FXML
     private AnchorPane pageDeleteInventory;
 
     @FXML
@@ -301,9 +271,6 @@ public class EmployeeMainFormController {
 
     @FXML
     private AnchorPane pageDeleteSupplier;
-
-    @FXML
-    private AnchorPane pageEmployeeManagement;
 
     @FXML
     private AnchorPane pageInventoryManagement;
@@ -321,9 +288,6 @@ public class EmployeeMainFormController {
     private AnchorPane pageSupplierManagement;
 
     @FXML
-    private AnchorPane pageUpdateEmployee;
-
-    @FXML
     private AnchorPane pageUpdateInventory;
 
     @FXML
@@ -331,9 +295,6 @@ public class EmployeeMainFormController {
 
     @FXML
     private AnchorPane pageUpdateSupplier;
-
-    @FXML
-    private AnchorPane pageViewEmployee;
 
     @FXML
     private AnchorPane pageViewInventory;
@@ -345,13 +306,10 @@ public class EmployeeMainFormController {
     private AnchorPane pageViewSupplier;
 
     @FXML
-    private JFXPasswordField pfAddEmployeeLoginPassword;
+    private AnchorPane productReportPage;
 
     @FXML
-    private JFXPasswordField pfDeleteEmployeeLoginPassword;
-
-    @FXML
-    private JFXPasswordField pfUpdateEmployeeLoginPassword;
+    private AnchorPane supplierReportPage;
 
     @FXML
     private TableView<?> tblAddSupplierItemList;
@@ -372,9 +330,6 @@ public class EmployeeMainFormController {
     private TableView<?> tblUpdateSupplierItemList;
 
     @FXML
-    private TableView<?> tblViewEmployeeList;
-
-    @FXML
     private TableView<?> tblViewItemList;
 
     @FXML
@@ -388,18 +343,6 @@ public class EmployeeMainFormController {
 
     @FXML
     private TableView<?> tblViewSupplierList;
-
-    @FXML
-    private JFXTextArea txtAddEmployeeAddress;
-
-    @FXML
-    private JFXTextField txtAddEmployeeContact;
-
-    @FXML
-    private JFXTextField txtAddEmployeeEmail;
-
-    @FXML
-    private JFXTextField txtAddEmployeeName;
 
     @FXML
     private JFXTextField txtAddItemName;
@@ -427,21 +370,6 @@ public class EmployeeMainFormController {
 
     @FXML
     private JFXTextField txtAddSupplierName;
-
-    @FXML
-    private JFXTextArea txtDeleteEmployeeAddress;
-
-    @FXML
-    private JFXTextField txtDeleteEmployeeContact;
-
-    @FXML
-    private JFXTextField txtDeleteEmployeeEmail;
-
-    @FXML
-    private JFXTextField txtDeleteEmployeeId;
-
-    @FXML
-    private JFXTextField txtDeleteEmployeeName;
 
     @FXML
     private JFXTextField txtDeleteItemId;
@@ -501,21 +429,6 @@ public class EmployeeMainFormController {
     private JFXTextField txtPlaceOrderQty;
 
     @FXML
-    private JFXTextArea txtUpdateEmployeeAddress;
-
-    @FXML
-    private JFXTextField txtUpdateEmployeeContact;
-
-    @FXML
-    private JFXTextField txtUpdateEmployeeEmail;
-
-    @FXML
-    private JFXTextField txtUpdateEmployeeId;
-
-    @FXML
-    private JFXTextField txtUpdateEmployeeName;
-
-    @FXML
     private JFXTextField txtUpdateItemId;
 
     @FXML
@@ -573,28 +486,13 @@ public class EmployeeMainFormController {
     private JFXTextField txtUpdateSupplierName;
 
     @FXML
-    private JFXTextArea txtViewEmployeeAddress;
-
-    @FXML
-    private JFXTextField txtViewEmployeeContact;
-
-    @FXML
-    private JFXTextField txtViewEmployeeEmail;
-
-    @FXML
-    private JFXTextField txtViewEmployeeId;
-
-    @FXML
-    private JFXTextField txtViewEmployeeName;
-
-    @FXML
-    private JFXTextField txtViewEmployeePassword;
-
-    @FXML
     private JFXTextField txtViewItemId;
 
     @FXML
     private JFXTextField txtViewItemName;
+
+    @FXML
+    private JFXTextField txtViewItemStockLevel;
 
     @FXML
     private JFXTextField txtViewItemUnitPrice;
@@ -622,24 +520,6 @@ public class EmployeeMainFormController {
 
     @FXML
     private JFXTextField txtViewSupplierName;
-
-    @FXML
-    private JFXTextField txtViewItemStockLevel;
-
-    @FXML
-    void btnAddEmployeeClearFormOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnAddEmployeeOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnAddEmployeePageOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void btnAddItemClearFormOnAction(ActionEvent event) {
@@ -683,21 +563,6 @@ public class EmployeeMainFormController {
 
     @FXML
     void btnDashboardPageOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnDeleteEmployeeOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnDeleteEmployeePageOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnDeleteEmployeeSearchOnAction(ActionEvent event) {
 
     }
 
@@ -752,12 +617,12 @@ public class EmployeeMainFormController {
     }
 
     @FXML
-    void btnEmployeeManagementPageOnAction(ActionEvent event) {
+    void btnEmployeeReportPageOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnEmployeeReportPageOnAction(ActionEvent event) {
+    void btnGenerateEmployeeReportOnAction(ActionEvent event) {
 
     }
 
@@ -823,26 +688,6 @@ public class EmployeeMainFormController {
 
     @FXML
     void btnSupplierReportPageOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateEmployeeClearFormOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateEmployeeOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateEmployeePageOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateEmployeeSearchOnAction(ActionEvent event) {
 
     }
 
@@ -923,16 +768,6 @@ public class EmployeeMainFormController {
 
     @FXML
     void btnUpdateSupplierSearchOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnViewEmployeePageOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnViewEmployeeSearchOnAction(ActionEvent event) {
 
     }
 
