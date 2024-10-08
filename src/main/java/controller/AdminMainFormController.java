@@ -6,6 +6,9 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -15,13 +18,25 @@ import javafx.scene.layout.AnchorPane;
 public class AdminMainFormController {
 
     @FXML
-    private AnchorPane employeeReportPage;
+    private AnchorPane annualSalesReportPage;
 
     @FXML
-    private AnchorPane productReportPage;
+    private LineChart<?, ?> chartAnnualSales;
 
     @FXML
-    private AnchorPane supplierReportPage;
+    private LineChart<?, ?> chartDailySales;
+
+    @FXML
+    private BarChart<?, ?> chartEmployeeReport;
+
+    @FXML
+    private LineChart<?, ?> chartMonthlySales;
+
+    @FXML
+    private PieChart chartProductMovement;
+
+    @FXML
+    private BarChart<?, ?> chartSupplierReport;
 
     @FXML
     private JFXComboBox<?> cmbAddItemCategory;
@@ -48,10 +63,10 @@ public class AdminMainFormController {
     private JFXComboBox<?> cmbUpdateOrderItemId;
 
     @FXML
-    private JFXComboBox<?> cmbViewItemSupplierId;
+    private JFXComboBox<?> cmbViewItemCategory;
 
     @FXML
-    private JFXComboBox<?> cmbViewItemCategory;
+    private JFXComboBox<?> cmbViewItemSupplierId;
 
     @FXML
     private JFXComboBox<?> cmdAddItemSize;
@@ -234,25 +249,22 @@ public class AdminMainFormController {
     private TableColumn<?, ?> collViewSupplierUnitPrice;
 
     @FXML
+    private AnchorPane dailySalesReportPage;
+
+    @FXML
     private DatePicker dpDeleteOrderDate;
 
     @FXML
     private DatePicker dpViewOrderDate;
 
     @FXML
-    private Label lblDashboardEmployeeAddress;
+    private AnchorPane employeeReportPage;
 
     @FXML
-    private Label lblDashboardEmployeeContactNo;
+    private Label lblAnnualIncome;
 
     @FXML
-    private Label lblDashboardEmployeeEmail;
-
-    @FXML
-    private Label lblDashboardEmployeeId;
-
-    @FXML
-    private Label lblDashboardEmployeeName;
+    private Label lblDailyIncome;
 
     @FXML
     private Label lblDate;
@@ -262,6 +274,9 @@ public class AdminMainFormController {
 
     @FXML
     private Label lblDeleteOrderFinalTotalAmount;
+
+    @FXML
+    private Label lblMonthlyIncome;
 
     @FXML
     private Label lblPlaceOrderFinalTotalAmount;
@@ -277,6 +292,9 @@ public class AdminMainFormController {
 
     @FXML
     private Label lblViewEmployeeHiredDate;
+
+    @FXML
+    private AnchorPane monthlySalesReportPage;
 
     @FXML
     private AnchorPane pageAddEmployee;
@@ -352,6 +370,12 @@ public class AdminMainFormController {
 
     @FXML
     private JFXPasswordField pfUpdateEmployeeLoginPassword;
+
+    @FXML
+    private AnchorPane productReportPage;
+
+    @FXML
+    private AnchorPane supplierReportPage;
 
     @FXML
     private TableView<?> tblAddSupplierItemList;
@@ -597,6 +621,9 @@ public class AdminMainFormController {
     private JFXTextField txtViewItemName;
 
     @FXML
+    private JFXTextField txtViewItemStockLevel;
+
+    @FXML
     private JFXTextField txtViewItemUnitPrice;
 
     @FXML
@@ -622,9 +649,6 @@ public class AdminMainFormController {
 
     @FXML
     private JFXTextField txtViewSupplierName;
-
-    @FXML
-    private JFXTextField txtViewItemStockLevel;
 
     @FXML
     void btnAddEmployeeClearFormOnAction(ActionEvent event) {
@@ -673,11 +697,6 @@ public class AdminMainFormController {
 
     @FXML
     void btnAddSupplierPageOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnDashboardEmployeeChangePasswordOnAction(ActionEvent event) {
 
     }
 
@@ -758,6 +777,21 @@ public class AdminMainFormController {
 
     @FXML
     void btnEmployeeReportPageOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnGenerateEmployeeReportOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnGenerateAnnualSalesReportOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnGenerateDailySalesReportOnAction(ActionEvent event) {
 
     }
 

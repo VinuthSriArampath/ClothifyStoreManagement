@@ -8,9 +8,11 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -117,100 +119,88 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="21.0" layoutY="99.0" prefHeight="25.0" prefWidth="118.0" text="Employee ID :-" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="20.0">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lblDashboardEmployeeId" alignment="CENTER" layoutX="138.0" layoutY="99.0" prefHeight="25.0" prefWidth="67.0" text="01" textAlignment="CENTER" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <AnchorPane layoutX="-2.0" layoutY="143.0" prefHeight="119.0" prefWidth="994.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0">
-                           <styleClass>
-                              <String fx:value="ternary-background-colour" />
-                              <String fx:value="border" />
-                           </styleClass>
+                        <HBox alignment="CENTER" layoutY="104.0" prefHeight="258.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <Label layoutX="26.0" layoutY="26.0" prefHeight="25.0" prefWidth="135.0" text="Account Details" textAlignment="CENTER" textFill="WHITE" underline="true" AnchorPane.leftAnchor="23.0">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="69.0" layoutY="60.0" prefHeight="25.0" prefWidth="63.0" text="Name :-" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="lblDashboardEmployeeName" layoutX="134.0" layoutY="60.0" prefHeight="25.0" prefWidth="198.0" text="Kasun Perera" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="366.0" layoutY="60.0" prefHeight="25.0" prefWidth="63.0" text="Email :-" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="lblDashboardEmployeeEmail" layoutX="431.0" layoutY="60.0" prefHeight="25.0" prefWidth="274.0" text="kasunperera@gmail.com" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <JFXButton buttonType="RAISED" layoutX="780.0" layoutY="58.0" onAction="#btnDashboardEmployeeChangePasswordOnAction" prefHeight="21.0" prefWidth="200.0" stylesheets="@../css/style.css" text="Change Password" textFill="WHITE" AnchorPane.rightAnchor="10.0">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </JFXButton>
+                              <AnchorPane prefHeight="211.0" prefWidth="305.0" stylesheets="@../css/style.css">
+                                 <styleClass>
+                                    <String fx:value="ternary-background-colour" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <Label alignment="CENTER" layoutX="67.0" layoutY="33.0" prefHeight="35.0" prefWidth="171.0" text="Daily Income" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" layoutX="25.0" layoutY="102.0" prefHeight="55.0" prefWidth="67.0" text="RS ." textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblDailyIncome" layoutX="92.0" layoutY="102.0" prefHeight="55.0" prefWidth="173.0" text="0.00" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="211.0" prefWidth="305.0" stylesheets="@../css/style.css">
+                                 <styleClass>
+                                    <String fx:value="ternary-background-colour" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <Label alignment="CENTER" layoutX="55.0" layoutY="33.0" prefHeight="35.0" prefWidth="196.0" text="Monthly Income" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" layoutX="22.0" layoutY="102.0" prefHeight="55.0" prefWidth="67.0" text="RS ." textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblMonthlyIncome" layoutX="89.0" layoutY="102.0" prefHeight="55.0" prefWidth="173.0" text="0.00" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="310.0" layoutY="10.0" prefHeight="211.0" prefWidth="305.0" stylesheets="@../css/style.css">
+                                 <styleClass>
+                                    <String fx:value="ternary-background-colour" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <Label alignment="CENTER" layoutX="60.0" layoutY="33.0" prefHeight="35.0" prefWidth="186.0" text="Annual Income" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" layoutX="22.0" layoutY="102.0" prefHeight="55.0" prefWidth="67.0" text="RS ." textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblAnnualIncome" layoutX="100.0" layoutY="102.0" prefHeight="55.0" prefWidth="173.0" text="0.00" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
                            </children>
-                        </AnchorPane>
-                        <AnchorPane layoutY="278.0" prefHeight="119.0" prefWidth="994.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0">
-                           <styleClass>
-                              <String fx:value="ternary-background-colour" />
-                              <String fx:value="border" />
-                           </styleClass>
-                           <children>
-                              <Label layoutX="29.0" layoutY="26.0" prefHeight="25.0" prefWidth="169.0" text="User Contact Details" textAlignment="CENTER" textFill="WHITE" underline="true" AnchorPane.leftAnchor="26.0">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="69.0" layoutY="60.0" prefHeight="25.0" prefWidth="112.0" text="Contact No :-" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="lblDashboardEmployeeContactNo" layoutX="198.0" layoutY="61.0" prefHeight="25.0" prefWidth="124.0" text="0710000000" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane layoutY="417.0" prefHeight="119.0" prefWidth="994.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0">
-                           <styleClass>
-                              <String fx:value="ternary-background-colour" />
-                              <String fx:value="border" />
-                           </styleClass>
-                           <children>
-                              <Label layoutX="29.0" layoutY="26.0" prefHeight="25.0" prefWidth="169.0" text="User Address" textAlignment="CENTER" textFill="WHITE" underline="true" AnchorPane.leftAnchor="26.0">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="69.0" layoutY="60.0" prefHeight="25.0" prefWidth="112.0" text="Address :-" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="lblDashboardEmployeeAddress" layoutX="198.0" layoutY="61.0" prefHeight="25.0" prefWidth="757.0" text="75/5 kottikawaththa road,gothatuwa " textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
+                        </HBox>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="pageInventoryManagement" prefHeight="674.0" prefWidth="994.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -2327,83 +2317,121 @@
                   </AnchorPane>
                   <AnchorPane fx:id="pageReportGeneration" layoutY="5.0" prefHeight="678.0" prefWidth="1005.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="52.0" prefWidth="989.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <HBox alignment="CENTER" layoutX="-2.0" prefHeight="52.0" prefWidth="997.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                            <children>
-                              <JFXButton onAction="#btnEmployeeReportPageOnAction" prefHeight="33.0" prefWidth="200.0" stylesheets="@../css/style.css" text="Employee Report" textFill="WHITE">
+                              <JFXButton onAction="#btnEmployeeReportPageOnAction" prefHeight="35.0" prefWidth="156.0" stylesheets="@../css/style.css" text="Employee Report" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets right="10.0" />
+                                    <Insets right="5.0" />
                                  </HBox.margin>
                               </JFXButton>
-                              <JFXButton layoutX="10.0" layoutY="10.0" onAction="#btnProductReportPageOnAction" prefHeight="33.0" prefWidth="200.0" stylesheets="@../css/style.css" text="Product Report" textFill="WHITE">
+                              <JFXButton layoutX="10.0" layoutY="10.0" onAction="#btnProductReportPageOnAction" prefHeight="35.0" prefWidth="139.0" stylesheets="@../css/style.css" text="Product Report" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="10.0" right="10.0" />
+                                    <Insets left="5.0" right="5.0" />
                                  </HBox.margin>
                               </JFXButton>
-                              <JFXButton layoutX="210.0" layoutY="10.0" onAction="#btnSupplierReportPageOnAction" prefHeight="33.0" prefWidth="200.0" stylesheets="@../css/style.css" text="Suppliers report" textFill="WHITE">
+                              <JFXButton layoutX="210.0" layoutY="10.0" onAction="#btnSupplierReportPageOnAction" prefHeight="35.0" prefWidth="144.0" stylesheets="@../css/style.css" text="Suppliers report" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="10.0" right="10.0" />
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="618.0" layoutY="19.0" onAction="#btnSupplierReportPageOnAction" prefHeight="35.0" prefWidth="160.0" stylesheets="@../css/style.css" text="Daily Sales Report" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="671.0" layoutY="19.0" onAction="#btnSupplierReportPageOnAction" prefHeight="35.0" prefWidth="184.0" stylesheets="@../css/style.css" text="Monthly Sales Report" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="754.0" layoutY="19.0" onAction="#btnSupplierReportPageOnAction" prefHeight="35.0" prefWidth="164.0" stylesheets="@../css/style.css" text="Annual Sales Report" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
                                  </HBox.margin>
                               </JFXButton>
                            </children>
                         </HBox>
-                        <AnchorPane fx:id="EmployeeReportPage" layoutX="8.0" layoutY="-52.0" prefHeight="352.0" prefWidth="985.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                        <AnchorPane fx:id="employeeReportPage" layoutX="5.0" layoutY="72.0" prefHeight="352.0" prefWidth="985.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="72.0">
                            <styleClass>
                               <String fx:value="ternary-background-colour" />
                               <String fx:value="border" />
                            </styleClass>
                            <children>
-                              <LineChart prefHeight="546.0" prefWidth="974.0" style="-fx-background-color: #fff;" title="Employee Report" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                              <JFXButton layoutX="750.0" layoutY="562.0" onAction="#btnGenerateEmployeeReportOnAction" prefHeight="35.0" prefWidth="231.0" styleClass="button-add" stylesheets="@../css/style.css" text="Generate Employee Report" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <BarChart fx:id="chartEmployeeReport" style="-fx-background-color: fff;" title="Employee Report" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                 <xAxis>
                                   <CategoryAxis side="BOTTOM" />
                                 </xAxis>
                                 <yAxis>
                                   <NumberAxis side="LEFT" />
                                 </yAxis>
-                              </LineChart>
-                              <JFXButton layoutX="750.0" layoutY="562.0" onAction="#btnDashboardPageOnAction" prefHeight="35.0" prefWidth="231.0" styleClass="button-add" stylesheets="@../css/style.css" text="Generate Employee Report" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </JFXButton>
+                              </BarChart>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="ProductReportPage" layoutX="10.0" layoutY="82.0" prefHeight="352.0" prefWidth="985.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                        <AnchorPane fx:id="productReportPage" layoutX="10.0" layoutY="82.0" prefHeight="352.0" prefWidth="985.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="72.0">
                            <styleClass>
                               <String fx:value="ternary-background-colour" />
                               <String fx:value="border" />
                            </styleClass>
                            <children>
-                              <LineChart layoutX="8.0" prefHeight="297.0" prefWidth="289.0" style="-fx-background-color: #fff;" title="Product Report" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                 <xAxis>
-                                    <CategoryAxis side="BOTTOM" />
-                                 </xAxis>
-                                 <yAxis>
-                                    <NumberAxis side="LEFT" />
-                                 </yAxis>
-                              </LineChart>
                               <JFXButton layoutX="404.0" layoutY="463.0" onAction="#btnGenerateProductReportOnAction" prefHeight="35.0" prefWidth="220.0" styleClass="button-add" stylesheets="@../css/style.css" text="Generate Product Report" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </JFXButton>
+                              <PieChart fx:id="chartProductMovement" layoutX="225.0" layoutY="55.0" style="-fx-background-color: fff;" title="Product Movement Report" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="SupplierReportPage" layoutX="20.0" layoutY="92.0" prefHeight="352.0" prefWidth="985.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                        <AnchorPane fx:id="supplierReportPage" layoutX="20.0" layoutY="92.0" prefHeight="352.0" prefWidth="985.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="72.0">
                            <styleClass>
                               <String fx:value="ternary-background-colour" />
                               <String fx:value="border" />
                            </styleClass>
                            <children>
-                              <LineChart prefHeight="297.0" prefWidth="289.0" style="-fx-background-color: #fff;" title="Supplier Report" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                              <JFXButton layoutX="699.0" layoutY="463.0" onAction="#btnGenerateSupplierReportOnAction" prefHeight="35.0" prefWidth="223.0" styleClass="button-add" stylesheets="@../css/style.css" text="Generate Supplier Report" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <BarChart fx:id="chartSupplierReport" style="-fx-background-color: fff;" title="Supplier Report" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <xAxis>
+                                    <CategoryAxis side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis side="LEFT" />
+                                 </yAxis>
+                              </BarChart>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="dailySalesReportPage" layoutX="10.0" layoutY="82.0" prefHeight="352.0" prefWidth="985.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="72.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <LineChart fx:id="chartDailySales" layoutX="13.0" layoutY="14.0" prefHeight="297.0" prefWidth="289.0" style="-fx-background-color: #fff;" title="Daily Sales Report" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                  <xAxis>
                                     <CategoryAxis side="BOTTOM" />
                                  </xAxis>
@@ -2411,7 +2439,49 @@
                                     <NumberAxis side="LEFT" />
                                  </yAxis>
                               </LineChart>
-                              <JFXButton layoutX="699.0" layoutY="463.0" onAction="#btnGenerateSupplierReportOnAction" prefHeight="35.0" prefWidth="223.0" styleClass="button-add" stylesheets="@../css/style.css" text="Generate Supplier Report" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                              <JFXButton layoutX="699.0" layoutY="463.0" onAction="#btnGenerateDailySalesReportOnAction" prefHeight="35.0" prefWidth="293.0" styleClass="button-add" stylesheets="@../css/style.css" text="Generate Daily Sales Report" textFill="WHITE" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="13.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="monthlySalesReportPage" layoutX="10.0" layoutY="82.0" prefHeight="352.0" prefWidth="985.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="72.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <LineChart fx:id="chartMonthlySales" prefHeight="297.0" prefWidth="289.0" style="-fx-background-color: #fff;" title="Monthly Sales Report" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <xAxis>
+                                    <CategoryAxis side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis side="LEFT" />
+                                 </yAxis>
+                              </LineChart>
+                              <JFXButton layoutX="699.0" layoutY="463.0" onAction="#btnGenerateSupplierReportOnAction" prefHeight="35.0" prefWidth="278.0" styleClass="button-add" stylesheets="@../css/style.css" text="Generate Monthly Sales Report" textFill="WHITE" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="13.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="annualSalesReportPage" layoutX="20.0" layoutY="82.0" prefHeight="352.0" prefWidth="985.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="72.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <LineChart fx:id="chartAnnualSales" layoutX="26.0" layoutY="14.0" prefHeight="297.0" prefWidth="289.0" style="-fx-background-color: #fff;" title="Annual Sales Report" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                                 <xAxis>
+                                    <CategoryAxis side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis side="LEFT" />
+                                 </yAxis>
+                              </LineChart>
+                              <JFXButton layoutX="699.0" layoutY="463.0" onAction="#btnGenerateAnnualSalesReportOnAction" prefHeight="35.0" prefWidth="270.0" styleClass="button-add" stylesheets="@../css/style.css" text="Generate Annual Sales Report" textFill="WHITE" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="13.0">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>

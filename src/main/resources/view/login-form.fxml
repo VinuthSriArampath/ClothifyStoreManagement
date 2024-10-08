@@ -46,7 +46,7 @@
             <Font name="Verdana Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="172.0" layoutY="218.0" text="Shop Managemnt System" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="172.0" layoutY="218.0" text="Shop Management System" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
