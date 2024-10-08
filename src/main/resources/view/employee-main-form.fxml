@@ -1,0 +1,2428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1300.0" styleClass="main-background-colour" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeMainFormController">
+   <children>
+      <BorderPane layoutX="6.0" layoutY="7.0" prefHeight="700.0" prefWidth="1300.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <left>
+            <AnchorPane prefHeight="674.0" prefWidth="243.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane layoutX="24.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <children>
+                        <ImageView fitHeight="100.0" fitWidth="125.0" layoutX="80.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
+                           <image>
+                              <Image url="@../img/Clothify-Logo.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutX="78.0" layoutY="99.0" text="Clothify" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="77.0">
+                           <font>
+                              <Font name="Verdana Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <JFXButton layoutX="30.0" layoutY="163.0" onAction="#btnDashboardPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-dashboard" stylesheets="@../css/style.css" text="Dashboard" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="30.0" layoutY="212.0" onAction="#btnInventoryManagementPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-dashboard" stylesheets="@../css/style.css" text="Inventory Management" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="30.0" layoutY="260.0" onAction="#btnOrderManagementPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-dashboard" stylesheets="@../css/style.css" text="Order Management" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="30.0" layoutY="309.0" onAction="#btnSupplierManagementPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-dashboard" stylesheets="@../css/style.css" text="Supplier Management" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="30.0" layoutY="356.0" onAction="#btnEmployeeManagementPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-dashboard" stylesheets="@../css/style.css" text="Employee Management" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="30.0" layoutY="405.0" onAction="#btnReportGenerationPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-dashboard" stylesheets="@../css/style.css" text="Report Generation" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="30.0" layoutY="593.0" onAction="#btnLogOutOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-dashboard" stylesheets="@../css/style.css" text="Log Out" textFill="WHITE" AnchorPane.bottomAnchor="26.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </left>
+         <styleClass>
+            <String fx:value="border" />
+            <String fx:value="secondary-background-colour" />
+         </styleClass>
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="pageDashboard" prefHeight="674.0" prefWidth="994.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <children>
+                        <AnchorPane layoutX="8.0" layoutY="7.0" prefHeight="77.0" prefWidth="994.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <Label layoutX="25.0" layoutY="26.0" prefHeight="25.0" prefWidth="63.0" text="Date :-" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="20.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblDate" alignment="CENTER" layoutX="88.0" layoutY="26.0" prefHeight="25.0" prefWidth="119.0" text="2024-10-05" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="779.0" layoutY="26.0" prefHeight="25.0" prefWidth="63.0" text="Time :-" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="120.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblTime" alignment="CENTER" layoutX="845.0" layoutY="26.0" prefHeight="25.0" prefWidth="119.0" text="13:33:47" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="20.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="21.0" layoutY="99.0" prefHeight="25.0" prefWidth="118.0" text="Employee ID :-" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="20.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblDashboardEmployeeId" alignment="CENTER" layoutX="138.0" layoutY="99.0" prefHeight="25.0" prefWidth="67.0" text="01" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutX="-2.0" layoutY="143.0" prefHeight="119.0" prefWidth="994.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <Label layoutX="26.0" layoutY="26.0" prefHeight="25.0" prefWidth="135.0" text="Account Details" textAlignment="CENTER" textFill="WHITE" underline="true" AnchorPane.leftAnchor="23.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="69.0" layoutY="60.0" prefHeight="25.0" prefWidth="63.0" text="Name :-" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblDashboardEmployeeName" layoutX="134.0" layoutY="60.0" prefHeight="25.0" prefWidth="198.0" text="Kasun Perera" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="366.0" layoutY="60.0" prefHeight="25.0" prefWidth="63.0" text="Email :-" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblDashboardEmployeeEmail" layoutX="431.0" layoutY="60.0" prefHeight="25.0" prefWidth="274.0" text="kasunperera@gmail.com" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton buttonType="RAISED" layoutX="780.0" layoutY="58.0" onAction="#btnDashboardEmployeeChangePasswordOnAction" prefHeight="21.0" prefWidth="200.0" stylesheets="@../css/style.css" text="Change Password" textFill="WHITE" AnchorPane.rightAnchor="10.0">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutY="278.0" prefHeight="119.0" prefWidth="994.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <Label layoutX="29.0" layoutY="26.0" prefHeight="25.0" prefWidth="169.0" text="User Contact Details" textAlignment="CENTER" textFill="WHITE" underline="true" AnchorPane.leftAnchor="26.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="69.0" layoutY="60.0" prefHeight="25.0" prefWidth="112.0" text="Contact No :-" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblDashboardEmployeeContactNo" layoutX="198.0" layoutY="61.0" prefHeight="25.0" prefWidth="124.0" text="0710000000" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutY="417.0" prefHeight="119.0" prefWidth="994.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <Label layoutX="29.0" layoutY="26.0" prefHeight="25.0" prefWidth="169.0" text="User Address" textAlignment="CENTER" textFill="WHITE" underline="true" AnchorPane.leftAnchor="26.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="69.0" layoutY="60.0" prefHeight="25.0" prefWidth="112.0" text="Address :-" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblDashboardEmployeeAddress" layoutX="198.0" layoutY="61.0" prefHeight="25.0" prefWidth="757.0" text="75/5 kottikawaththa road,gothatuwa " textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="pageInventoryManagement" prefHeight="674.0" prefWidth="994.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <children>
+                        <HBox alignment="CENTER" layoutX="-2.0" layoutY="7.0" prefHeight="52.0" prefWidth="989.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                           <children>
+                              <JFXButton onAction="#btnAddItemPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-add" stylesheets="@../css/style.css" text="Add Item" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="10.0" layoutY="10.0" onAction="#btnUpdateItemPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-update" stylesheets="@../css/style.css" text="Update Item" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="210.0" layoutY="10.0" onAction="#btnDeleteItemPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-delete" stylesheets="@../css/style.css" text="Delete Item" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="410.0" layoutY="10.0" onAction="#btnViewItemPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="View Item" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                        <AnchorPane fx:id="pageAddInventory" prefHeight="592.0" prefWidth="984.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <JFXTextField fx:id="txtAddItemName" layoutX="344.0" layoutY="77.0" prefHeight="42.0" prefWidth="283.0" promptText="Item Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="355.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="351.0" layoutY="52.0" text="Item Name" textFill="WHITE" AnchorPane.leftAnchor="341.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="351.0" layoutY="126.0" text="Item Category" textFill="WHITE" AnchorPane.leftAnchor="341.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmbAddItemCategory" layoutX="344.0" layoutY="155.0" prefHeight="42.0" prefWidth="283.0" promptText="Select Category" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="355.0">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <Label alignment="CENTER" layoutX="343.0" layoutY="212.0" text="Item Size" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmdAddItemSize" layoutX="343.0" layoutY="241.0" prefHeight="42.0" prefWidth="283.0" promptText="Select Size" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="355.0">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <Label alignment="CENTER" layoutX="343.0" layoutY="296.0" text="Item Stock Level" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="343.0" layoutY="378.0" text="Item Unit Price" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="343.0" layoutY="461.0" text="Item Supplier" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmbAddItemSupplier" layoutX="343.0" layoutY="490.0" prefHeight="42.0" prefWidth="283.0" promptText="Select Supplier" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="355.0">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <JFXTextField fx:id="txtAddItemStockLevel" layoutX="343.0" layoutY="326.0" prefHeight="42.0" prefWidth="283.0" promptText="Item Stock Level" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="355.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXTextField fx:id="txtAddItemUnitPrice" layoutX="343.0" layoutY="406.0" prefHeight="42.0" prefWidth="283.0" promptText="Item Unit Price" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="355.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <HBox alignment="CENTER" layoutX="529.0" layoutY="532.0" prefHeight="45.0" prefWidth="441.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="540.0">
+                                 <children>
+                                    <JFXButton onAction="#btnAddItemClearFormOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Clear Form" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton onAction="#btnAddItemOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-add" stylesheets="@../css/style.css" text="Add Item" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="pageUpdateInventory" prefHeight="674.0" prefWidth="994.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <styleClass>
+                              <String fx:value="border" />
+                              <String fx:value="ternary-background-colour" />
+                           </styleClass>
+                           <children>
+                              <JFXTextField fx:id="txtUpdateItemName" layoutX="346.0" layoutY="130.0" prefHeight="42.0" prefWidth="283.0" promptText="Item Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="381.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="346.0" layoutY="102.0" text="Item Name" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="465.0" layoutY="178.0" text="Item Category" textFill="WHITE" AnchorPane.leftAnchor="465.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmbUpdateItemCategory" layoutX="471.0" layoutY="207.0" prefHeight="42.0" prefWidth="147.0" promptText="Select Category" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="468.0" AnchorPane.rightAnchor="381.0">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <Label alignment="CENTER" layoutX="346.0" layoutY="178.0" text="Item Size" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmdUpdateItemSize" layoutX="346.0" layoutY="207.0" prefHeight="42.0" prefWidth="108.0" promptText="Select Size" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <Label alignment="CENTER" layoutX="346.0" layoutY="261.0" text="Item Stock Level" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="346.0" layoutY="339.0" text="Item Unit Price" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="346.0" layoutY="424.0" text="Item Supplier" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmbUpdateItemSupplier" layoutX="346.0" layoutY="450.0" prefHeight="42.0" prefWidth="283.0" promptText="Select Supplier" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="381.0">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <JFXTextField fx:id="txtUpdateItemStockLevel" layoutX="346.0" layoutY="292.0" prefHeight="42.0" prefWidth="283.0" promptText="Item Stock Level" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="381.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXTextField fx:id="txtUpdateItemUnitPrice" layoutX="346.0" layoutY="370.0" prefHeight="42.0" prefWidth="283.0" promptText="Item Unit Price" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="381.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <HBox alignment="CENTER" layoutX="539.0" layoutY="497.0" prefHeight="45.0" prefWidth="441.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="497.0">
+                                 <children>
+                                    <JFXButton onAction="#btnUpdateItemClearFormOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Clear Form" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton onAction="#btnUpdateItemOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-update" stylesheets="@../css/style.css" text="Update Item" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <Label alignment="CENTER" layoutX="349.0" layoutY="25.0" text="Item ID" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtUpdateItemId" editable="false" layoutX="348.0" layoutY="52.0" prefHeight="42.0" prefWidth="116.0" promptText="Item ID" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXButton layoutX="482.0" layoutY="56.0" onAction="#btnUpdateItemSearchOnAction" prefHeight="35.0" prefWidth="128.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Search Item" textFill="WHITE" AnchorPane.leftAnchor="482.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="pageDeleteInventory" layoutY="72.0" prefHeight="674.0" prefWidth="994.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <children>
+                              <JFXTextField fx:id="txtDeleteItemName" editable="false" layoutX="392.0" layoutY="121.0" prefHeight="42.0" prefWidth="283.0" promptText="Item Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="381.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="393.0" layoutY="94.0" text="Item Name" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="469.0" layoutY="170.0" text="Item Category" textFill="WHITE" AnchorPane.leftAnchor="469.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmbDeleteItemCategory" layoutX="469.0" layoutY="199.0" prefHeight="42.0" prefWidth="145.0" promptText="Select Category" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="469.0" AnchorPane.rightAnchor="381.0">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <Label alignment="CENTER" layoutX="393.0" layoutY="170.0" text="Item Size" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmdDeleteItemSize" layoutX="393.0" layoutY="199.0" prefHeight="42.0" prefWidth="108.0" promptText="Select Size" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <Label alignment="CENTER" layoutX="393.0" layoutY="253.0" text="Item Stock Level" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="393.0" layoutY="331.0" text="Item Unit Price" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="393.0" layoutY="416.0" text="Item Supplier" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmbDeleteItemSupplier" layoutX="393.0" layoutY="442.0" prefHeight="42.0" prefWidth="283.0" promptText="Select Supplier" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="381.0">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <JFXTextField fx:id="txtDeleteItemStockLevel" editable="false" layoutX="393.0" layoutY="284.0" prefHeight="42.0" prefWidth="283.0" promptText="Item Stock Level" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="381.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXTextField fx:id="txtDeleteItemUnitPrice" editable="false" layoutX="393.0" layoutY="362.0" prefHeight="42.0" prefWidth="283.0" promptText="Item Unit Price" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="381.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <HBox alignment="CENTER" layoutX="533.0" layoutY="496.0" prefHeight="45.0" prefWidth="233.0" AnchorPane.rightAnchor="23.0">
+                                 <children>
+                                    <JFXButton onAction="#btnDeleteItemOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-delete" stylesheets="@../css/style.css" text="Delete Item" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <Label alignment="CENTER" layoutX="396.0" layoutY="17.0" text="Item ID" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtDeleteItemId" layoutX="395.0" layoutY="44.0" prefHeight="42.0" prefWidth="116.0" promptText="Item ID" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXButton layoutX="469.0" layoutY="48.0" onAction="#btnDeleteItemSearchOnAction" prefHeight="35.0" prefWidth="128.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Search Item" textFill="WHITE" AnchorPane.leftAnchor="469.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                        </AnchorPane>
+                        <AnchorPane fx:id="pageViewInventory" prefHeight="674.0" prefWidth="994.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <children>
+                              <JFXTextField fx:id="txtViewItemName" layoutX="28.0" layoutY="126.0" prefHeight="42.0" prefWidth="283.0" promptText="Item Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="684.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="30.0" layoutY="97.0" text="Item Name" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="467.0" layoutY="97.0" text="Item Category" textFill="WHITE" AnchorPane.rightAnchor="414.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmbViewItemCategory" layoutX="467.0" layoutY="126.0" prefHeight="42.0" prefWidth="145.0" promptText="Select Category" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.rightAnchor="383.0">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <Label alignment="CENTER" layoutX="335.0" layoutY="97.0" text="Item Size" textFill="WHITE" AnchorPane.rightAnchor="584.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmdViewItemSize" layoutX="335.0" layoutY="126.0" prefHeight="42.0" prefWidth="108.0" promptText="Select Size" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.rightAnchor="552.0">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <Label alignment="CENTER" layoutX="640.0" layoutY="93.0" text="Item Stock Level" textFill="WHITE" AnchorPane.rightAnchor="222.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="28.0" layoutY="174.0" text="Item Unit Price" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="334.0" layoutY="174.0" text="Item Supplier ID" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmbViewItemSupplierId" layoutX="334.0" layoutY="205.0" prefHeight="42.0" prefWidth="283.0" promptText="Select Supplier" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <JFXTextField fx:id="txtViewItemStockLevel" layoutX="640.0" layoutY="126.0" prefHeight="42.0" prefWidth="283.0" promptText="Item Stock Level" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.rightAnchor="72.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXTextField fx:id="txtViewItemUnitPrice" layoutX="28.0" layoutY="205.0" prefHeight="42.0" prefWidth="283.0" promptText="Item Unit Price" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="29.0" layoutY="18.0" text="Item ID" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtViewItemId" layoutX="28.0" layoutY="45.0" prefHeight="42.0" prefWidth="116.0" promptText="Item ID" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXButton layoutX="159.0" layoutY="49.0" onAction="#btnViewItemSearchOnAction" prefHeight="35.0" prefWidth="128.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Search Item" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <TableView fx:id="tblViewItemList" layoutX="28.0" layoutY="263.0" prefHeight="200.0" prefWidth="951.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="263.0">
+                                <columns>
+                                  <TableColumn fx:id="collViewItemListItemId" prefWidth="75.0" text="Item ID" />
+                                    <TableColumn fx:id="collViewItemListItemName" prefWidth="318.0" text="Name" />
+                                    <TableColumn fx:id="collViewItemListItemSize" prefWidth="55.0" text="Size" />
+                                    <TableColumn fx:id="collViewItemListItemCategory" prefWidth="145.0" text="Category" />
+                                    <TableColumn fx:id="collViewItemListItemStock" prefWidth="99.0" text="Stock" />
+                                    <TableColumn fx:id="collViewItemListItemUnitPrice" prefWidth="102.0" text="UnitPrice" />
+                                    <TableColumn fx:id="collViewItemListItemSupplier" prefWidth="179.0" text="Supplier" />
+                                </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="pageOrderManagement" prefHeight="674.0" prefWidth="994.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <styleClass>
+                        <String fx:value="ternary-background-colour" />
+                        <String fx:value="border" />
+                     </styleClass>
+                     <children>
+                        <HBox alignment="CENTER" layoutX="6.0" layoutY="7.0" prefHeight="52.0" prefWidth="989.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0">
+                           <children>
+                              <JFXButton onAction="#btnPlaceOrderPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-add" stylesheets="@../css/style.css" text="Place Order" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="10.0" layoutY="10.0" onAction="#btnUpdateOrderPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-update" stylesheets="@../css/style.css" text="Update Order" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="210.0" layoutY="10.0" onAction="#btnDeleteOrderPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-delete" stylesheets="@../css/style.css" text="Delete Order" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="410.0" layoutY="10.0" onAction="#btnViewOrderPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="View Order" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                        <AnchorPane fx:id="pagePlaceOrder" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <children>
+                              <TableView fx:id="tblPlaceOrderCartList" layoutX="10.0" layoutY="228.0" prefHeight="237.0" prefWidth="959.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="228.0">
+                                <columns>
+                                  <TableColumn fx:id="collPlaceOrderCartListItemId" prefWidth="75.0" text="Item ID" />
+                                  <TableColumn fx:id="collPlaceOrderCartListItemName" prefWidth="533.0" text="Name" />
+                                    <TableColumn fx:id="collPlaceOrderCartListItemUnitPrice" prefWidth="111.0" text="Unit Price" />
+                                    <TableColumn fx:id="collPlaceOrderCartListItemQuantity" prefWidth="114.0" text="Quantity" />
+                                    <TableColumn fx:id="collPlaceOrderCartListItemTotalAmount" prefWidth="134.0" text="Amount" />
+                                </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <HBox alignment="CENTER" layoutX="540.0" layoutY="507.0" prefHeight="45.0" prefWidth="441.0" AnchorPane.bottomAnchor="24.0" AnchorPane.rightAnchor="14.0">
+                                 <children>
+                                    <JFXButton onAction="#btnPlaceOrderClearCartOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Clear Cart" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton onAction="#btnPlaceOrderOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-add" stylesheets="@../css/style.css" text="Place Order" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <Label alignment="CENTER" layoutX="12.0" layoutY="98.0" text="Item ID" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmbPlaceItemId" layoutX="12.0" layoutY="120.0" prefHeight="42.0" prefWidth="145.0" promptText="Select Item ID" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <JFXTextField fx:id="txtPlaceOrderCustomerName" layoutX="14.0" layoutY="44.0" prefHeight="42.0" prefWidth="352.0" promptText="Customer Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="14.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="12.0" layoutY="14.0" text="Customer Name" textFill="WHITE" AnchorPane.leftAnchor="12.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtPlaceOrderItemName" layoutX="175.0" layoutY="119.0" prefHeight="42.0" prefWidth="352.0" promptText="Item Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="469.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="175.0" layoutY="98.0" text="Item Name" textFill="WHITE" AnchorPane.leftAnchor="175.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="682.0" layoutY="98.0" text="Item Unit Price" textFill="WHITE" AnchorPane.rightAnchor="177.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtPlaceOrderItemUnitPrice" layoutX="680.0" layoutY="119.0" prefHeight="42.0" prefWidth="137.0" promptText="Item Unit Price" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.rightAnchor="162.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="834.0" layoutY="98.0" text="Item Stock Level" textFill="WHITE" AnchorPane.rightAnchor="12.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtPlaceOrderItemStockLevel" layoutX="825.0" layoutY="119.0" prefHeight="42.0" prefWidth="142.0" promptText="Item Stock Level" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.rightAnchor="12.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="629.0" layoutY="181.0" text="Qty:-" textFill="WHITE" AnchorPane.rightAnchor="298.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtPlaceOrderQty" layoutX="699.0" layoutY="171.0" prefHeight="42.0" prefWidth="113.0" promptText="Qty" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.rightAnchor="167.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXButton layoutX="835.0" layoutY="174.0" onAction="#btnPlaceOrderAddToCartOnAction" prefHeight="35.0" prefWidth="127.0" styleClass="button-add" stylesheets="@../css/style.css" text="Add To Cart" textFill="WHITE" AnchorPane.rightAnchor="17.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <Label alignment="CENTER" layoutX="523.0" layoutY="98.0" text="Item Size" textFill="WHITE" AnchorPane.rightAnchor="380.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblPlaceOrderFinalTotalAmount" alignment="CENTER" layoutX="883.0" layoutY="476.0" text="0.00" textFill="WHITE" AnchorPane.rightAnchor="61.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="42.0" layoutY="471.0" text="Total Amount" textFill="WHITE" AnchorPane.bottomAnchor="87.0" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="471.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtPlaceOrderItemSize" layoutX="522.0" layoutY="119.0" prefHeight="42.0" prefWidth="143.0" promptText="Item Size" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.rightAnchor="314.0">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="input-text" />
+                                 </styleClass>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="txtPlaceOrderCustomerEmail" layoutX="385.0" layoutY="44.0" prefHeight="42.0" prefWidth="352.0" promptText="Customer Email" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="385.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="385.0" layoutY="14.0" text="Customer Email" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="pageUpdateOrder" prefHeight="654.0" prefWidth="974.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <children>
+                              <TableView fx:id="tblUpdateOrderCartList" layoutX="13.0" layoutY="298.0" prefHeight="198.0" prefWidth="975.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="298.0">
+                                 <columns>
+                                    <TableColumn fx:id="collUpdateOrderCartListItemId" prefWidth="75.0" text="Item ID" />
+                                    <TableColumn fx:id="collUpdateOrderCartIListItemName" prefWidth="533.0" text="Name" />
+                                    <TableColumn fx:id="collUpdateOrderCartListItemUnitPrice" prefWidth="111.0" text="Unit Price" />
+                                    <TableColumn fx:id="collUpdateOrderCartListItemQuantity" prefWidth="114.0" text="Quantity" />
+                                    <TableColumn fx:id="collUpdateOrderCartListItemTotalAmount" prefWidth="134.0" text="Amount" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <HBox alignment="CENTER" layoutX="520.0" layoutY="522.0" prefHeight="45.0" prefWidth="441.0" AnchorPane.bottomAnchor="9.0" AnchorPane.rightAnchor="7.0">
+                                 <children>
+                                    <JFXButton onAction="#btnUpdateOrderClearCartOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Clear Cart" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton onAction="#btnUpdateOrderOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-update" stylesheets="@../css/style.css" text="Update Order" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <Label alignment="CENTER" layoutX="14.0" layoutY="166.0" text="Item ID" textFill="WHITE" AnchorPane.leftAnchor="14.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmbUpdateOrderItemId" layoutX="14.0" layoutY="190.0" prefHeight="42.0" prefWidth="145.0" promptText="Select Item ID" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="14.0">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <JFXTextField fx:id="txtUpdateOrderCustomerName" layoutX="15.0" layoutY="112.0" prefHeight="42.0" prefWidth="376.0" promptText="Customer Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="15.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="15.0" layoutY="88.0" text="Customer Name" textFill="WHITE" AnchorPane.leftAnchor="15.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtUpdateOrderItemName" layoutX="174.0" layoutY="189.0" prefHeight="42.0" prefWidth="352.0" promptText="Item Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="449.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="174.0" layoutY="165.0" text="Item Name" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="532.0" layoutY="166.0" text="Item Size" textFill="WHITE" AnchorPane.rightAnchor="360.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtUpdateOrderItemSize" layoutX="532.0" layoutY="191.0" prefHeight="42.0" prefWidth="132.0" promptText="Item Size" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.rightAnchor="304.0">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="input-text" />
+                                 </styleClass>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="txtUpdateOrderItemUnitPrice" layoutX="672.0" layoutY="191.0" prefHeight="42.0" prefWidth="137.0" promptText="Item Unit Price" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.rightAnchor="159.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="679.0" layoutY="165.0" text="Item Unit Price" textFill="WHITE" AnchorPane.rightAnchor="169.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="817.0" layoutY="165.0" text="Item Stock Level" textFill="WHITE" AnchorPane.rightAnchor="18.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtUpdateOrderItemStockLevel" layoutX="813.0" layoutY="189.0" prefHeight="42.0" prefWidth="142.0" promptText="Item Stock Level" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.rightAnchor="13.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="38.0" layoutY="524.0" text="Total Amount" textFill="WHITE" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="38.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblUpdateOrderFinalTotalAmount" alignment="CENTER" layoutX="885.0" layoutY="524.0" text="0.00" textFill="WHITE" AnchorPane.bottomAnchor="53.0" AnchorPane.rightAnchor="59.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton layoutX="492.0" layoutY="251.0" onAction="#btnUpdateOrderAddToCartOnAction" prefHeight="35.0" prefWidth="127.0" styleClass="button-add" stylesheets="@../css/style.css" text="Add To Cart" textFill="WHITE" AnchorPane.rightAnchor="360.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <Label alignment="CENTER" layoutX="316.0" layoutY="257.0" text="Qty:-" textFill="WHITE" AnchorPane.rightAnchor="611.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtUpdateOrderQty" layoutX="373.0" layoutY="247.0" prefHeight="42.0" prefWidth="106.0" promptText="Qty" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.rightAnchor="500.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXTextField fx:id="txtUpdateOrderId" layoutX="15.0" layoutY="32.0" prefHeight="42.0" prefWidth="143.0" promptText="Order Id" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="input-text" />
+                                 </styleClass>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="20.0" layoutY="5.0" text="Order ID" textFill="WHITE" AnchorPane.leftAnchor="20.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton layoutX="174.0" layoutY="32.0" onAction="#btnUpdateOrderSearch" prefHeight="42.0" prefWidth="103.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Search" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXTextField fx:id="txtUpdateOrderCustomerEmail" layoutX="405.0" layoutY="112.0" prefHeight="42.0" prefWidth="352.0" promptText="Customer Email" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="405.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="405.0" layoutY="88.0" text="Customer Email" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton layoutX="789.0" layoutY="251.0" onAction="#btnDeleteOrderRemoveItemFromCartOnAction" prefHeight="35.0" prefWidth="176.0" styleClass="button-delete" stylesheets="@../css/style.css" text="Remove From Cart" textFill="WHITE" AnchorPane.rightAnchor="14.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton layoutX="626.0" layoutY="251.0" onAction="#btnUpdateOrderItemQtyOnAction" prefHeight="35.0" prefWidth="156.0" styleClass="button-update" stylesheets="@../css/style.css" text="Update Qty" textFill="WHITE" AnchorPane.rightAnchor="197.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="pageDeleteOrder" layoutX="13.0" layoutY="85.0" prefHeight="745.0" prefWidth="993.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <children>
+                              <TableView fx:id="tblDeleteOrderCartList" layoutX="10.0" layoutY="166.0" prefHeight="313.0" prefWidth="948.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="97.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="166.0">
+                                 <columns>
+                                    <TableColumn fx:id="collDeleteOrderCartListItemId" editable="false" prefWidth="75.0" text="Item ID" />
+                                    <TableColumn fx:id="collDeleteOrderCartListItemName" editable="false" prefWidth="533.0" text="Name" />
+                                    <TableColumn fx:id="collDeleteOrderCartListItemUnitPrice" editable="false" prefWidth="111.0" text="Unit Price" />
+                                    <TableColumn fx:id="collDeleteOrderCartListItemQuantity" editable="false" prefWidth="114.0" text="Quantity" />
+                                    <TableColumn fx:id="collDeleteOrderCartListItemTotalAmount" editable="false" prefWidth="134.0" text="Amount" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <HBox alignment="CENTER" layoutX="520.0" layoutY="522.0" prefHeight="45.0" prefWidth="235.0" AnchorPane.bottomAnchor="9.0" AnchorPane.rightAnchor="7.0">
+                                 <children>
+                                    <JFXButton onAction="#btnDeleteOrderOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-delete" stylesheets="@../css/style.css" text="Delete Order" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <Label alignment="CENTER" layoutX="391.0" layoutY="85.0" text="Customer Email" textFill="WHITE" AnchorPane.leftAnchor="391.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtDeleteOrderCustomerName" editable="false" layoutX="15.0" layoutY="110.0" prefHeight="42.0" prefWidth="352.0" promptText="Customer Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="608.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="15.0" layoutY="86.0" text="Customer Name" textFill="WHITE" AnchorPane.leftAnchor="15.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="26.0" layoutY="493.0" text="Total Amount" textFill="WHITE" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="26.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblDeleteOrderFinalTotalAmount" alignment="CENTER" layoutX="884.0" layoutY="493.0" text="0.00" textFill="WHITE" AnchorPane.bottomAnchor="65.0" AnchorPane.rightAnchor="49.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtDeleteOrderId" editable="false" layoutX="15.0" layoutY="32.0" prefHeight="42.0" prefWidth="143.0" promptText="Order Id" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="input-text" />
+                                 </styleClass>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="20.0" layoutY="5.0" text="Order ID" textFill="WHITE" AnchorPane.leftAnchor="20.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton layoutX="174.0" layoutY="32.0" onAction="#btnDeleteOrderPageSearch" prefHeight="42.0" prefWidth="103.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Search" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXTextField fx:id="txtDeleteOrderCustomerEmail" editable="false" layoutX="392.0" layoutY="109.0" prefHeight="42.0" prefWidth="323.0" promptText="Customer Email" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="747.0" layoutY="86.0" text="OrderDate" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="dpDeleteOrderDate" editable="false" layoutX="747.0" layoutY="112.0" prefHeight="36.0" prefWidth="192.0" promptText="Order Date" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="pageViewOrder" layoutX="13.0" layoutY="85.0" prefHeight="836.0" prefWidth="1012.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <children>
+                              <TableView fx:id="tblViewOrderCartList" layoutX="10.0" layoutY="166.0" prefHeight="156.0" prefWidth="948.0" tableMenuButtonVisible="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="166.0">
+                                 <columns>
+                                    <TableColumn fx:id="collViewOrderCartListItemId" editable="false" prefWidth="75.0" text="Item ID" />
+                                    <TableColumn fx:id="collViewOrderCartListItemName" editable="false" prefWidth="533.0" text="Name" />
+                                    <TableColumn fx:id="collViewOrderCartListItemUnitPrice" editable="false" prefWidth="111.0" text="Unit Price" />
+                                    <TableColumn fx:id="collViewOrderCartListItemQuantity" editable="false" prefWidth="114.0" text="Quantity" />
+                                    <TableColumn fx:id="collViewOrderCartListItemTotalAmount" editable="false" prefWidth="134.0" text="Amount" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <HBox alignment="CENTER" layoutX="520.0" layoutY="522.0" prefHeight="45.0" prefWidth="235.0" AnchorPane.bottomAnchor="9.0" AnchorPane.rightAnchor="7.0" />
+                              <JFXTextField fx:id="txtViewOrderId" editable="false" layoutX="15.0" layoutY="32.0" prefHeight="42.0" prefWidth="143.0" promptText="Order Id" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="input-text" />
+                                 </styleClass>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="20.0" layoutY="5.0" text="Order ID" textFill="WHITE" AnchorPane.leftAnchor="20.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton layoutX="174.0" layoutY="32.0" onAction="#btnViewOrderSearch" prefHeight="42.0" prefWidth="103.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Search" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <Label alignment="CENTER" layoutX="20.0" layoutY="331.0" text="ALL ORDERS" textFill="WHITE" AnchorPane.topAnchor="331.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="tblViewOrderList" layoutX="15.0" layoutY="359.0" prefHeight="206.0" prefWidth="948.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="359.0">
+                                 <columns>
+                                    <TableColumn fx:id="collViewOrderListId" editable="false" prefWidth="217.0" text="Order ID" />
+                                    <TableColumn fx:id="collViewOrderListCustomerId" editable="false" prefWidth="230.0" text="Customer ID" />
+                                    <TableColumn fx:id="collViewOrderListDate" editable="false" prefWidth="224.0" text="Order Date" />
+                                    <TableColumn fx:id="collViewOrderListTotalAmount" editable="false" prefWidth="273.0" text="Total Amount" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <Label alignment="CENTER" layoutX="391.0" layoutY="83.0" text="Customer Email" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtViewOrderCustomerName1" editable="false" layoutX="15.0" layoutY="108.0" prefHeight="42.0" prefWidth="352.0" promptText="Customer Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="15.0" layoutY="84.0" text="Customer Name" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtViewOrderCustomerEmail" editable="false" layoutX="392.0" layoutY="107.0" prefHeight="42.0" prefWidth="323.0" promptText="Customer Email" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="747.0" layoutY="84.0" text="OrderDate" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="dpViewOrderDate" editable="false" layoutX="747.0" layoutY="110.0" prefHeight="36.0" prefWidth="192.0" promptText="Order Date" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="pageSupplierManagement" prefHeight="674.0" prefWidth="994.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <children>
+                        <HBox alignment="CENTER" layoutX="-2.0" layoutY="7.0" prefHeight="52.0" prefWidth="989.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                           <children>
+                              <JFXButton onAction="#btnAddSupplierPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-add" stylesheets="@../css/style.css" text="Add Supplier" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                              <JFXButton layoutX="10.0" layoutY="10.0" onAction="#btnUpdateSupplierPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-update" stylesheets="@../css/style.css" text="Update Supplier" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="210.0" layoutY="10.0" onAction="#btnDeleteSupplierPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-delete" stylesheets="@../css/style.css" text="Delete Supplier" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="410.0" layoutY="10.0" onAction="#btnViewSupplierPageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="View Supplier" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                        <AnchorPane fx:id="pageAddSupplier" prefHeight="592.0" prefWidth="984.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <JFXTextField fx:id="txtAddSupplierName" layoutX="20.0" layoutY="39.0" prefHeight="42.0" prefWidth="451.0" promptText="Supplier Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="15.0" layoutY="14.0" text="Supplier Name" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="23.0" layoutY="176.0" text="Item Id" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmdAddSupplierItemId" layoutX="23.0" layoutY="204.0" prefHeight="42.0" prefWidth="120.0" promptText="Select ID" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <Label alignment="CENTER" layoutX="481.0" layoutY="14.0" text="Supplier Email" textFill="WHITE" AnchorPane.leftAnchor="481.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="148.0" layoutY="176.0" text="Item Name" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="421.0" layoutY="176.0" text="Item Unit Price" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtAddSupplierEmail" layoutX="487.0" layoutY="39.0" prefHeight="42.0" prefWidth="479.0" promptText="Supplier Email" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="484.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXTextField fx:id="txtAddSupplierItemName" layoutX="146.0" layoutY="204.0" prefHeight="42.0" prefWidth="258.0" promptText="Item Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="146.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <HBox alignment="CENTER" layoutX="531.0" layoutY="532.0" prefHeight="45.0" prefWidth="441.0" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="10.0">
+                                 <children>
+                                    <JFXButton onAction="#btnAddSupplierClearItemListOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Clear Item List" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton onAction="#btnAddSupplierOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-add" stylesheets="@../css/style.css" text="Add Suppler" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <JFXTextField fx:id="txtAddSupplierCompanyName" layoutX="16.0" layoutY="118.0" prefHeight="42.0" prefWidth="295.0" promptText="Company Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="13.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="15.0" layoutY="93.0" text="Supplier Company Name" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="318.0" layoutY="93.0" text="Supplier Address" textFill="WHITE" AnchorPane.leftAnchor="318.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtAddSupplierAddress" layoutX="324.0" layoutY="118.0" prefHeight="42.0" prefWidth="638.0" promptText="Supplier Address" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="321.0" AnchorPane.rightAnchor="26.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXTextField fx:id="txtAddSupplierItemUnitPrice" layoutX="421.0" layoutY="204.0" prefHeight="42.0" prefWidth="163.0" promptText="Item Unit Price" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXButton layoutX="597.0" layoutY="208.0" onAction="#btnAddItemToSupplierList" prefHeight="35.0" prefWidth="101.0" styleClass="button-add" stylesheets="@../css/style.css" text="Add Item" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <TableView fx:id="tblAddSupplierItemList" layoutX="20.0" layoutY="267.0" prefHeight="260.0" prefWidth="951.0" stylesheets="@../css/style.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="260.0">
+                                 <columns>
+                                    <TableColumn fx:id="collAddSupplierItemListId" prefWidth="75.0" text="Item ID" />
+                                    <TableColumn fx:id="collAddSupplierItemListName" prefWidth="318.0" text="Item Name" />
+                                    <TableColumn fx:id="collAddSupplierItemListUnitPrice" prefWidth="102.0" text="UnitPrice" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="pageUpdateSupplier" layoutX="10.0" layoutY="82.0" prefHeight="674.0" prefWidth="994.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <JFXTextField fx:id="txtUpdateSupplierName" layoutX="26.0" layoutY="108.0" prefHeight="42.0" prefWidth="283.0" promptText="Supplier Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="693.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="27.0" layoutY="83.0" text="Supplier Name" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="23.0" layoutY="235.0" text="Item Id" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmdUpdateSupplierItemId" layoutX="26.0" layoutY="263.0" prefHeight="42.0" prefWidth="120.0" promptText="Select ID" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="850.0">
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <Label alignment="CENTER" layoutX="321.0" layoutY="160.0" text="Supplier Email" textFill="WHITE" AnchorPane.leftAnchor="317.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="144.0" layoutY="235.0" text="Item Name" textFill="WHITE" AnchorPane.leftAnchor="135.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="421.0" layoutY="235.0" text="Item Unit Price" textFill="WHITE" AnchorPane.leftAnchor="449.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtUpdateSupplierEmail" layoutX="323.0" layoutY="185.0" prefHeight="42.0" prefWidth="296.0" promptText="Supplier Email" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="317.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXTextField fx:id="txtUpdateSupplierItemName" layoutX="145.0" layoutY="264.0" prefHeight="42.0" prefWidth="304.0" promptText="Item Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="135.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <HBox alignment="CENTER" layoutX="518.0" layoutY="532.0" prefHeight="45.0" prefWidth="441.0" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="26.0">
+                                 <children>
+                                    <JFXButton onAction="#btnUpdateSupplierClearItemListOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Clear Item List" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton onAction="#btnUpdateSupplierOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-update" stylesheets="@../css/style.css" text="Update Supplier" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <JFXTextField fx:id="txtUpdateSupplierCompanyName" layoutX="18.0" layoutY="185.0" prefHeight="42.0" prefWidth="302.0" promptText="Company Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="19.0" layoutY="160.0" text="Supplier Company Name" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="626.0" layoutY="160.0" prefHeight="18.0" prefWidth="152.0" text="Supplier Address" textFill="WHITE" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="210.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtUpdateSupplierAddress" layoutX="622.0" layoutY="185.0" prefHeight="42.0" prefWidth="352.0" promptText="Supplier Address" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="10.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXTextField fx:id="txtUpdateSupplierItemUnitPrice" layoutX="449.0" layoutY="263.0" prefHeight="42.0" prefWidth="135.0" promptText="Item Unit Price" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="449.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXButton layoutX="587.0" layoutY="267.0" onAction="#btnUpdateSupplierAddItemToList" prefHeight="35.0" prefWidth="111.0" styleClass="button-add" stylesheets="@../css/style.css" text="Add Item" textFill="WHITE" AnchorPane.leftAnchor="587.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <TableView fx:id="tblUpdateSupplierItemList" layoutX="20.0" layoutY="315.0" prefHeight="212.0" prefWidth="951.0" stylesheets="@../css/style.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="312.0">
+                                 <columns>
+                                    <TableColumn fx:id="collUpdateSupplierItemId" prefWidth="75.0" text="Item ID" />
+                                    <TableColumn fx:id="collUpdateSupplierItemName" prefWidth="318.0" text="Item Name" />
+                                    <TableColumn fx:id="collUpdateSupplierUnitPrice" prefWidth="102.0" text="UnitPrice" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <JFXButton layoutX="711.0" layoutY="268.0" onAction="#btnUpdateSupplierRemoveItemFromListOnAction" prefHeight="35.0" prefWidth="123.0" styleClass="button-delete" stylesheets="@../css/style.css" text="Remove Item" textFill="WHITE" AnchorPane.leftAnchor="711.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXTextField fx:id="txtUpdateSupplierId" layoutX="23.0" layoutY="31.0" prefHeight="42.0" prefWidth="135.0" promptText="Supplier ID" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="24.0" layoutY="6.0" text="Supplier ID" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton layoutX="165.0" layoutY="35.0" onAction="#btnUpdateSupplierSearchOnAction" prefHeight="35.0" prefWidth="107.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Search" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="pageDeleteSupplier" layoutX="10.0" layoutY="82.0" prefHeight="674.0" prefWidth="994.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <JFXTextField fx:id="txtDeleteSupplierName" editable="false" layoutX="19.0" layoutY="109.0" prefHeight="42.0" prefWidth="358.0" promptText="Supplier Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="25.0" layoutY="83.0" text="Supplier Name" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="378.0" layoutY="83.0" text="Supplier Email" textFill="WHITE" AnchorPane.leftAnchor="378.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtDeleteSupplierEmail" editable="false" layoutX="381.0" layoutY="109.0" prefHeight="42.0" prefWidth="332.0" promptText="Supplier Email" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="378.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <HBox alignment="CENTER" layoutX="752.0" layoutY="538.0" prefHeight="45.0" prefWidth="220.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="13.0">
+                                 <children>
+                                    <JFXButton onAction="#btnDeleteSupplierOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-delete" stylesheets="@../css/style.css" text="Delete Supplier" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <JFXTextField fx:id="txtDeleteSupplierCompanyName" editable="false" layoutX="19.0" layoutY="183.0" prefHeight="42.0" prefWidth="413.0" promptText="Company Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="20.0" layoutY="158.0" text="Supplier Company Name" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="442.0" layoutY="158.0" text="Supplier Address" textFill="WHITE" AnchorPane.leftAnchor="442.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtDeleteSupplierAddress" editable="false" layoutX="442.0" layoutY="183.0" prefHeight="42.0" prefWidth="528.0" promptText="Supplier Address" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="442.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <TableView fx:id="tblDeleteSupplierItemList" layoutX="17.0" layoutY="240.0" prefHeight="287.0" prefWidth="951.0" stylesheets="@../css/style.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="237.0">
+                                 <columns>
+                                    <TableColumn fx:id="collDeleteSupplierItemId" prefWidth="75.0" text="Item ID" />
+                                    <TableColumn fx:id="collDeleteSupplierItemName" prefWidth="318.0" text="Item Name" />
+                                    <TableColumn fx:id="collDeleteSupplierUnitPrice" prefWidth="102.0" text="UnitPrice" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <JFXTextField fx:id="txtDeleteSupplierId" layoutX="19.0" layoutY="38.0" prefHeight="42.0" prefWidth="154.0" promptText="Supplier ID" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="25.0" layoutY="14.0" text="Supplier ID" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton layoutX="174.0" layoutY="42.0" onAction="#btnDeleteSupplierSearchOnAction" prefHeight="35.0" prefWidth="122.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Search" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="pageViewSupplier" layoutX="10.0" layoutY="82.0" prefHeight="838.0" prefWidth="1014.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <JFXTextField fx:id="txtViewSupplierName" layoutX="16.0" layoutY="109.0" prefHeight="42.0" prefWidth="386.0" promptText="Supplier Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="586.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="25.0" layoutY="83.0" text="Supplier Name" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="305.0" layoutY="158.0" text="Supplier Email" textFill="WHITE" AnchorPane.leftAnchor="300.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtViewSupplierEmail" layoutX="303.0" layoutY="183.0" prefHeight="42.0" prefWidth="308.0" promptText="Supplier Email" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="300.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXTextField fx:id="txtViewSupplierCompanyName" layoutX="19.0" layoutY="183.0" prefHeight="42.0" prefWidth="283.0" promptText="Company Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="20.0" layoutY="158.0" text="Supplier Company Name" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="617.0" layoutY="158.0" prefHeight="18.0" prefWidth="146.0" text="Supplier Address" textFill="WHITE" AnchorPane.leftAnchor="614.0" AnchorPane.rightAnchor="225.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtViewSupplierAddress" layoutX="614.0" layoutY="183.0" prefHeight="42.0" prefWidth="352.0" promptText="Supplier Address" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="611.0" AnchorPane.rightAnchor="19.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <TableView fx:id="tblViewSupplierItemList" layoutX="27.0" layoutY="239.0" prefHeight="150.0" prefWidth="951.0" stylesheets="@../css/style.css" tableMenuButtonVisible="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="239.0">
+                                 <columns>
+                                    <TableColumn fx:id="collViewSupplierItemId" prefWidth="75.0" text="Item ID" />
+                                    <TableColumn fx:id="collViewSupplierItemName" prefWidth="318.0" text="Item Name" />
+                                    <TableColumn fx:id="collViewSupplierUnitPrice" prefWidth="102.0" text="UnitPrice" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <JFXTextField fx:id="txtViewSupplierId" layoutX="19.0" layoutY="38.0" prefHeight="42.0" prefWidth="154.0" promptText="Supplier ID" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="25.0" layoutY="14.0" text="Supplier ID" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton layoutX="174.0" layoutY="42.0" onAction="#btnDeleteSupplierSearchOnAction" prefHeight="35.0" prefWidth="122.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Search" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <Label alignment="CENTER" layoutX="16.0" layoutY="401.0" text="All Suppliers" textFill="WHITE" AnchorPane.leftAnchor="16.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="tblViewSupplierList" layoutX="27.0" layoutY="428.0" prefHeight="150.0" prefWidth="951.0" stylesheets="@../css/style.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="425.0">
+                                 <columns>
+                                    <TableColumn fx:id="collViewSupplierListId" prefWidth="82.0" text="Supplier ID" />
+                                    <TableColumn fx:id="collViewSupplierListCompanyName" prefWidth="209.0" text="Supplier Company Name" />
+                                    <TableColumn fx:id="collViewSupplierListSupplierName" prefWidth="213.0" text="Supplier Name" />
+                                    <TableColumn fx:id="collViewSupplierListEmail" prefWidth="192.0" text="Supplier Email" />
+                                    <TableColumn fx:id="collViewSupplierListAddress" prefWidth="248.0" text="Supplier Address" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="pageEmployeeManagement" prefHeight="674.0" prefWidth="994.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <children>
+                        <HBox alignment="CENTER" layoutX="-2.0" layoutY="7.0" prefHeight="52.0" prefWidth="989.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                           <children>
+                              <JFXButton onAction="#btnAddEmployeePageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-add" stylesheets="@../css/style.css" text="Add Employee" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="10.0" layoutY="10.0" onAction="#btnUpdateEmployeePageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-update" stylesheets="@../css/style.css" text="Update Employee" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="210.0" layoutY="10.0" onAction="#btnDeleteEmployeePageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-delete" stylesheets="@../css/style.css" text="Delete Employee" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="410.0" layoutY="10.0" onAction="#btnViewEmployeePageOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="View Employee" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                        <AnchorPane fx:id="pageAddEmployee" prefHeight="592.0" prefWidth="984.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <JFXTextField fx:id="txtAddEmployeeName" layoutX="344.0" layoutY="77.0" prefHeight="42.0" prefWidth="283.0" promptText="Employee Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="355.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="351.0" layoutY="52.0" text="Employee Name" textFill="WHITE" AnchorPane.leftAnchor="340.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="351.0" layoutY="126.0" text="Employee Contact" textFill="WHITE" AnchorPane.leftAnchor="340.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="344.0" layoutY="205.0" text="Employee Email" textFill="WHITE" AnchorPane.leftAnchor="340.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="348.0" layoutY="375.0" text="Employee Address" textFill="WHITE" AnchorPane.leftAnchor="340.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtAddEmployeeEmail" layoutX="344.0" layoutY="235.0" prefHeight="42.0" prefWidth="283.0" promptText="Employee Email" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="355.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <HBox alignment="CENTER" layoutX="518.0" layoutY="485.0" prefHeight="45.0" prefWidth="441.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="485.0">
+                                 <children>
+                                    <JFXButton onAction="#btnAddEmployeeClearFormOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Clear Form" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton onAction="#btnAddEmployeeOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-add" stylesheets="@../css/style.css" text="Add Employee" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <JFXTextField fx:id="txtAddEmployeeContact" layoutX="343.0" layoutY="154.0" prefHeight="42.0" prefWidth="283.0" promptText="Employee Contact" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="355.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXTextArea fx:id="txtAddEmployeeAddress" layoutX="345.0" layoutY="399.0" prefHeight="78.0" prefWidth="282.0" promptText="Employee Address" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="355.0">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="input-text" />
+                                 </styleClass>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXTextArea>
+                              <Label alignment="CENTER" layoutX="349.0" layoutY="288.0" text="Employee Login Password" textFill="WHITE" AnchorPane.leftAnchor="340.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXPasswordField fx:id="pfAddEmployeeLoginPassword" layoutX="352.0" layoutY="319.0" prefHeight="42.0" prefWidth="283.0" promptText="Employee Login Password" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="355.0">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="input-text" />
+                                 </styleClass>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXPasswordField>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="pageUpdateEmployee" prefHeight="674.0" prefWidth="994.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <styleClass>
+                              <String fx:value="border" />
+                              <String fx:value="ternary-background-colour" />
+                           </styleClass>
+                           <children>
+                              <JFXTextField fx:id="txtUpdateEmployeeName" layoutX="352.0" layoutY="130.0" prefHeight="42.0" prefWidth="277.0" promptText="Employee Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="350.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="346.0" layoutY="102.0" text="Employee Name" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="345.0" layoutY="181.0" text="Employee Contact" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="346.0" layoutY="339.0" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtUpdateEmployeeContact" layoutX="348.0" layoutY="212.0" prefHeight="42.0" prefWidth="288.0" promptText="Employee Contact" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="350.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <HBox alignment="CENTER" layoutX="529.0" layoutY="533.0" prefHeight="45.0" prefWidth="441.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="533.0">
+                                 <children>
+                                    <JFXButton onAction="#btnUpdateEmployeeClearFormOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Clear Form" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton onAction="#btnUpdateEmployeeOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-update" stylesheets="@../css/style.css" text="Update Employee" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <Label alignment="CENTER" layoutX="349.0" layoutY="25.0" text="Employee ID" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtUpdateEmployeeId" layoutX="348.0" layoutY="52.0" prefHeight="42.0" prefWidth="116.0" promptText="Employee ID" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXButton layoutX="482.0" layoutY="56.0" onAction="#btnUpdateEmployeeSearchOnAction" prefHeight="35.0" prefWidth="128.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Search" textFill="WHITE" AnchorPane.leftAnchor="482.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <Label alignment="CENTER" layoutX="345.0" layoutY="412.0" text="Employee Address" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextArea fx:id="txtUpdateEmployeeAddress" layoutX="342.0" layoutY="438.0" prefHeight="93.0" prefWidth="282.0" promptText="Employee Address" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="350.0">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="input-text" />
+                                 </styleClass>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXTextArea>
+                              <Label alignment="CENTER" layoutX="345.0" layoutY="262.0" text="Employee Email" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtUpdateEmployeeEmail" layoutX="344.0" layoutY="288.0" prefHeight="42.0" prefWidth="283.0" promptText="Employee Email" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="350.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="345.0" layoutY="339.0" text="Employee Login Password" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXPasswordField fx:id="pfUpdateEmployeeLoginPassword" layoutX="343.0" layoutY="364.0" prefHeight="42.0" prefWidth="283.0" promptText="Employee Login Password" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="350.0">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="input-text" />
+                                 </styleClass>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXPasswordField>
+                              <HBox alignment="CENTER" layoutX="771.0" layoutY="14.0" prefHeight="26.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Hired Date :- " textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblUpdateEmployeeHiredDate" layoutX="10.0" layoutY="10.0" text="2024/01/01" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="pageDeleteEmployee" layoutY="72.0" prefHeight="674.0" prefWidth="994.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <children>
+                              <JFXTextField fx:id="txtDeleteEmployeeName" editable="false" layoutX="352.0" layoutY="121.0" prefHeight="42.0" prefWidth="285.0" promptText="Employee Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="350.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="393.0" layoutY="94.0" text="Employee Name" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="347.0" layoutY="181.0" text="Employee Contact" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="347.0" layoutY="259.0" text="Employee Email" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtDeleteEmployeeContact" editable="false" layoutX="356.0" layoutY="212.0" prefHeight="42.0" prefWidth="279.0" promptText="Employee Contact" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="350.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXTextField fx:id="txtDeleteEmployeeEmail" editable="false" layoutX="353.0" layoutY="285.0" prefHeight="42.0" prefWidth="286.0" promptText="Employee Email" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="353.0" AnchorPane.rightAnchor="349.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <HBox alignment="CENTER" layoutX="732.0" layoutY="539.0" prefHeight="45.0" prefWidth="225.0" AnchorPane.rightAnchor="28.0">
+                                 <children>
+                                    <JFXButton onAction="#btnDeleteEmployeeOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-delete" stylesheets="@../css/style.css" text="Delete Employee" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <Label alignment="CENTER" layoutX="396.0" layoutY="17.0" text="Employee ID" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtDeleteEmployeeId" layoutX="395.0" layoutY="44.0" prefHeight="42.0" prefWidth="116.0" promptText="Employee ID" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXButton layoutX="469.0" layoutY="48.0" onAction="#btnDeleteEmployeeSearchOnAction" prefHeight="35.0" prefWidth="128.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Search" textFill="WHITE" AnchorPane.leftAnchor="469.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <Label alignment="CENTER" layoutX="355.0" layoutY="424.0" text="Employee Address" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextArea fx:id="txtDeleteEmployeeAddress" editable="false" layoutX="353.0" layoutY="450.0" prefHeight="89.0" prefWidth="282.0" promptText="Employee Address" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="353.0" AnchorPane.rightAnchor="349.0">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="input-text" />
+                                 </styleClass>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXTextArea>
+                              <Label alignment="CENTER" layoutX="356.0" layoutY="337.0" text="Employee Password" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXPasswordField fx:id="pfDeleteEmployeeLoginPassword" editable="false" layoutX="361.0" layoutY="364.0" prefHeight="42.0" prefWidth="283.0" promptText="Employee Login Password" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="350.0">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="input-text" />
+                                 </styleClass>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXPasswordField>
+                              <HBox alignment="CENTER" layoutX="771.0" layoutY="13.0" prefHeight="26.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Hired Date :- " textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblDeleteEmployeeHiredDate" layoutX="10.0" layoutY="10.0" text="2024/01/01" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                        </AnchorPane>
+                        <AnchorPane fx:id="pageViewEmployee" prefHeight="674.0" prefWidth="994.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <children>
+                              <JFXTextField fx:id="txtViewEmployeeName" layoutX="29.0" layoutY="124.0" prefHeight="42.0" prefWidth="328.0" promptText="Employee Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="30.0" layoutY="97.0" text="Employee Name" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="561.0" layoutY="97.0" text="Employee Email" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="349.0" layoutY="97.0" text="Employee Contact" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtViewEmployeeEmail" layoutX="561.0" layoutY="124.0" prefHeight="42.0" prefWidth="357.0" promptText="Employee Email" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXTextField fx:id="txtViewEmployeeContact" layoutX="345.0" layoutY="124.0" prefHeight="42.0" prefWidth="209.0" promptText="Employee Contact" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <Label alignment="CENTER" layoutX="29.0" layoutY="18.0" text="Employee ID" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtViewEmployeeId" layoutX="28.0" layoutY="45.0" prefHeight="42.0" prefWidth="116.0" promptText="Employee ID" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <JFXButton layoutX="137.0" layoutY="49.0" onAction="#btnViewEmployeeSearchOnAction" prefHeight="35.0" prefWidth="128.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Search" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <TableView fx:id="tblViewEmployeeList" layoutX="14.0" layoutY="282.0" prefHeight="295.0" prefWidth="965.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="282.0">
+                                 <columns>
+                                    <TableColumn fx:id="collViewEmployeeListId" prefWidth="90.0" text="Employee ID" />
+                                    <TableColumn fx:id="collViewEmployeeListName" prefWidth="209.0" text="Employee Name" />
+                                    <TableColumn fx:id="collViewEmployeeListContact" prefWidth="151.0" text="Employee Contact" />
+                                    <TableColumn fx:id="collViewEmployeeListAddress" prefWidth="224.0" text="Employee Address" />
+                                    <TableColumn fx:id="collViewEmployeeListEmail" prefWidth="167.0" text="Employee Email" />
+                                    <TableColumn fx:id="collViewEmployeeListPassword" prefWidth="120.0" text="Password" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <Label alignment="CENTER" layoutX="30.0" layoutY="176.0" text="Employee Address" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextArea fx:id="txtViewEmployeeAddress" layoutX="30.0" layoutY="202.0" prefHeight="70.0" prefWidth="538.0" promptText="Employee Address" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="input-text" />
+                                 </styleClass>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXTextArea>
+                              <Label alignment="CENTER" layoutX="566.0" layoutY="176.0" text="Employee Login Password" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="txtViewEmployeePassword" layoutX="562.0" layoutY="203.0" prefHeight="42.0" prefWidth="356.0" promptText="Employee Login Password" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="input-text" />
+                                    <String fx:value="border" />
+                                 </styleClass>
+                              </JFXTextField>
+                              <HBox alignment="CENTER" layoutX="785.0" layoutY="5.0" prefHeight="26.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Hired Date :- " textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblViewEmployeeHiredDate" layoutX="10.0" layoutY="10.0" text="2024/01/01" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="pageReportGeneration" layoutY="5.0" prefHeight="678.0" prefWidth="1005.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="52.0" prefWidth="989.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                           <children>
+                              <JFXButton onAction="#btnEmployeeReportPageOnAction" prefHeight="33.0" prefWidth="200.0" stylesheets="@../css/style.css" text="Employee Report" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="10.0" layoutY="10.0" onAction="#btnProductReportPageOnAction" prefHeight="33.0" prefWidth="200.0" stylesheets="@../css/style.css" text="Product Report" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton layoutX="210.0" layoutY="10.0" onAction="#btnSupplierReportPageOnAction" prefHeight="33.0" prefWidth="200.0" stylesheets="@../css/style.css" text="Suppliers report" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                        <AnchorPane fx:id="EmployeeReportPage" layoutX="8.0" layoutY="-52.0" prefHeight="352.0" prefWidth="985.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <LineChart prefHeight="546.0" prefWidth="974.0" style="-fx-background-color: #fff;" title="Employee Report" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </LineChart>
+                              <JFXButton layoutX="750.0" layoutY="562.0" onAction="#btnDashboardPageOnAction" prefHeight="35.0" prefWidth="231.0" styleClass="button-add" stylesheets="@../css/style.css" text="Generate Employee Report" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="ProductReportPage" layoutX="10.0" layoutY="82.0" prefHeight="352.0" prefWidth="985.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <LineChart layoutX="8.0" prefHeight="297.0" prefWidth="289.0" style="-fx-background-color: #fff;" title="Product Report" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <xAxis>
+                                    <CategoryAxis side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis side="LEFT" />
+                                 </yAxis>
+                              </LineChart>
+                              <JFXButton layoutX="404.0" layoutY="463.0" onAction="#btnGenerateProductReportOnAction" prefHeight="35.0" prefWidth="220.0" styleClass="button-add" stylesheets="@../css/style.css" text="Generate Product Report" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="SupplierReportPage" layoutX="20.0" layoutY="92.0" prefHeight="352.0" prefWidth="985.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <styleClass>
+                              <String fx:value="ternary-background-colour" />
+                              <String fx:value="border" />
+                           </styleClass>
+                           <children>
+                              <LineChart prefHeight="297.0" prefWidth="289.0" style="-fx-background-color: #fff;" title="Supplier Report" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <xAxis>
+                                    <CategoryAxis side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis side="LEFT" />
+                                 </yAxis>
+                              </LineChart>
+                              <JFXButton layoutX="699.0" layoutY="463.0" onAction="#btnGenerateSupplierReportOnAction" prefHeight="35.0" prefWidth="223.0" styleClass="button-add" stylesheets="@../css/style.css" text="Generate Supplier Report" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
