@@ -36,7 +36,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <JFXButton layoutX="120.0" layoutY="500.0" onAction="#btnLoginOnAction" prefHeight="40.0" prefWidth="241.0" text="Login" textFill="WHITE">
+      <JFXButton fx:id="btnLogin" layoutX="120.0" layoutY="500.0" onAction="#btnLoginOnAction" prefHeight="40.0" prefWidth="241.0" text="Login" textFill="WHITE">
          <font>
             <Font name="Verdana Bold" size="20.0" />
          </font>

@@ -1,17 +1,19 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class LoginFormController {
 
+    public JFXButton btnLogin;
     @FXML
     private JFXTextField txtEmail;
 
@@ -20,13 +22,33 @@ public class LoginFormController {
 
     @FXML
     void btnLoginOnAction(ActionEvent event) {
-        Stage stage = new Stage();
-        stage.setTitle("Clothify Shop Management System | Employee");
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee-main-form.fxml"))));
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        String email = txtEmail.getText();
+        String password = pfPassword.getText();
+        Stage stage=new Stage();
+        if (email.equals("Admin") && password.equals("Admin")){
+            try {
+                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/admin-main-form.fxml"))));
+                stage.setTitle("Clothify Shop Management System | Admin Panel");
+                stage.setMinHeight(900);
+                stage.setMinWidth(1300);
+                new Alert(Alert.AlertType.INFORMATION,"Log In Successfully").showAndWait();
+                btnLogin.getScene().getWindow().hide();
+                stage.show();
+            } catch (IOException e) {
+                new Alert(Alert.AlertType.ERROR,"LogIn Failed");
+            }
+        }else{
+            try {
+                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee-main-form.fxml"))));
+                stage.setTitle("Clothify Shop Management System | Employee Panel");
+                stage.setMinHeight(900);
+                stage.setMinWidth(1300);
+                new Alert(Alert.AlertType.INFORMATION,"Log In Successfully").showAndWait();
+                btnLogin.getScene().getWindow().hide();
+                stage.show();
+            } catch (IOException e) {
+                new Alert(Alert.AlertType.ERROR,"Login Failed");
+            }
         }
     }
 

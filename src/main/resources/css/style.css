@@ -64,8 +64,8 @@
 }
 
 .table-view .column-header, .filter {
-    -fx-background-color: transparent; /* Corrected the spelling here */
-    -fx-pref-height: 40px; /* 'size' is not a valid property, using pref-height instead */
+    -fx-background-color: transparent;
+    -fx-pref-height: 40px; 
 }
 
 .table-view .column-header .label {

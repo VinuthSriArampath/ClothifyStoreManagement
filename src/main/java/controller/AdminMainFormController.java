@@ -1,22 +1,22 @@
 package controller;
 
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class AdminMainFormController {
 
+    public JFXButton btnLogOut;
     @FXML
     private AnchorPane annualSalesReportPage;
 
@@ -650,6 +650,28 @@ public class AdminMainFormController {
     @FXML
     private JFXTextField txtViewSupplierName;
 
+    //NAVIGATION'S
+
+    @FXML
+    void btnLogOutOnAction(ActionEvent event) {
+        Stage stage=new Stage();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/login-form.fxml"))));
+            stage.setTitle("Clothify Shop Management System");
+            stage.setMaxHeight(660);
+            stage.setMaxWidth(480);
+            stage.setMinHeight(660);
+            stage.setMinWidth(480);
+            stage.setResizable(false);
+            new Alert(Alert.AlertType.INFORMATION,"Log Out Successfully").showAndWait();
+            btnLogOut.getScene().getWindow().hide();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
     @FXML
     void btnAddEmployeeClearFormOnAction(ActionEvent event) {
 
@@ -810,10 +832,7 @@ public class AdminMainFormController {
 
     }
 
-    @FXML
-    void btnLogOutOnAction(ActionEvent event) {
 
-    }
 
     @FXML
     void btnOrderManagementPageOnAction(ActionEvent event) {
