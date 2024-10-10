@@ -4,6 +4,7 @@ import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
@@ -13,8 +14,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AdminMainFormController {
+public class AdminMainFormController implements Initializable {
 
     public JFXButton btnLogOut;
     @FXML
@@ -650,6 +653,9 @@ public class AdminMainFormController {
     @FXML
     private JFXTextField txtViewSupplierName;
 
+    private AnchorPane currentMainPanel;
+    private AnchorPane currentSubPanel;
+
     // * NAVIGATION'S
 
     @FXML
@@ -1052,5 +1058,12 @@ public class AdminMainFormController {
     @FXML
     void btnGenerateAnnualSalesReportOnAction(ActionEvent event) {
 
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        currentMainPanel=pageDashboard;
+        currentMainPanel.setVisible(true);
+        currentSubPanel=null;
     }
 }
