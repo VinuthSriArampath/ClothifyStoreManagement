@@ -555,94 +555,147 @@ public class EmployeeMainFormController implements Initializable {
 
     @FXML
     void btnDashboardPageOnAction(ActionEvent event) {
-
+        currentMainPanel.setVisible(false);
+        currentSubPanel.setVisible(false);
+        currentMainPanel=pageDashboard;
+        currentMainPanel.setVisible(true);
     }
     @FXML
     void btnInventoryManagementPageOnAction(ActionEvent event) {
-
+        currentMainPanel.setVisible(false);
+        currentSubPanel.setVisible(false);
+        currentMainPanel=pageInventoryManagement;
+        currentMainPanel.setVisible(true);
+        currentSubPanel=pageAddInventory;
+        currentSubPanel.setVisible(true);
     }
     @FXML
     void btnSupplierManagementPageOnAction(ActionEvent event) {
-
+        currentMainPanel.setVisible(false);
+        currentSubPanel.setVisible(false);
+        currentMainPanel=pageSupplierManagement;
+        currentMainPanel.setVisible(true);
+        currentSubPanel=pageAddSupplier;
+        currentSubPanel.setVisible(true);
     }
     @FXML
     void btnOrderManagementPageOnAction(ActionEvent event) {
-
+        currentMainPanel.setVisible(false);
+        currentSubPanel.setVisible(false);
+        currentMainPanel=pageOrderManagement;
+        currentMainPanel.setVisible(true);
+        currentSubPanel=pagePlaceOrder;
+        currentSubPanel.setVisible(true);
     }
     @FXML
     void btnReportGenerationPageOnAction(ActionEvent event) {
-
+        currentMainPanel.setVisible(false);
+        currentSubPanel.setVisible(false);
+        currentMainPanel=pageReportGeneration;
+        currentMainPanel.setVisible(true);
+        currentSubPanel=employeeReportPage;
+        currentSubPanel.setVisible(true);
     }
 
     // ! Dashboard Dose Note Include Sub Navigation's On Admins Panel
     // * Sub Navigation Panels (Inventory Management page)
     @FXML
     void btnAddItemPageOnAction(ActionEvent event) {
-
+        currentSubPanel.setVisible(false);
+        currentSubPanel=pageAddInventory;
+        currentSubPanel.setVisible(true);
     }
     @FXML
     void btnUpdateItemPageOnAction(ActionEvent event) {
-
+        currentSubPanel.setVisible(false);
+        currentSubPanel=pageUpdateInventory;
+        currentSubPanel.setVisible(true);
     }
     @FXML
     void btnDeleteItemPageOnAction(ActionEvent event) {
-
+        currentSubPanel.setVisible(false);
+        currentSubPanel=pageDeleteInventory;
+        currentSubPanel.setVisible(true);
     }
     @FXML
     void btnViewItemPageOnAction(ActionEvent event) {
-
+        currentSubPanel.setVisible(false);
+        currentSubPanel=pageViewInventory;
+        currentSubPanel.setVisible(true);
     }
 
 
     // * Sub Navigation Panels (Supplier Management page)
     @FXML
     void btnAddSupplierPageOnAction(ActionEvent event) {
-
+        currentSubPanel.setVisible(false);
+        currentSubPanel=pageAddSupplier;
+        currentSubPanel.setVisible(true);
     }
     @FXML
     void btnUpdateSupplierPageOnAction(ActionEvent event) {
-
+        currentSubPanel.setVisible(false);
+        currentSubPanel=pageUpdateSupplier;
+        currentSubPanel.setVisible(true);
     }
     @FXML
     void btnDeleteSupplierPageOnAction(ActionEvent event) {
-
+        currentSubPanel.setVisible(false);
+        currentSubPanel=pageDeleteSupplier;
+        currentSubPanel.setVisible(true);
     }
     @FXML
     void btnViewSupplierPageOnAction(ActionEvent event) {
-
+        currentSubPanel.setVisible(false);
+        currentSubPanel=pageViewSupplier;
+        currentSubPanel.setVisible(true);
     }
 
     // * Sub Navigation Panels (Order Management page)
     @FXML
     void btnPlaceOrderPageOnAction(ActionEvent event) {
-
+        currentSubPanel.setVisible(false);
+        currentSubPanel=pagePlaceOrder;
+        currentSubPanel.setVisible(true);
     }
     @FXML
     void btnUpdateOrderPageOnAction(ActionEvent event) {
-
+        currentSubPanel.setVisible(false);
+        currentSubPanel=pageUpdateOrder;
+        currentSubPanel.setVisible(true);
     }
     @FXML
     void btnDeleteOrderPageOnAction(ActionEvent event) {
-
+        currentSubPanel.setVisible(false);
+        currentSubPanel=pageDeleteOrder;
+        currentSubPanel.setVisible(true);
     }
     @FXML
     void btnViewOrderPageOnAction(ActionEvent event) {
-
+        currentSubPanel.setVisible(false);
+        currentSubPanel=pageViewOrder;
+        currentSubPanel.setVisible(true);
     }
 
 
     // * Sub Navigation Panels (Report Generation page)
     @FXML
     void btnProductReportPageOnAction(ActionEvent event) {
-
+        currentSubPanel.setVisible(false);
+        currentSubPanel=productReportPage;
+        currentSubPanel.setVisible(true);
     }
     @FXML
     void btnSupplierReportPageOnAction(ActionEvent event) {
-
+        currentSubPanel.setVisible(false);
+        currentSubPanel=supplierReportPage;
+        currentSubPanel.setVisible(true);
     }
     @FXML
     void btnEmployeeReportPageOnAction(ActionEvent event) {
-
+        currentSubPanel.setVisible(false);
+        currentSubPanel=employeeReportPage;
+        currentSubPanel.setVisible(true);
     }
 
 
@@ -847,6 +900,6 @@ public class EmployeeMainFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         currentMainPanel=pageDashboard;
         currentMainPanel.setVisible(true);
-        currentSubPanel=null;
+        currentSubPanel=pageAddInventory;
     }
 }
