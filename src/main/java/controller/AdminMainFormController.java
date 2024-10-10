@@ -650,7 +650,7 @@ public class AdminMainFormController {
     @FXML
     private JFXTextField txtViewSupplierName;
 
-    //NAVIGATION'S
+    // * NAVIGATION'S
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
@@ -672,36 +672,188 @@ public class AdminMainFormController {
 
     }
 
+    // * Main Navigation Panel
+
     @FXML
-    void btnAddEmployeeClearFormOnAction(ActionEvent event) {
+    void btnDashboardPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnInventoryManagementPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnSupplierManagementPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnOrderManagementPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnReportGenerationPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnEmployeeManagementPageOnAction(ActionEvent event) {
 
     }
 
+    // ! Dashboard Dose Note Include Sub Navigation's On Admins Panel
+    // * Sub Navigation Panels (Inventory Management page)
     @FXML
-    void btnAddEmployeeOnAction(ActionEvent event) {
+    void btnAddItemPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnUpdateItemPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnDeleteItemPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnViewItemPageOnAction(ActionEvent event) {
 
     }
 
+
+    // * Sub Navigation Panels (Supplier Management page)
+    @FXML
+    void btnAddSupplierPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnUpdateSupplierPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnDeleteSupplierPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnViewSupplierPageOnAction(ActionEvent event) {
+
+    }
+
+
+    // * Sub Navigation Panels (Employee Management page)
     @FXML
     void btnAddEmployeePageOnAction(ActionEvent event) {
 
     }
+    @FXML
+    void btnUpdateEmployeePageOnAction(ActionEvent event) {
 
+    }
+    @FXML
+    void btnDeleteEmployeePageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnViewEmployeePageOnAction(ActionEvent event) {
+
+    }
+
+
+    // * Sub Navigation Panels (Order Management page)
+    @FXML
+    void btnPlaceOrderPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnUpdateOrderPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnDeleteOrderPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnViewOrderPageOnAction(ActionEvent event) {
+
+    }
+
+
+    // * Sub Navigation Panels (Report Generation page)
+    @FXML
+    void btnProductReportPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnSupplierReportPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnEmployeeReportPageOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    public void btnAnnualSalesReportPageOnAction(ActionEvent actionEvent) {
+
+    }
+    @FXML
+    public void btnMonthlyReportPageOnAction(ActionEvent actionEvent) {
+
+    }
+    @FXML
+    public void btnDailyReportPageOnAction(ActionEvent actionEvent) {
+
+    }
+
+
+    // ? FUNCTIONALITIES OF BUTTONS
+
+    // ? Item Management Page
+
+    // * add Item
+    @FXML
+    void btnAddItemOnAction(ActionEvent event) {
+
+    }
     @FXML
     void btnAddItemClearFormOnAction(ActionEvent event) {
 
     }
 
+    // * update Item
     @FXML
-    void btnAddItemOnAction(ActionEvent event) {
+    void btnUpdateItemOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnUpdateItemClearFormOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnUpdateItemSearchOnAction(ActionEvent event) {
 
     }
 
+    // * delete Item
     @FXML
-    void btnAddItemPageOnAction(ActionEvent event) {
+    void btnDeleteItemOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnDeleteItemSearchOnAction(ActionEvent event) {
 
     }
 
+    // * view Item
+    @FXML
+    void btnViewItemSearchOnAction(ActionEvent event) {
+
+    }
+
+    // ? Supplier Management
+
+    // * add supplier
+    @FXML
+    void btnAddSupplierOnAction(ActionEvent event) {
+
+    }
     @FXML
     void btnAddItemToSupplierList(ActionEvent event) {
 
@@ -712,60 +864,97 @@ public class AdminMainFormController {
 
     }
 
+    // * update supplier
     @FXML
-    void btnAddSupplierOnAction(ActionEvent event) {
+    void btnUpdateSupplierSearchOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnUpdateSupplierOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnAddSupplierPageOnAction(ActionEvent event) {
+    void btnUpdateSupplierAddItemToList(ActionEvent event) {
+
+    }
+    @FXML
+    void btnUpdateSupplierRemoveItemFromListOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnUpdateSupplierClearItemListOnAction(ActionEvent event) {
+
+    }
+
+
+    // * delete supplier
+    @FXML
+    void btnDeleteSupplierOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnDeleteSupplierSearchOnAction(ActionEvent event) {
+
+    }
+
+
+
+
+
+
+
+
+    @FXML
+    void btnAddEmployeeClearFormOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnDashboardPageOnAction(ActionEvent event) {
+    void btnAddEmployeeOnAction(ActionEvent event) {
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @FXML
     void btnDeleteEmployeeOnAction(ActionEvent event) {
 
     }
 
-    @FXML
-    void btnDeleteEmployeePageOnAction(ActionEvent event) {
 
-    }
 
     @FXML
     void btnDeleteEmployeeSearchOnAction(ActionEvent event) {
 
     }
 
-    @FXML
-    void btnDeleteItemOnAction(ActionEvent event) {
 
-    }
 
-    @FXML
-    void btnDeleteItemPageOnAction(ActionEvent event) {
 
-    }
 
-    @FXML
-    void btnDeleteItemSearchOnAction(ActionEvent event) {
 
-    }
 
     @FXML
     void btnDeleteOrderOnAction(ActionEvent event) {
 
     }
 
-    @FXML
-    void btnDeleteOrderPageOnAction(ActionEvent event) {
 
-    }
 
     @FXML
     void btnDeleteOrderPageSearch(ActionEvent event) {
@@ -777,30 +966,11 @@ public class AdminMainFormController {
 
     }
 
-    @FXML
-    void btnDeleteSupplierOnAction(ActionEvent event) {
 
-    }
 
-    @FXML
-    void btnDeleteSupplierPageOnAction(ActionEvent event) {
 
-    }
 
-    @FXML
-    void btnDeleteSupplierSearchOnAction(ActionEvent event) {
 
-    }
-
-    @FXML
-    void btnEmployeeManagementPageOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnEmployeeReportPageOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void btnGenerateEmployeeReportOnAction(ActionEvent event) {
@@ -827,17 +997,11 @@ public class AdminMainFormController {
 
     }
 
-    @FXML
-    void btnInventoryManagementPageOnAction(ActionEvent event) {
-
-    }
 
 
 
-    @FXML
-    void btnOrderManagementPageOnAction(ActionEvent event) {
 
-    }
+
 
     @FXML
     void btnPlaceOrderAddToCartOnAction(ActionEvent event) {
@@ -854,30 +1018,14 @@ public class AdminMainFormController {
 
     }
 
-    @FXML
-    void btnPlaceOrderPageOnAction(ActionEvent event) {
 
-    }
 
-    @FXML
-    void btnProductReportPageOnAction(ActionEvent event) {
 
-    }
 
-    @FXML
-    void btnReportGenerationPageOnAction(ActionEvent event) {
 
-    }
 
-    @FXML
-    void btnSupplierManagementPageOnAction(ActionEvent event) {
 
-    }
 
-    @FXML
-    void btnSupplierReportPageOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void btnUpdateEmployeeClearFormOnAction(ActionEvent event) {
@@ -889,35 +1037,20 @@ public class AdminMainFormController {
 
     }
 
-    @FXML
-    void btnUpdateEmployeePageOnAction(ActionEvent event) {
 
-    }
 
     @FXML
     void btnUpdateEmployeeSearchOnAction(ActionEvent event) {
 
     }
 
-    @FXML
-    void btnUpdateItemClearFormOnAction(ActionEvent event) {
 
-    }
 
-    @FXML
-    void btnUpdateItemOnAction(ActionEvent event) {
 
-    }
 
-    @FXML
-    void btnUpdateItemPageOnAction(ActionEvent event) {
 
-    }
 
-    @FXML
-    void btnUpdateItemSearchOnAction(ActionEvent event) {
 
-    }
 
     @FXML
     void btnUpdateOrderAddToCartOnAction(ActionEvent event) {
@@ -939,79 +1072,30 @@ public class AdminMainFormController {
 
     }
 
-    @FXML
-    void btnUpdateOrderPageOnAction(ActionEvent event) {
 
-    }
 
     @FXML
     void btnUpdateOrderSearch(ActionEvent event) {
 
     }
 
-    @FXML
-    void btnUpdateSupplierAddItemToList(ActionEvent event) {
 
-    }
-
-    @FXML
-    void btnUpdateSupplierClearItemListOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateSupplierOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateSupplierPageOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateSupplierRemoveItemFromListOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateSupplierSearchOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnViewEmployeePageOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void btnViewEmployeeSearchOnAction(ActionEvent event) {
 
     }
 
-    @FXML
-    void btnViewItemPageOnAction(ActionEvent event) {
 
-    }
 
-    @FXML
-    void btnViewItemSearchOnAction(ActionEvent event) {
 
-    }
 
-    @FXML
-    void btnViewOrderPageOnAction(ActionEvent event) {
 
-    }
 
     @FXML
     void btnViewOrderSearch(ActionEvent event) {
 
     }
 
-    @FXML
-    void btnViewSupplierPageOnAction(ActionEvent event) {
-
-    }
 
 }

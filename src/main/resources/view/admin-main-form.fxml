@@ -2343,7 +2343,7 @@
                                     <Insets left="5.0" right="5.0" />
                                  </HBox.margin>
                               </JFXButton>
-                              <JFXButton layoutX="618.0" layoutY="19.0" onAction="#btnSupplierReportPageOnAction" prefHeight="35.0" prefWidth="160.0" stylesheets="@../css/style.css" text="Daily Sales Report" textFill="WHITE">
+                              <JFXButton layoutX="618.0" layoutY="19.0" onAction="#btnDailyReportPageOnAction" prefHeight="35.0" prefWidth="160.0" stylesheets="@../css/style.css" text="Daily Sales Report" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -2351,7 +2351,7 @@
                                     <Insets left="5.0" right="5.0" />
                                  </HBox.margin>
                               </JFXButton>
-                              <JFXButton layoutX="671.0" layoutY="19.0" onAction="#btnSupplierReportPageOnAction" prefHeight="35.0" prefWidth="184.0" stylesheets="@../css/style.css" text="Monthly Sales Report" textFill="WHITE">
+                              <JFXButton layoutX="671.0" layoutY="19.0" onAction="#btnMonthlyReportPageOnAction" prefHeight="35.0" prefWidth="184.0" stylesheets="@../css/style.css" text="Monthly Sales Report" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -2359,7 +2359,7 @@
                                     <Insets left="5.0" right="5.0" />
                                  </HBox.margin>
                               </JFXButton>
-                              <JFXButton layoutX="754.0" layoutY="19.0" onAction="#btnSupplierReportPageOnAction" prefHeight="35.0" prefWidth="164.0" stylesheets="@../css/style.css" text="Annual Sales Report" textFill="WHITE">
+                              <JFXButton layoutX="754.0" layoutY="19.0" onAction="#btnAnnualSalesReportPageOnAction" prefHeight="35.0" prefWidth="164.0" stylesheets="@../css/style.css" text="Annual Sales Report" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
