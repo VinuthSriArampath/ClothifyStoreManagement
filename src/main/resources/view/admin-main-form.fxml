@@ -1685,7 +1685,7 @@
                                     <Font name="Verdana Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <JFXButton layoutX="174.0" layoutY="42.0" onAction="#btnDeleteSupplierSearchOnAction" prefHeight="35.0" prefWidth="122.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Search" textFill="WHITE">
+                              <JFXButton layoutX="174.0" layoutY="42.0" onAction="#btnViewSupplierSearchOnAction" prefHeight="35.0" prefWidth="122.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Search" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -2460,7 +2460,7 @@
                                     <NumberAxis side="LEFT" />
                                  </yAxis>
                               </LineChart>
-                              <JFXButton layoutX="699.0" layoutY="463.0" onAction="#btnGenerateSupplierReportOnAction" prefHeight="35.0" prefWidth="278.0" styleClass="button-add" stylesheets="@../css/style.css" text="Generate Monthly Sales Report" textFill="WHITE" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="13.0">
+                              <JFXButton layoutX="699.0" layoutY="463.0" onAction="#btnGenerateMonthlySalesReportOnAction" prefHeight="35.0" prefWidth="278.0" styleClass="button-add" stylesheets="@../css/style.css" text="Generate Monthly Sales Report" textFill="WHITE" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="13.0">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>

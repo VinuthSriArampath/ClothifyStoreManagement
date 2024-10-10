@@ -898,111 +898,59 @@ public class AdminMainFormController {
 
     }
 
+    // * view supplier
+    @FXML
+    void btnViewSupplierSearchOnAction(ActionEvent actionEvent) {
+
+    }
 
 
+    // ? Employee Management
 
+    // * add employee
+    @FXML
+    void btnAddEmployeeOnAction(ActionEvent event) {
 
-
-
-
+    }
     @FXML
     void btnAddEmployeeClearFormOnAction(ActionEvent event) {
 
     }
 
+    // * update employee
     @FXML
-    void btnAddEmployeeOnAction(ActionEvent event) {
+    void btnUpdateEmployeeSearchOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnUpdateEmployeeOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnUpdateEmployeeClearFormOnAction(ActionEvent event) {
 
     }
 
+    // * delete employee
+    @FXML
+    void btnDeleteEmployeeSearchOnAction(ActionEvent event) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
     @FXML
     void btnDeleteEmployeeOnAction(ActionEvent event) {
 
     }
 
-
-
+    // * view employee
     @FXML
-    void btnDeleteEmployeeSearchOnAction(ActionEvent event) {
+    void btnViewEmployeeSearchOnAction(ActionEvent event) {
 
     }
 
 
+    // ? Order Management
 
-
-
-
-
-    @FXML
-    void btnDeleteOrderOnAction(ActionEvent event) {
-
-    }
-
-
-
-    @FXML
-    void btnDeleteOrderPageSearch(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnDeleteOrderRemoveItemFromCartOnAction(ActionEvent event) {
-
-    }
-
-
-
-
-
-
-
-    @FXML
-    void btnGenerateEmployeeReportOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnGenerateAnnualSalesReportOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnGenerateDailySalesReportOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnGenerateProductReportOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnGenerateSupplierReportOnAction(ActionEvent event) {
-
-    }
-
-
-
-
-
-
-
+    // * place order
     @FXML
     void btnPlaceOrderAddToCartOnAction(ActionEvent event) {
 
@@ -1018,84 +966,91 @@ public class AdminMainFormController {
 
     }
 
-
-
-
-
-
-
-
-
-
-    @FXML
-    void btnUpdateEmployeeClearFormOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateEmployeeOnAction(ActionEvent event) {
-
-    }
-
-
-
-    @FXML
-    void btnUpdateEmployeeSearchOnAction(ActionEvent event) {
-
-    }
-
-
-
-
-
-
-
-
-
-    @FXML
-    void btnUpdateOrderAddToCartOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateOrderClearCartOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateOrderItemQtyOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateOrderOnAction(ActionEvent event) {
-
-    }
-
-
+    // * update order
 
     @FXML
     void btnUpdateOrderSearch(ActionEvent event) {
 
     }
-
-
-
     @FXML
-    void btnViewEmployeeSearchOnAction(ActionEvent event) {
+    void btnUpdateOrderAddToCartOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnUpdateOrderItemQtyOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnUpdateOrderClearCartOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnUpdateOrderOnAction(ActionEvent event) {
 
     }
 
+    // * delete order
 
+    @FXML
+    void btnDeleteOrderPageSearch(ActionEvent event) {
 
+    }
+    @FXML
+    void btnDeleteOrderOnAction(ActionEvent event) {
 
+    }
+    @FXML
+    void btnDeleteOrderRemoveItemFromCartOnAction(ActionEvent event) {
 
+    }
 
+    // * view order
 
     @FXML
     void btnViewOrderSearch(ActionEvent event) {
 
     }
 
+    // ? Generate Report
 
+    // * Product Report
+
+    @FXML
+    void btnGenerateProductReportOnAction(ActionEvent event) {
+
+    }
+
+    // * Employee Report
+
+    @FXML
+    void btnGenerateEmployeeReportOnAction(ActionEvent event) {
+
+    }
+
+    // * Supplier Report
+
+    @FXML
+    void btnGenerateSupplierReportOnAction(ActionEvent event) {
+
+    }
+
+    // * Daily Sales Report
+
+    @FXML
+    void btnGenerateDailySalesReportOnAction(ActionEvent event) {
+
+    }
+
+    // * Monthly Sales Report
+
+    @FXML
+    void btnGenerateMonthlySalesReportOnAction(ActionEvent actionEvent) {
+
+    }
+
+    // * Annual Sales Report
+    @FXML
+    void btnGenerateAnnualSalesReportOnAction(ActionEvent event) {
+
+    }
 }
