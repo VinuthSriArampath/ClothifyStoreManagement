@@ -1,6 +1,7 @@
-package controller;
+package controller.form_controllers;
 
 import com.jfoenix.controls.*;
+import dto.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +13,13 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import util.Encryptor;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class AdminMainFormController implements Initializable {
 
@@ -987,12 +991,60 @@ public class AdminMainFormController implements Initializable {
 
     // * add employee
     @FXML
-    void btnAddEmployeeOnAction(ActionEvent event) {
+    void btnAddEmployeeOnAction(ActionEvent event) throws NoSuchAlgorithmException {
+        String regPasswordPattern ="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#^$%!&*])[A-Za-z\\d@#^$%!&]{8,}$";
+        String regEmailPattern = "^[A-Za-z0-9._%+-]+@gmail\\.com$";
+        String regContactPatter = "^0[\\d]{9}$";
+
+        Encryptor encryptor=new Encryptor();
+
+        Pattern emailPattern = Pattern.compile(regEmailPattern);
+        Pattern passwordPattern = Pattern.compile(regPasswordPattern);
+        Pattern contactPattern = Pattern.compile(regContactPatter);
+
+        String employeeName = txtAddEmployeeName.getText().trim();
+        String employeeEmail = txtAddEmployeeEmail.getText().trim();
+        String employeePassword = pfAddEmployeeLoginPassword.getText().trim();
+        String employeeAddress = txtAddEmployeeAddress.getText().trim();
+        String employeeContact = txtAddEmployeeContact.getText().trim();
+
+        if(employeeName.isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Enter Employee Name").showAndWait();
+        } else if (!emailPattern.matcher(employeeEmail).matches()) {
+            new Alert(Alert.AlertType.ERROR,"Invalid Email Address").showAndWait();
+        } else if (!passwordPattern.matcher(employeePassword).matches() ) {
+            new Alert(Alert.AlertType.ERROR,"Invalid Password, Password should contain.\nAt Least 1 Capital Letter.\nAt Least 1 Simple Letter.\nAt Least 1 Number[0-9].\nAt Least 1 Special Character[@#^$%!&].").showAndWait();
+        } else if (!contactPattern.matcher(employeeContact).matches()) {
+            new Alert(Alert.AlertType.ERROR,"Invalid Contact Number").showAndWait();
+        } else if (employeeAddress.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR,"Invalid Employee Address").showAndWait();
+        }else{
+            System.out.println(new Employee(employeeName,employeeEmail,encryptor.encryptString(employeePassword),employeeAddress,employeeContact));
+            btnAddEmployeeClearFormOnAction(new ActionEvent());
+        }
+
+        // ! password encryption
+
+//            Pattern passwordPattern = Pattern.compile(regPasswordPattern);
+//            Pattern emailPattern = Pattern.compile(regEmailPattern);
+
+//
+//
+//        if(passwordPattern.matcher(employeePassword).matches()){
+//            String encryptedPassword = encryptor.encryptString(employeePassword);
+//            String encryptedPassword2 = encryptor.encryptString(employeePassword);
+//            System.out.println(encryptedPassword.equals(encryptedPassword2));
+//        }
+
 
     }
     @FXML
     void btnAddEmployeeClearFormOnAction(ActionEvent event) {
-
+        txtAddEmployeeName.setText(null);
+        txtAddEmployeeEmail.setText(null);
+        pfAddEmployeeLoginPassword.setText(null);
+        txtAddEmployeeAddress.setText(null);
+        txtAddEmployeeContact.setText(null);
     }
 
     // * update employee

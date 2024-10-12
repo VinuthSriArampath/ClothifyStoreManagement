@@ -24,7 +24,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1300.0" styleClass="main-background-colour" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminMainFormController">
+<AnchorPane prefHeight="700.0" prefWidth="1300.0" styleClass="main-background-colour" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.form_controllers.AdminMainFormController">
    <children>
       <BorderPane layoutX="6.0" layoutY="7.0" prefHeight="700.0" prefWidth="1300.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <left>

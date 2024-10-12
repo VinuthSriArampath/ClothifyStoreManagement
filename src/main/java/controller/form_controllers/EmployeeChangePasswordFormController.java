@@ -1,4 +1,4 @@
-package controller;
+package controller.form_controllers;
 
 import com.jfoenix.controls.JFXPasswordField;
 import javafx.event.ActionEvent;
