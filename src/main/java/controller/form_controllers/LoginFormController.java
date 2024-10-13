@@ -25,7 +25,8 @@ public class LoginFormController {
         String email = txtEmail.getText();
         String password = pfPassword.getText();
         Stage stage=new Stage();
-        if (email.equals("Admin") && password.equals("Admin")){
+//        email.equals("Admin") && password.equals("Admin")
+        if (email.equals("1")){
             try {
                 stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/admin-main-form.fxml"))));
                 stage.setTitle("Clothify Shop Management System | Admin Panel");
@@ -37,7 +38,7 @@ public class LoginFormController {
             } catch (IOException e) {
                 new Alert(Alert.AlertType.ERROR,"LogIn Failed");
             }
-        }else{
+        }else if (email.equals("2")){
             try {
                 stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee-main-form.fxml"))));
                 stage.setTitle("Clothify Shop Management System | Employee Panel");

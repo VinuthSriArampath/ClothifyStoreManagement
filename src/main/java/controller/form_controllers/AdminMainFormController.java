@@ -1,6 +1,7 @@
 package controller.form_controllers;
 
 import com.jfoenix.controls.*;
+import controller.dto_controllers.EmployeeController;
 import dto.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,8 +19,9 @@ import util.Encryptor;
 import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 
 public class AdminMainFormController implements Initializable {
 
@@ -661,7 +663,6 @@ public class AdminMainFormController implements Initializable {
     private AnchorPane currentSubPanel;
 
     // * NAVIGATION'S
-
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
         Stage stage=new Stage();
@@ -892,7 +893,6 @@ public class AdminMainFormController implements Initializable {
     // * add Item
     @FXML
     void btnAddItemOnAction(ActionEvent event) {
-
     }
     @FXML
     void btnAddItemClearFormOnAction(ActionEvent event) {
@@ -992,15 +992,8 @@ public class AdminMainFormController implements Initializable {
     // * add employee
     @FXML
     void btnAddEmployeeOnAction(ActionEvent event) throws NoSuchAlgorithmException {
-        String regPasswordPattern ="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#^$%!&*])[A-Za-z\\d@#^$%!&]{8,}$";
-        String regEmailPattern = "^[A-Za-z0-9._%+-]+@gmail\\.com$";
-        String regContactPatter = "^0[\\d]{9}$";
 
         Encryptor encryptor=new Encryptor();
-
-        Pattern emailPattern = Pattern.compile(regEmailPattern);
-        Pattern passwordPattern = Pattern.compile(regPasswordPattern);
-        Pattern contactPattern = Pattern.compile(regContactPatter);
 
         String employeeName = txtAddEmployeeName.getText().trim();
         String employeeEmail = txtAddEmployeeEmail.getText().trim();
@@ -1008,38 +1001,19 @@ public class AdminMainFormController implements Initializable {
         String employeeAddress = txtAddEmployeeAddress.getText().trim();
         String employeeContact = txtAddEmployeeContact.getText().trim();
 
-        if(employeeName.isEmpty()){
-            new Alert(Alert.AlertType.ERROR,"Enter Employee Name").showAndWait();
-        } else if (!emailPattern.matcher(employeeEmail).matches()) {
-            new Alert(Alert.AlertType.ERROR,"Invalid Email Address").showAndWait();
-        } else if (!passwordPattern.matcher(employeePassword).matches() ) {
-            new Alert(Alert.AlertType.ERROR,"Invalid Password, Password should contain.\nAt Least 1 Capital Letter.\nAt Least 1 Simple Letter.\nAt Least 1 Number[0-9].\nAt Least 1 Special Character[@#^$%!&].").showAndWait();
-        } else if (!contactPattern.matcher(employeeContact).matches()) {
-            new Alert(Alert.AlertType.ERROR,"Invalid Contact Number").showAndWait();
-        } else if (employeeAddress.isEmpty()) {
-            new Alert(Alert.AlertType.ERROR,"Invalid Employee Address").showAndWait();
-        }else{
-            System.out.println(new Employee(employeeName,employeeEmail,encryptor.encryptString(employeePassword),employeeAddress,employeeContact));
-            btnAddEmployeeClearFormOnAction(new ActionEvent());
+        if (EmployeeController.getInstance().validateEmployee(employeeName, employeeEmail, employeePassword, employeeAddress, employeeContact)) {
+            if(EmployeeController.getInstance().addEmployee( new Employee(EmployeeController.getInstance().genarateEmployeeId(),employeeName,employeeEmail,encryptor.encryptString(employeePassword),employeeAddress,employeeContact,LocalDate.now()))){
+                new Alert(Alert.AlertType.INFORMATION,"Employee Added Successfully").showAndWait();
+                btnAddEmployeeClearFormOnAction(new ActionEvent());
+            }else {
+                new Alert(Alert.AlertType.ERROR,"Failed To Add Employee").showAndWait();
+            }
         }
-
-        // ! password encryption
-
-//            Pattern passwordPattern = Pattern.compile(regPasswordPattern);
-//            Pattern emailPattern = Pattern.compile(regEmailPattern);
-
-//
-//
-//        if(passwordPattern.matcher(employeePassword).matches()){
-//            String encryptedPassword = encryptor.encryptString(employeePassword);
-//            String encryptedPassword2 = encryptor.encryptString(employeePassword);
-//            System.out.println(encryptedPassword.equals(encryptedPassword2));
-//        }
-
-
     }
     @FXML
     void btnAddEmployeeClearFormOnAction(ActionEvent event) {
+        txtUpdateEmployeeId.setEditable(true);
+
         txtAddEmployeeName.setText(null);
         txtAddEmployeeEmail.setText(null);
         pfAddEmployeeLoginPassword.setText(null);
@@ -1050,25 +1024,86 @@ public class AdminMainFormController implements Initializable {
     // * update employee
     @FXML
     void btnUpdateEmployeeSearchOnAction(ActionEvent event) {
-
+        Employee employee = EmployeeController.getInstance().searchEmployeeById(txtUpdateEmployeeId.getText());
+        if (employee==null){
+            new Alert(Alert.AlertType.ERROR,"Employee Not Found").showAndWait();
+        }else {
+            txtUpdateEmployeeId.setText(employee.getEmployeeId());
+            txtUpdateEmployeeName.setText(employee.getName());
+            txtUpdateEmployeeContact.setText(employee.getContact());
+            txtUpdateEmployeeEmail.setText(employee.getEmail());
+            pfUpdateEmployeeLoginPassword.setText(employee.getPassword());
+            txtUpdateEmployeeAddress.setText(employee.getAddress());
+            lblUpdateEmployeeHiredDate.setText(employee.getHiredDate().toString());
+            txtUpdateEmployeeId.setEditable(false);
+        }
     }
     @FXML
-    void btnUpdateEmployeeOnAction(ActionEvent event) {
+    void btnUpdateEmployeeOnAction(ActionEvent event) throws NoSuchAlgorithmException {
+        Encryptor encryptor=new Encryptor();
+        String employeeId = txtUpdateEmployeeId.getText();
+        String employeeName = txtUpdateEmployeeName.getText().trim();
+        String employeeEmail = txtUpdateEmployeeEmail.getText().trim();
+        String employeePassword = pfUpdateEmployeeLoginPassword.getText().trim();
+        String employeeAddress = txtUpdateEmployeeAddress.getText().trim();
+        String employeeContact = txtUpdateEmployeeContact.getText().trim();
+        String employeehiredDate = lblUpdateEmployeeHiredDate.getText().trim();
 
+        if (EmployeeController.getInstance().validateEmployee(employeeName, employeeEmail, employeePassword, employeeAddress, employeeContact)) {
+            if(EmployeeController.getInstance().updateEmployee( new Employee(employeeId,employeeName,employeeEmail,encryptor.encryptString(employeePassword),employeeAddress,employeeContact,LocalDate.parse(employeehiredDate)))){
+                new Alert(Alert.AlertType.INFORMATION,"Employee Updated Successfully").showAndWait();
+                btnAddEmployeeClearFormOnAction(new ActionEvent());
+                txtUpdateEmployeeId.setEditable(false);
+                btnUpdateEmployeeClearFormOnAction(new ActionEvent());
+            }else {
+                new Alert(Alert.AlertType.ERROR,"Failed To Update Employee").showAndWait();
+                btnUpdateEmployeeClearFormOnAction(new ActionEvent());
+            }
+        }
     }
     @FXML
     void btnUpdateEmployeeClearFormOnAction(ActionEvent event) {
-
+        txtUpdateEmployeeId.setText(null);
+        txtUpdateEmployeeName.setText(null);
+        txtUpdateEmployeeContact.setText(null);
+        txtUpdateEmployeeEmail.setText(null);
+        pfUpdateEmployeeLoginPassword.setText(null);
+        txtUpdateEmployeeAddress.setText(null);
     }
 
     // * delete employee
     @FXML
     void btnDeleteEmployeeSearchOnAction(ActionEvent event) {
-
+        Employee employee = EmployeeController.getInstance().searchEmployeeById(txtDeleteEmployeeId.getText());
+        if (employee==null){
+            new Alert(Alert.AlertType.ERROR,"Employee Not Found").showAndWait();
+        }else {
+            txtDeleteEmployeeId.setText(employee.getEmployeeId());
+            txtDeleteEmployeeName.setText(employee.getName());
+            txtDeleteEmployeeContact.setText(employee.getContact());
+            txtDeleteEmployeeEmail.setText(employee.getEmail());
+            pfDeleteEmployeeLoginPassword.setText(employee.getPassword());
+            txtDeleteEmployeeAddress.setText(employee.getAddress());
+            lblDeleteEmployeeHiredDate.setText(employee.getHiredDate().toString());
+        }
     }
     @FXML
     void btnDeleteEmployeeOnAction(ActionEvent event) {
-
+        if(EmployeeController.getInstance().deleteEmployee(txtDeleteEmployeeId.getText())){
+            new Alert(Alert.AlertType.ERROR,"Employee Deleted Successfully").showAndWait();
+            deleteEmployeeClearForm();
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Employee Deletion Failed").showAndWait();
+            deleteEmployeeClearForm();
+        }
+    }
+    private void deleteEmployeeClearForm(){
+        txtDeleteEmployeeId.setText(null);
+        txtDeleteEmployeeName.setText(null);
+        txtDeleteEmployeeContact.setText(null);
+        txtDeleteEmployeeEmail.setText(null);
+        pfDeleteEmployeeLoginPassword.setText(null);
+        txtDeleteEmployeeAddress.setText(null);
     }
 
     // * view employee
