@@ -3,6 +3,7 @@ package controller.form_controllers;
 import com.jfoenix.controls.*;
 import controller.dto_controllers.EmployeeController;
 import dto.Employee;
+import entity.EmployeeEntity;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import util.Encryptor;
@@ -20,7 +22,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AdminMainFormController implements Initializable {
@@ -167,23 +168,27 @@ public class AdminMainFormController implements Initializable {
     @FXML
     private TableColumn<?, ?> collUpdateSupplierUnitPrice;
 
-    @FXML
-    private TableColumn<?, ?> collViewEmployeeListAddress;
+
+    // * View Employee Table
 
     @FXML
-    private TableColumn<?, ?> collViewEmployeeListContact;
+    private TableView<EmployeeEntity> tblViewEmployeeList;
+    @FXML
+    private TableColumn collViewEmployeeListAddress;
 
     @FXML
-    private TableColumn<?, ?> collViewEmployeeListEmail;
+    private TableColumn collViewEmployeeListContact;
 
     @FXML
-    private TableColumn<?, ?> collViewEmployeeListId;
+    private TableColumn collViewEmployeeListEmail;
 
     @FXML
-    private TableColumn<?, ?> collViewEmployeeListName;
+    private TableColumn collViewEmployeeListId;
 
     @FXML
-    private TableColumn<?, ?> collViewEmployeeListPassword;
+    private TableColumn collViewEmployeeListName;
+
+
 
     @FXML
     private TableColumn<?, ?> collViewItemListItemCategory;
@@ -374,11 +379,7 @@ public class AdminMainFormController implements Initializable {
     @FXML
     private JFXPasswordField pfAddEmployeeLoginPassword;
 
-    @FXML
-    private JFXPasswordField pfDeleteEmployeeLoginPassword;
 
-    @FXML
-    private JFXPasswordField pfUpdateEmployeeLoginPassword;
 
     @FXML
     private AnchorPane productReportPage;
@@ -403,9 +404,6 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private TableView<?> tblUpdateSupplierItemList;
-
-    @FXML
-    private TableView<?> tblViewEmployeeList;
 
     @FXML
     private TableView<?> tblViewItemList;
@@ -691,6 +689,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel.setVisible(false);
         currentMainPanel=pageDashboard;
         currentMainPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnInventoryManagementPageOnAction(ActionEvent event) {
@@ -700,6 +699,7 @@ public class AdminMainFormController implements Initializable {
         currentMainPanel.setVisible(true);
         currentSubPanel=pageAddInventory;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnSupplierManagementPageOnAction(ActionEvent event) {
@@ -709,6 +709,7 @@ public class AdminMainFormController implements Initializable {
         currentMainPanel.setVisible(true);
         currentSubPanel=pageAddSupplier;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnOrderManagementPageOnAction(ActionEvent event) {
@@ -718,6 +719,7 @@ public class AdminMainFormController implements Initializable {
         currentMainPanel.setVisible(true);
         currentSubPanel=pagePlaceOrder;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnEmployeeManagementPageOnAction(ActionEvent event) {
@@ -727,6 +729,7 @@ public class AdminMainFormController implements Initializable {
         currentMainPanel.setVisible(true);
         currentSubPanel=pageAddEmployee;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnReportGenerationPageOnAction(ActionEvent event) {
@@ -736,6 +739,7 @@ public class AdminMainFormController implements Initializable {
         currentMainPanel.setVisible(true);
         currentSubPanel=employeeReportPage;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
 
 
@@ -746,24 +750,28 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel.setVisible(false);
         currentSubPanel=pageAddInventory;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnUpdateItemPageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=pageUpdateInventory;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnDeleteItemPageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=pageDeleteInventory;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnViewItemPageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=pageViewInventory;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
 
 
@@ -773,24 +781,28 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel.setVisible(false);
         currentSubPanel=pageAddSupplier;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnUpdateSupplierPageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=pageUpdateSupplier;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnDeleteSupplierPageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=pageDeleteSupplier;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnViewSupplierPageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=pageViewSupplier;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
 
 
@@ -800,24 +812,28 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel.setVisible(false);
         currentSubPanel=pageAddEmployee;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnUpdateEmployeePageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=pageUpdateEmployee;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnDeleteEmployeePageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=pageDeleteEmployee;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnViewEmployeePageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=pageViewEmployee;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
 
 
@@ -827,24 +843,28 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel.setVisible(false);
         currentSubPanel=pagePlaceOrder;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnUpdateOrderPageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=pageUpdateOrder;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnDeleteOrderPageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=pageDeleteOrder;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnViewOrderPageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=pageViewOrder;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
 
 
@@ -854,36 +874,42 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel.setVisible(false);
         currentSubPanel=productReportPage;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnSupplierReportPageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=supplierReportPage;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     void btnEmployeeReportPageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=employeeReportPage;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     public void btnDailyReportPageOnAction(ActionEvent actionEvent) {
         currentSubPanel.setVisible(false);
         currentSubPanel=dailySalesReportPage;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     public void btnMonthlyReportPageOnAction(ActionEvent actionEvent) {
         currentSubPanel.setVisible(false);
         currentSubPanel=monthlySalesReportPage;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
     @FXML
     public void btnAnnualSalesReportPageOnAction(ActionEvent actionEvent) {
         currentSubPanel.setVisible(false);
         currentSubPanel=annualSalesReportPage;
         currentSubPanel.setVisible(true);
+        clearAllForms();
     }
 
     // ? FUNCTIONALITIES OF BUTTONS
@@ -1004,6 +1030,7 @@ public class AdminMainFormController implements Initializable {
         if (EmployeeController.getInstance().validateEmployee(employeeName, employeeEmail, employeePassword, employeeAddress, employeeContact)) {
             if(EmployeeController.getInstance().addEmployee( new Employee(EmployeeController.getInstance().genarateEmployeeId(),employeeName,employeeEmail,encryptor.encryptString(employeePassword),employeeAddress,employeeContact,LocalDate.now()))){
                 new Alert(Alert.AlertType.INFORMATION,"Employee Added Successfully").showAndWait();
+                loadEmployeeTable();
                 btnAddEmployeeClearFormOnAction(new ActionEvent());
             }else {
                 new Alert(Alert.AlertType.ERROR,"Failed To Add Employee").showAndWait();
@@ -1012,104 +1039,153 @@ public class AdminMainFormController implements Initializable {
     }
     @FXML
     void btnAddEmployeeClearFormOnAction(ActionEvent event) {
+        txtAddEmployeeName.setText("");
+        txtAddEmployeeEmail.setText("");
+        pfAddEmployeeLoginPassword.setText("");
+        txtAddEmployeeAddress.setText("");
+        txtAddEmployeeContact.setText("");
         txtUpdateEmployeeId.setEditable(true);
-
-        txtAddEmployeeName.setText(null);
-        txtAddEmployeeEmail.setText(null);
-        pfAddEmployeeLoginPassword.setText(null);
-        txtAddEmployeeAddress.setText(null);
-        txtAddEmployeeContact.setText(null);
     }
 
     // * update employee
+    private Boolean updateEmployeeSearched=false;
+    private String tempEmployeePassword=null;
     @FXML
     void btnUpdateEmployeeSearchOnAction(ActionEvent event) {
-        Employee employee = EmployeeController.getInstance().searchEmployeeById(txtUpdateEmployeeId.getText());
-        if (employee==null){
-            new Alert(Alert.AlertType.ERROR,"Employee Not Found").showAndWait();
-        }else {
-            txtUpdateEmployeeId.setText(employee.getEmployeeId());
-            txtUpdateEmployeeName.setText(employee.getName());
-            txtUpdateEmployeeContact.setText(employee.getContact());
-            txtUpdateEmployeeEmail.setText(employee.getEmail());
-            pfUpdateEmployeeLoginPassword.setText(employee.getPassword());
-            txtUpdateEmployeeAddress.setText(employee.getAddress());
-            lblUpdateEmployeeHiredDate.setText(employee.getHiredDate().toString());
-            txtUpdateEmployeeId.setEditable(false);
+        if (txtUpdateEmployeeId.getText().isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Enter Employee ID").showAndWait();
+        }else{
+            Employee employee = EmployeeController.getInstance().searchEmployeeById(txtUpdateEmployeeId.getText());
+            if (employee==null){
+                new Alert(Alert.AlertType.ERROR,"Employee Not Found").showAndWait();
+            }else {
+                txtUpdateEmployeeId.setText(employee.getEmployeeId());
+                txtUpdateEmployeeName.setText(employee.getName());
+                txtUpdateEmployeeContact.setText(employee.getContact());
+                txtUpdateEmployeeEmail.setText(employee.getEmail());
+                tempEmployeePassword=employee.getPassword();
+                txtUpdateEmployeeAddress.setText(employee.getAddress());
+                lblUpdateEmployeeHiredDate.setText(employee.getHiredDate().toString());
+                txtUpdateEmployeeId.setEditable(false);
+                updateEmployeeSearched=true;
+            }
         }
+
     }
     @FXML
     void btnUpdateEmployeeOnAction(ActionEvent event) throws NoSuchAlgorithmException {
-        Encryptor encryptor=new Encryptor();
         String employeeId = txtUpdateEmployeeId.getText();
-        String employeeName = txtUpdateEmployeeName.getText().trim();
-        String employeeEmail = txtUpdateEmployeeEmail.getText().trim();
-        String employeePassword = pfUpdateEmployeeLoginPassword.getText().trim();
-        String employeeAddress = txtUpdateEmployeeAddress.getText().trim();
-        String employeeContact = txtUpdateEmployeeContact.getText().trim();
-        String employeehiredDate = lblUpdateEmployeeHiredDate.getText().trim();
+        String employeeName = txtUpdateEmployeeName.getText();
+        String employeeEmail = txtUpdateEmployeeEmail.getText();
+        String employeeAddress = txtUpdateEmployeeAddress.getText();
+        String employeeContact = txtUpdateEmployeeContact.getText();
+        String employeeHiredDate = lblUpdateEmployeeHiredDate.getText();
 
-        if (EmployeeController.getInstance().validateEmployee(employeeName, employeeEmail, employeePassword, employeeAddress, employeeContact)) {
-            if(EmployeeController.getInstance().updateEmployee( new Employee(employeeId,employeeName,employeeEmail,encryptor.encryptString(employeePassword),employeeAddress,employeeContact,LocalDate.parse(employeehiredDate)))){
-                new Alert(Alert.AlertType.INFORMATION,"Employee Updated Successfully").showAndWait();
-                btnAddEmployeeClearFormOnAction(new ActionEvent());
-                txtUpdateEmployeeId.setEditable(false);
-                btnUpdateEmployeeClearFormOnAction(new ActionEvent());
-            }else {
-                new Alert(Alert.AlertType.ERROR,"Failed To Update Employee").showAndWait();
-                btnUpdateEmployeeClearFormOnAction(new ActionEvent());
+        if(employeeId.isEmpty() || employeeName.trim().isEmpty() || employeeContact.isEmpty() || employeeAddress.isEmpty() || employeeEmail.isEmpty() || employeeHiredDate.isEmpty() || !updateEmployeeSearched){
+            new Alert(Alert.AlertType.INFORMATION,"Search Employee First").showAndWait();
+        }else {
+            if (EmployeeController.getInstance().validateEmployeeOnUpdate(employeeName, employeeEmail, employeeAddress, employeeContact)) {
+                if(EmployeeController.getInstance().updateEmployee( new Employee(employeeId.trim(),employeeName.trim(),employeeEmail.trim(),tempEmployeePassword.trim(),employeeAddress.trim(),employeeContact.trim(),LocalDate.parse(employeeHiredDate.trim())))){
+                    new Alert(Alert.AlertType.INFORMATION,"Employee Updated Successfully").showAndWait();
+                    btnAddEmployeeClearFormOnAction(new ActionEvent());
+                    txtUpdateEmployeeId.setEditable(true);
+                    loadEmployeeTable();
+                }else {
+                    new Alert(Alert.AlertType.ERROR,"Failed To Update Employee").showAndWait();
+                    btnUpdateEmployeeClearFormOnAction(new ActionEvent());
+                }
+            }
+        }
+
+    }
+    @FXML
+    void btnUpdateEmployeeClearFormOnAction(ActionEvent event) {
+        txtUpdateEmployeeId.setText("");
+        txtUpdateEmployeeName.setText("");
+        txtUpdateEmployeeContact.setText("");
+        txtUpdateEmployeeEmail.setText("");
+        txtUpdateEmployeeAddress.setText("");
+        txtUpdateEmployeeId.setEditable(true);
+        updateEmployeeSearched=false;
+    }
+
+    // * delete employee
+    private Boolean deleteEmployeeSearched=false;
+    @FXML
+    void btnDeleteEmployeeSearchOnAction(ActionEvent event) {
+        if (txtDeleteEmployeeId.getText().isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Enter Employee ID").showAndWait();
+        }else {
+            Employee employee = EmployeeController.getInstance().searchEmployeeById(txtDeleteEmployeeId.getText());
+            if (employee == null) {
+                new Alert(Alert.AlertType.ERROR, "Employee Not Found").showAndWait();
+            } else {
+                txtDeleteEmployeeId.setText(employee.getEmployeeId());
+                txtDeleteEmployeeName.setText(employee.getName());
+                txtDeleteEmployeeContact.setText(employee.getContact());
+                txtDeleteEmployeeEmail.setText(employee.getEmail());
+                txtDeleteEmployeeAddress.setText(employee.getAddress());
+                lblDeleteEmployeeHiredDate.setText(employee.getHiredDate().toString());
+                deleteEmployeeSearched=true;
             }
         }
     }
     @FXML
-    void btnUpdateEmployeeClearFormOnAction(ActionEvent event) {
-        txtUpdateEmployeeId.setText(null);
-        txtUpdateEmployeeName.setText(null);
-        txtUpdateEmployeeContact.setText(null);
-        txtUpdateEmployeeEmail.setText(null);
-        pfUpdateEmployeeLoginPassword.setText(null);
-        txtUpdateEmployeeAddress.setText(null);
-    }
-
-    // * delete employee
-    @FXML
-    void btnDeleteEmployeeSearchOnAction(ActionEvent event) {
-        Employee employee = EmployeeController.getInstance().searchEmployeeById(txtDeleteEmployeeId.getText());
-        if (employee==null){
-            new Alert(Alert.AlertType.ERROR,"Employee Not Found").showAndWait();
-        }else {
-            txtDeleteEmployeeId.setText(employee.getEmployeeId());
-            txtDeleteEmployeeName.setText(employee.getName());
-            txtDeleteEmployeeContact.setText(employee.getContact());
-            txtDeleteEmployeeEmail.setText(employee.getEmail());
-            pfDeleteEmployeeLoginPassword.setText(employee.getPassword());
-            txtDeleteEmployeeAddress.setText(employee.getAddress());
-            lblDeleteEmployeeHiredDate.setText(employee.getHiredDate().toString());
-        }
-    }
-    @FXML
     void btnDeleteEmployeeOnAction(ActionEvent event) {
-        if(EmployeeController.getInstance().deleteEmployee(txtDeleteEmployeeId.getText())){
-            new Alert(Alert.AlertType.ERROR,"Employee Deleted Successfully").showAndWait();
-            deleteEmployeeClearForm();
-        }else{
-            new Alert(Alert.AlertType.ERROR,"Employee Deletion Failed").showAndWait();
-            deleteEmployeeClearForm();
+        if(txtDeleteEmployeeId.getText().isEmpty() || txtDeleteEmployeeName.getText().isEmpty() || txtDeleteEmployeeContact.getText().isEmpty() || txtDeleteEmployeeAddress.getText().isEmpty() || txtDeleteEmployeeEmail.getText().isEmpty() || lblDeleteEmployeeHiredDate.getText().isEmpty() || !deleteEmployeeSearched){
+            new Alert(Alert.AlertType.INFORMATION,"Search Employee First").showAndWait();
+        }else {
+            if (EmployeeController.getInstance().deleteEmployee(txtDeleteEmployeeId.getText())) {
+                new Alert(Alert.AlertType.ERROR, "Employee Deleted Successfully").showAndWait();
+                deleteEmployeeClearForm();
+                deleteEmployeeSearched = false;
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Employee Deletion Failed").showAndWait();
+                loadEmployeeTable();
+                deleteEmployeeClearForm();
+            }
         }
     }
     private void deleteEmployeeClearForm(){
-        txtDeleteEmployeeId.setText(null);
-        txtDeleteEmployeeName.setText(null);
-        txtDeleteEmployeeContact.setText(null);
-        txtDeleteEmployeeEmail.setText(null);
-        pfDeleteEmployeeLoginPassword.setText(null);
-        txtDeleteEmployeeAddress.setText(null);
+        txtDeleteEmployeeId.setText("");
+        txtDeleteEmployeeName.setText("");
+        txtDeleteEmployeeContact.setText("");
+        txtDeleteEmployeeEmail.setText("");
+        txtDeleteEmployeeAddress.setText("");
+        deleteEmployeeSearched=false;
     }
 
     // * view employee
     @FXML
     void btnViewEmployeeSearchOnAction(ActionEvent event) {
+        if (txtUpdateEmployeeId.getText().isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Enter Employee ID").showAndWait();
+        }else {
+            Employee employee = EmployeeController.getInstance().searchEmployeeById(txtViewEmployeeId.getText());
+            if (employee == null) {
+                new Alert(Alert.AlertType.ERROR, "Employee Not Found").showAndWait();
+            } else {
+                txtViewEmployeeId.setText(employee.getEmployeeId());
+                txtViewEmployeeName.setText(employee.getName());
+                txtViewEmployeeContact.setText(employee.getContact());
+                txtViewEmployeeEmail.setText(employee.getEmail());
+                txtViewEmployeeAddress.setText(employee.getAddress());
+                lblViewEmployeeHiredDate.setText(employee.getHiredDate().toString());
+            }
+        }
+    }
 
+    private void loadEmployeeTable(){
+        tblViewEmployeeList.setItems(EmployeeController.getInstance().getAllEmployees());
+    }
+    private void employeeListSetText(EmployeeEntity newValue) {
+        if (newValue != null) {
+            txtViewEmployeeId.setText(newValue.getEmployeeId());
+            txtViewEmployeeName.setText(newValue.getName());
+            txtViewEmployeeContact.setText(newValue.getContact());
+            txtViewEmployeeAddress.setText(newValue.getAddress());
+            txtViewEmployeeEmail.setText(newValue.getEmail());
+        }
     }
 
 
@@ -1221,8 +1297,37 @@ public class AdminMainFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // ?  Initializing Table Columns
+        collViewEmployeeListId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
+        collViewEmployeeListName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        collViewEmployeeListAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        collViewEmployeeListEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        collViewEmployeeListContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
+
+        // ? Load All Tables On Initialize
+
+        loadEmployeeTable();
+
+
+        // ? Initializing the Navigation Panel Variables
         currentMainPanel=pageDashboard;
         currentMainPanel.setVisible(true);
         currentSubPanel=pageAddInventory;
+
+        // ? Load Contents From Table When Click Record
+
+        // *  View Employee Table
+
+        tblViewEmployeeList.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
+            employeeListSetText(newValue);
+        }));
+
     }
+
+    private void clearAllForms(){
+        btnAddEmployeeClearFormOnAction(new ActionEvent());
+        btnUpdateEmployeeClearFormOnAction(new ActionEvent());
+        deleteEmployeeClearForm();
+    }
+
 }

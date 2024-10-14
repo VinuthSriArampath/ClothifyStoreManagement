@@ -2015,12 +2015,12 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </JFXButton>
-                              <Label alignment="CENTER" layoutX="345.0" layoutY="412.0" text="Employee Address" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                              <Label alignment="CENTER" layoutX="344.0" layoutY="339.0" text="Employee Address" textFill="WHITE" AnchorPane.leftAnchor="344.0">
                                  <font>
                                     <Font name="Verdana Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <JFXTextArea fx:id="txtUpdateEmployeeAddress" layoutX="342.0" layoutY="438.0" prefHeight="93.0" prefWidth="282.0" promptText="Employee Address" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="350.0">
+                              <JFXTextArea fx:id="txtUpdateEmployeeAddress" layoutX="344.0" layoutY="365.0" prefHeight="93.0" prefWidth="282.0" promptText="Employee Address" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="344.0" AnchorPane.rightAnchor="358.0">
                                  <styleClass>
                                     <String fx:value="border" />
                                     <String fx:value="input-text" />
@@ -2043,20 +2043,6 @@
                                     <String fx:value="border" />
                                  </styleClass>
                               </JFXTextField>
-                              <Label alignment="CENTER" layoutX="345.0" layoutY="339.0" text="Employee Login Password" textFill="WHITE" AnchorPane.leftAnchor="346.0">
-                                 <font>
-                                    <Font name="Verdana Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <JFXPasswordField fx:id="pfUpdateEmployeeLoginPassword" layoutX="343.0" layoutY="364.0" prefHeight="42.0" prefWidth="283.0" promptText="Employee Login Password" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="350.0">
-                                 <styleClass>
-                                    <String fx:value="border" />
-                                    <String fx:value="input-text" />
-                                 </styleClass>
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </JFXPasswordField>
                               <HBox alignment="CENTER" layoutX="771.0" layoutY="14.0" prefHeight="26.0" prefWidth="200.0">
                                  <children>
                                     <Label text="Hired Date :- " textFill="WHITE">
@@ -2145,12 +2131,12 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </JFXButton>
-                              <Label alignment="CENTER" layoutX="355.0" layoutY="424.0" text="Employee Address" textFill="WHITE" AnchorPane.leftAnchor="346.0">
+                              <Label alignment="CENTER" layoutX="349.0" layoutY="336.0" text="Employee Address" textFill="WHITE" AnchorPane.leftAnchor="349.0">
                                  <font>
                                     <Font name="Verdana Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <JFXTextArea fx:id="txtDeleteEmployeeAddress" editable="false" layoutX="353.0" layoutY="450.0" prefHeight="89.0" prefWidth="282.0" promptText="Employee Address" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="353.0" AnchorPane.rightAnchor="349.0">
+                              <JFXTextArea fx:id="txtDeleteEmployeeAddress" editable="false" layoutX="356.0" layoutY="362.0" prefHeight="89.0" prefWidth="282.0" promptText="Employee Address" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="356.0" AnchorPane.rightAnchor="352.0">
                                  <styleClass>
                                     <String fx:value="border" />
                                     <String fx:value="input-text" />
@@ -2159,20 +2145,6 @@
                                     <Font size="15.0" />
                                  </font>
                               </JFXTextArea>
-                              <Label alignment="CENTER" layoutX="356.0" layoutY="337.0" text="Employee Password" textFill="WHITE" AnchorPane.leftAnchor="346.0">
-                                 <font>
-                                    <Font name="Verdana Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <JFXPasswordField fx:id="pfDeleteEmployeeLoginPassword" editable="false" layoutX="361.0" layoutY="364.0" prefHeight="42.0" prefWidth="283.0" promptText="Employee Login Password" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="350.0">
-                                 <styleClass>
-                                    <String fx:value="border" />
-                                    <String fx:value="input-text" />
-                                 </styleClass>
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </JFXPasswordField>
                               <HBox alignment="CENTER" layoutX="771.0" layoutY="13.0" prefHeight="26.0" prefWidth="200.0">
                                  <children>
                                     <Label text="Hired Date :- " textFill="WHITE">
@@ -2263,7 +2235,6 @@
                                     <TableColumn fx:id="collViewEmployeeListContact" prefWidth="151.0" text="Employee Contact" />
                                     <TableColumn fx:id="collViewEmployeeListAddress" prefWidth="224.0" text="Employee Address" />
                                     <TableColumn fx:id="collViewEmployeeListEmail" prefWidth="167.0" text="Employee Email" />
-                                    <TableColumn fx:id="collViewEmployeeListPassword" prefWidth="120.0" text="Password" />
                                  </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -2283,20 +2254,6 @@
                                     <Font size="15.0" />
                                  </font>
                               </JFXTextArea>
-                              <Label alignment="CENTER" layoutX="566.0" layoutY="176.0" text="Employee Login Password" textFill="WHITE">
-                                 <font>
-                                    <Font name="Verdana Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <JFXTextField fx:id="txtViewEmployeePassword" layoutX="562.0" layoutY="203.0" prefHeight="42.0" prefWidth="356.0" promptText="Employee Login Password" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                                 <styleClass>
-                                    <String fx:value="input-text" />
-                                    <String fx:value="border" />
-                                 </styleClass>
-                              </JFXTextField>
                               <HBox alignment="CENTER" layoutX="785.0" layoutY="5.0" prefHeight="26.0" prefWidth="200.0">
                                  <children>
                                     <Label text="Hired Date :- " textFill="WHITE">
