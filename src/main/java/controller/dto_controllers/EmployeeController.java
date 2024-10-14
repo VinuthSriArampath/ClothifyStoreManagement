@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 
 public class EmployeeController {
-    private EmployeeService employeeService= new EmployeeServiceImpl();
+    private final EmployeeService employeeService= new EmployeeServiceImpl();
     private static EmployeeController instance;
     private EmployeeController(){}
 
@@ -45,7 +45,7 @@ public class EmployeeController {
             return true;
         }
     }
-    public Boolean validateEmployeeOnUpdate(String employeeName, String employeeEmail, String employeeAddress,String employeeContact){
+    public Boolean validateEmployee(String employeeName, String employeeEmail, String employeeAddress,String employeeContact){
         String regEmailPattern = "^[A-Za-z0-9._%+-]+@gmail\\.com$";
         String regContactPatter = "^0[\\d]{9}$";
 
@@ -89,7 +89,7 @@ public class EmployeeController {
 
     public String genarateEmployeeId(){
         ObservableList<EmployeeEntity> allEmployees = employeeService.getAllEmployees();
-        int id = allEmployees.isEmpty() ?1:Integer.parseInt((allEmployees.getLast().getEmployeeId().split("Emp")[1]))+1;
+        int id = allEmployees.isEmpty() ? 1 : Integer.parseInt((allEmployees.getLast().getEmployeeId().split("Emp")[1]))+1;
         return "Emp"+id;
     }
 

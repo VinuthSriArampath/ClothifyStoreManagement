@@ -759,10 +759,6 @@ public class EmployeeMainFormController implements Initializable {
     void btnAddSupplierOnAction(ActionEvent event) {
 
     }
-    @FXML
-    void btnAddItemToSupplierList(ActionEvent event) {
-
-    }
 
     @FXML
     void btnAddSupplierClearItemListOnAction(ActionEvent event) {
@@ -778,22 +774,12 @@ public class EmployeeMainFormController implements Initializable {
     void btnUpdateSupplierOnAction(ActionEvent event) {
 
     }
-
     @FXML
-    void btnUpdateSupplierAddItemToList(ActionEvent event) {
-
-    }
-    @FXML
-    void btnUpdateSupplierRemoveItemFromListOnAction(ActionEvent event) {
-
-    }
-    @FXML
-    void btnUpdateSupplierClearItemListOnAction(ActionEvent event) {
-
+    private void btnUpdateSupplierClearFormOnAction(ActionEvent actionEvent) {
     }
 
 
-    // * delete supplier
+        // * delete supplier
     @FXML
     void btnDeleteSupplierOnAction(ActionEvent event) {
 
@@ -902,4 +888,5 @@ public class EmployeeMainFormController implements Initializable {
         currentMainPanel.setVisible(true);
         currentSubPanel=pageAddInventory;
     }
+
 }

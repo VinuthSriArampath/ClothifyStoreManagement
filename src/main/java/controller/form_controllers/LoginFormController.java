@@ -6,12 +6,18 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import java.io.IOException;
+import org.hibernate.Session;
+import util.HibernateUtil;
 
-public class LoginFormController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class LoginFormController implements Initializable {
 
     public JFXButton btnLogin;
     @FXML
@@ -21,7 +27,7 @@ public class LoginFormController {
     private JFXPasswordField pfPassword;
 
     @FXML
-    void btnLoginOnAction(ActionEvent event) {
+    void btnLoginOnAction(ActionEvent event){
         String email = txtEmail.getText();
         String password = pfPassword.getText();
         Stage stage=new Stage();
@@ -53,4 +59,11 @@ public class LoginFormController {
         }
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Session sessionSupplier = HibernateUtil.getSupplierSession();
+        sessionSupplier.close();
+        Session sessionEmployee = HibernateUtil.getEmployeeSession();
+        sessionEmployee.close();
+    }
 }

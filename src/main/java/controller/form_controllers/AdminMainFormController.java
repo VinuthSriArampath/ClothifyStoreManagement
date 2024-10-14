@@ -2,7 +2,9 @@ package controller.form_controllers;
 
 import com.jfoenix.controls.*;
 import controller.dto_controllers.EmployeeController;
+import controller.dto_controllers.SupplierController;
 import dto.Employee;
+import dto.Supplier;
 import entity.EmployeeEntity;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -830,6 +832,7 @@ public class AdminMainFormController implements Initializable {
     }
     @FXML
     void btnViewEmployeePageOnAction(ActionEvent event) {
+        loadViewEmployeeTable();
         currentSubPanel.setVisible(false);
         currentSubPanel=pageViewEmployee;
         currentSubPanel.setVisible(true);
@@ -960,39 +963,84 @@ public class AdminMainFormController implements Initializable {
     // * add supplier
     @FXML
     void btnAddSupplierOnAction(ActionEvent event) {
-
+        String supplierName = txtAddSupplierName.getText().trim();
+        String supplierEmail = txtAddSupplierEmail.getText().trim();
+        String supplierCompanyName = txtAddSupplierCompanyName.getText().trim();
+        String supplierAddress = txtAddSupplierAddress.getText().trim();
+        SupplierController supplierController=SupplierController.getInstance();
+        if(supplierController.validateSupplier(supplierName,supplierEmail,supplierCompanyName,supplierAddress)){
+            if (SupplierController.getInstance().addSupplier(new Supplier(supplierController.generateSupplierId(), supplierName,supplierEmail,supplierCompanyName,supplierAddress))){
+                new Alert(Alert.AlertType.CONFIRMATION,"Supplier Registration Success !!").showAndWait();
+                btnAddSupplierClearFormOnAction(new ActionEvent());
+            }else{
+                new Alert(Alert.AlertType.ERROR,"Supplier Registration Failed !!").showAndWait();
+            }
+        }
     }
-    @FXML
-    void btnAddItemToSupplierList(ActionEvent event) {
-
-    }
 
     @FXML
-    void btnAddSupplierClearItemListOnAction(ActionEvent event) {
-
+    void btnAddSupplierClearFormOnAction(ActionEvent event) {
+        txtAddSupplierName.setText("");
+        txtAddSupplierEmail.setText("");
+        txtAddSupplierCompanyName.setText("");
+        txtAddSupplierAddress.setText("");
     }
 
     // * update supplier
+    private Boolean updateSupplierSearched=false;
+
     @FXML
     void btnUpdateSupplierSearchOnAction(ActionEvent event) {
-
+        String supplierId = txtUpdateSupplierId.getText();
+        if (supplierId.isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Search a Supplier !!").showAndWait();
+        }else{
+            Supplier supplier = SupplierController.getInstance().searchSupplierById(supplierId);
+            if(supplier==null){
+                new Alert(Alert.AlertType.ERROR,"Supplier Not Found").showAndWait();
+            }else{
+                txtUpdateSupplierId.setEditable(false);
+                txtUpdateSupplierName.setText(supplier.getSupplierName());
+                txtUpdateSupplierEmail.setText(supplier.getSupplierEmail());
+                txtUpdateSupplierCompanyName.setText(supplier.getCompanyName());
+                txtUpdateSupplierAddress.setText(supplier.getSupplierAddress());
+                updateSupplierSearched=true;
+            }
+        }
     }
     @FXML
     void btnUpdateSupplierOnAction(ActionEvent event) {
-
+        if (updateSupplierSearched){
+            String supplierId = txtUpdateSupplierId.getText().trim();
+            String supplierName = txtUpdateSupplierName.getText().trim();
+            String supplierCompanyName = txtUpdateSupplierCompanyName.getText().trim();
+            String supplierEmail = txtUpdateSupplierEmail.getText().trim();
+            String supplierAddress = txtUpdateSupplierAddress.getText().trim();
+            if (supplierId.isEmpty() || supplierName.isEmpty() || supplierCompanyName.isEmpty() || supplierEmail.isEmpty() || supplierAddress.isEmpty()){
+                new Alert(Alert.AlertType.ERROR,"Fill All the Fields !! ").showAndWait();
+            }else if (SupplierController.getInstance().validateSupplier(supplierName,supplierEmail,supplierCompanyName,supplierAddress)){
+                if (SupplierController.getInstance().updateSupplier(new Supplier(supplierId,supplierName,supplierEmail,supplierCompanyName,supplierAddress))){
+                    new Alert(Alert.AlertType.CONFIRMATION,"Supplier Updated Successfully !! ").showAndWait();
+                    btnUpdateSupplierClearFormOnAction(new ActionEvent());
+                }else {
+                    new Alert(Alert.AlertType.ERROR,"Updating Supplier Failed !! ").showAndWait();
+                }
+            }else {
+                new Alert(Alert.AlertType.ERROR,"Fill All the Fields !! ").showAndWait();
+            }
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Search A Supplier First").showAndWait();
+        }
     }
 
     @FXML
-    void btnUpdateSupplierAddItemToList(ActionEvent event) {
-
-    }
-    @FXML
-    void btnUpdateSupplierRemoveItemFromListOnAction(ActionEvent event) {
-
-    }
-    @FXML
-    void btnUpdateSupplierClearItemListOnAction(ActionEvent event) {
-
+    void btnUpdateSupplierClearFormOnAction(ActionEvent event) {
+        txtUpdateSupplierId.setEditable(true);
+        txtUpdateSupplierId.setText("");
+        txtUpdateSupplierName.setText("");
+        txtUpdateSupplierAddress.setText("");
+        txtUpdateSupplierCompanyName.setText("");
+        txtUpdateSupplierEmail.setText("");
     }
 
 
@@ -1030,7 +1078,7 @@ public class AdminMainFormController implements Initializable {
         if (EmployeeController.getInstance().validateEmployee(employeeName, employeeEmail, employeePassword, employeeAddress, employeeContact)) {
             if(EmployeeController.getInstance().addEmployee( new Employee(EmployeeController.getInstance().genarateEmployeeId(),employeeName,employeeEmail,encryptor.encryptString(employeePassword),employeeAddress,employeeContact,LocalDate.now()))){
                 new Alert(Alert.AlertType.INFORMATION,"Employee Added Successfully").showAndWait();
-                loadEmployeeTable();
+                loadViewEmployeeTable();
                 btnAddEmployeeClearFormOnAction(new ActionEvent());
             }else {
                 new Alert(Alert.AlertType.ERROR,"Failed To Add Employee").showAndWait();
@@ -1073,7 +1121,7 @@ public class AdminMainFormController implements Initializable {
 
     }
     @FXML
-    void btnUpdateEmployeeOnAction(ActionEvent event) throws NoSuchAlgorithmException {
+    void btnUpdateEmployeeOnAction(ActionEvent event){
         String employeeId = txtUpdateEmployeeId.getText();
         String employeeName = txtUpdateEmployeeName.getText();
         String employeeEmail = txtUpdateEmployeeEmail.getText();
@@ -1081,15 +1129,15 @@ public class AdminMainFormController implements Initializable {
         String employeeContact = txtUpdateEmployeeContact.getText();
         String employeeHiredDate = lblUpdateEmployeeHiredDate.getText();
 
-        if(employeeId.isEmpty() || employeeName.trim().isEmpty() || employeeContact.isEmpty() || employeeAddress.isEmpty() || employeeEmail.isEmpty() || employeeHiredDate.isEmpty() || !updateEmployeeSearched){
+        if(employeeId.isEmpty() || employeeName.trim().isEmpty() || employeeContact.trim().isEmpty() || employeeAddress.trim().isEmpty() || employeeEmail.isEmpty() || employeeHiredDate.isEmpty() || !updateEmployeeSearched){
             new Alert(Alert.AlertType.INFORMATION,"Search Employee First").showAndWait();
         }else {
-            if (EmployeeController.getInstance().validateEmployeeOnUpdate(employeeName, employeeEmail, employeeAddress, employeeContact)) {
+            if (EmployeeController.getInstance().validateEmployee(employeeName, employeeEmail, employeeAddress, employeeContact)) {
                 if(EmployeeController.getInstance().updateEmployee( new Employee(employeeId.trim(),employeeName.trim(),employeeEmail.trim(),tempEmployeePassword.trim(),employeeAddress.trim(),employeeContact.trim(),LocalDate.parse(employeeHiredDate.trim())))){
                     new Alert(Alert.AlertType.INFORMATION,"Employee Updated Successfully").showAndWait();
                     btnAddEmployeeClearFormOnAction(new ActionEvent());
                     txtUpdateEmployeeId.setEditable(true);
-                    loadEmployeeTable();
+                    loadViewEmployeeTable();
                 }else {
                     new Alert(Alert.AlertType.ERROR,"Failed To Update Employee").showAndWait();
                     btnUpdateEmployeeClearFormOnAction(new ActionEvent());
@@ -1141,7 +1189,7 @@ public class AdminMainFormController implements Initializable {
                 deleteEmployeeSearched = false;
             } else {
                 new Alert(Alert.AlertType.ERROR, "Employee Deletion Failed").showAndWait();
-                loadEmployeeTable();
+                loadViewEmployeeTable();
                 deleteEmployeeClearForm();
             }
         }
@@ -1175,7 +1223,7 @@ public class AdminMainFormController implements Initializable {
         }
     }
 
-    private void loadEmployeeTable(){
+    private void loadViewEmployeeTable(){
         tblViewEmployeeList.setItems(EmployeeController.getInstance().getAllEmployees());
     }
     private void employeeListSetText(EmployeeEntity newValue) {
@@ -1306,7 +1354,7 @@ public class AdminMainFormController implements Initializable {
 
         // ? Load All Tables On Initialize
 
-        loadEmployeeTable();
+        loadViewEmployeeTable();
 
 
         // ? Initializing the Navigation Panel Variables
@@ -1325,9 +1373,16 @@ public class AdminMainFormController implements Initializable {
     }
 
     private void clearAllForms(){
+        // *  Employee Pages
+
         btnAddEmployeeClearFormOnAction(new ActionEvent());
         btnUpdateEmployeeClearFormOnAction(new ActionEvent());
         deleteEmployeeClearForm();
+
+        // * Supplier Pages
+
+        btnAddSupplierClearFormOnAction(new ActionEvent());
+        btnUpdateSupplierClearFormOnAction(new ActionEvent());
     }
 
 }
