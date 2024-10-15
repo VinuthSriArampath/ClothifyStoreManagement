@@ -2,6 +2,7 @@ package repository;
 
 
 import repository.custom.impl.EmployeeDaoImpl;
+import repository.custom.impl.ItemDaoImpl;
 import repository.custom.impl.SupplierDaoImpl;
 import service.custom.impl.SupplierServiceImpl;
 import util.DaoType;
@@ -17,6 +18,7 @@ public class DaoFactory {
         switch (type){
             case EMPLOYEE : return (T) new EmployeeDaoImpl();
             case SUPPLIER : return (T) new SupplierDaoImpl();
+            case ITEM :  return (T) new ItemDaoImpl();
             default:return null;
         }
     }

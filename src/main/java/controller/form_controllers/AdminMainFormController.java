@@ -2,10 +2,15 @@ package controller.form_controllers;
 
 import com.jfoenix.controls.*;
 import controller.dto_controllers.EmployeeController;
+import controller.dto_controllers.ItemController;
 import controller.dto_controllers.SupplierController;
 import dto.Employee;
+import dto.Item;
 import dto.Supplier;
 import entity.EmployeeEntity;
+import entity.ItemEntity;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,52 +56,52 @@ public class AdminMainFormController implements Initializable {
     private BarChart<?, ?> chartSupplierReport;
 
     @FXML
-    private JFXComboBox<?> cmbAddItemCategory;
+    private JFXComboBox<String> cmbAddItemCategory;
 
     @FXML
-    private JFXComboBox<?> cmbAddItemSupplier;
+    private JFXComboBox<String> cmbAddItemSupplier;
 
     @FXML
-    private JFXComboBox<?> cmbDeleteItemCategory;
+    private JFXComboBox<String> cmbDeleteItemCategory;
 
     @FXML
-    private JFXComboBox<?> cmbDeleteItemSupplier;
+    private JFXComboBox<String> cmbDeleteItemSupplier;
 
     @FXML
-    private JFXComboBox<?> cmbPlaceItemId;
+    private JFXComboBox<String> cmbPlaceItemId;
 
     @FXML
-    private JFXComboBox<?> cmbUpdateItemCategory;
+    private JFXComboBox<String> cmbUpdateItemCategory;
 
     @FXML
-    private JFXComboBox<?> cmbUpdateItemSupplier;
+    private JFXComboBox<String> cmbUpdateItemSupplier;
 
     @FXML
-    private JFXComboBox<?> cmbUpdateOrderItemId;
+    private JFXComboBox<String> cmbUpdateOrderItemId;
 
     @FXML
-    private JFXComboBox<?> cmbViewItemCategory;
+    private JFXComboBox<String> cmbViewItemCategory;
 
     @FXML
-    private JFXComboBox<?> cmbViewItemSupplierId;
+    private JFXComboBox<String> cmbViewItemSupplierId;
 
     @FXML
-    private JFXComboBox<?> cmdAddItemSize;
+    private JFXComboBox<String> cmdAddItemSize;
 
     @FXML
-    private JFXComboBox<?> cmdAddSupplierItemId;
+    private JFXComboBox<String> cmdAddSupplierItemId;
 
     @FXML
-    private JFXComboBox<?> cmdDeleteItemSize;
+    private JFXComboBox<String> cmdDeleteItemSize;
 
     @FXML
-    private JFXComboBox<?> cmdUpdateItemSize;
+    private JFXComboBox<String> cmdUpdateItemSize;
 
     @FXML
-    private JFXComboBox<?> cmdUpdateSupplierItemId;
+    private JFXComboBox<String> cmdUpdateSupplierItemId;
 
     @FXML
-    private JFXComboBox<?> cmdViewItemSize;
+    private JFXComboBox<String> cmdViewItemSize;
 
     @FXML
     private TableColumn<?, ?> collAddSupplierItemListId;
@@ -192,26 +197,7 @@ public class AdminMainFormController implements Initializable {
 
 
 
-    @FXML
-    private TableColumn<?, ?> collViewItemListItemCategory;
 
-    @FXML
-    private TableColumn<?, ?> collViewItemListItemId;
-
-    @FXML
-    private TableColumn<?, ?> collViewItemListItemName;
-
-    @FXML
-    private TableColumn<?, ?> collViewItemListItemSize;
-
-    @FXML
-    private TableColumn<?, ?> collViewItemListItemStock;
-
-    @FXML
-    private TableColumn<?, ?> collViewItemListItemSupplier;
-
-    @FXML
-    private TableColumn<?, ?> collViewItemListItemUnitPrice;
 
     @FXML
     private TableColumn<?, ?> collViewOrderCartListItemId;
@@ -407,8 +393,32 @@ public class AdminMainFormController implements Initializable {
     @FXML
     private TableView<?> tblUpdateSupplierItemList;
 
+    // * View Items Tables
     @FXML
-    private TableView<?> tblViewItemList;
+    private TableView<ItemEntity> tblViewItemList;
+
+    @FXML
+    private TableColumn collViewItemListItemCategory;
+
+    @FXML
+    private TableColumn collViewItemListItemId;
+
+    @FXML
+    private TableColumn collViewItemListItemName;
+
+    @FXML
+    private TableColumn collViewItemListItemSize;
+
+    @FXML
+    private TableColumn collViewItemListItemStock;
+
+    @FXML
+    private TableColumn collViewItemListItemSupplier;
+
+    @FXML
+    private TableColumn collViewItemListItemUnitPrice;
+
+
 
     @FXML
     private TableView<?> tblViewOrderCartList;
@@ -922,40 +932,175 @@ public class AdminMainFormController implements Initializable {
     // * add Item
     @FXML
     void btnAddItemOnAction(ActionEvent event) {
+        String itemName = txtAddItemName.getText().trim();
+        String itemStockLevel = txtAddItemStockLevel.getText().trim();
+        String itemUnitPrize = txtAddItemUnitPrice.getText().trim();
+        String itemCategory = cmbAddItemCategory.getValue();
+        String itemSize = cmdAddItemSize.getValue();
+        String itemSupplierId = cmbAddItemSupplier.getValue();
+
+        if(ItemController.getInstance().validateItem(itemName,itemStockLevel,itemUnitPrize,itemCategory,itemSize,itemSupplierId)){
+            if (ItemController.getInstance().addItem(new Item(ItemController.getInstance().genarateItemId(), itemName,itemCategory,itemSize,Integer.parseInt(itemStockLevel),Double.parseDouble(itemUnitPrize),itemSupplierId))){
+                new Alert(Alert.AlertType.CONFIRMATION,"Item Added Successfully").showAndWait();
+                loadViewItemsTable();
+                btnAddItemClearFormOnAction(new ActionEvent());
+            }else {
+                new Alert(Alert.AlertType.ERROR,"Item Adding Failed").showAndWait();
+            }
+        }
     }
     @FXML
     void btnAddItemClearFormOnAction(ActionEvent event) {
-
+        txtAddItemName.setText("");
+        txtAddItemStockLevel.setText("");
+        txtAddItemUnitPrice.setText("");
+        cmbAddItemCategory.setValue(null);
+        cmdAddItemSize.setValue(null);
+        cmbAddItemSupplier.setValue(null);
     }
 
     // * update Item
+    Boolean updateItemSearched=false;
+
     @FXML
     void btnUpdateItemOnAction(ActionEvent event) {
-
+        if(updateItemSearched){
+            String itemId = txtUpdateItemId.getText().trim();
+            String itemName = txtUpdateItemName.getText().trim();
+            String itemUnitPrice = txtUpdateItemUnitPrice.getText().trim();
+            String itemStockLevel = txtUpdateItemStockLevel.getText().trim();
+            String itemCategory = cmbUpdateItemCategory.getValue();
+            String itemSize = cmdUpdateItemSize.getValue();
+            String itemSupplierId = cmbUpdateItemSupplier.getValue();
+            if(itemId.isEmpty() || itemName.isEmpty() || itemUnitPrice.isEmpty() || itemStockLevel.isEmpty() || itemCategory==null || itemSize==null || itemSupplierId==null){
+                new Alert(Alert.AlertType.ERROR,"Fill All The Fields").showAndWait();
+            }else if (ItemController.getInstance().validateItem(itemName,itemStockLevel,itemUnitPrice,itemCategory,itemSize,itemSupplierId)){
+                if (ItemController.getInstance().updateItem(new Item(itemId,itemName,itemCategory,itemSize,Integer.parseInt(itemStockLevel.split("\\.")[0]),Double.parseDouble(itemUnitPrice),itemSupplierId))){
+                    new Alert(Alert.AlertType.INFORMATION,"Item Updated Successfully !!").showAndWait();
+                    loadViewItemsTable();
+                    btnUpdateItemClearFormOnAction(new ActionEvent());
+                }else {
+                    new Alert(Alert.AlertType.ERROR,"Item Update Failed !! ").showAndWait();
+                }
+            }
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Search An Item First").showAndWait();
+        }
     }
     @FXML
     void btnUpdateItemClearFormOnAction(ActionEvent event) {
-
+        txtUpdateItemId.setEditable(true);
+        txtUpdateItemId.setText("");
+        txtUpdateItemName.setText("");
+        txtUpdateItemStockLevel.setText("");
+        txtUpdateItemUnitPrice.setText("");
+        cmbUpdateItemCategory.setValue(null);
+        cmdUpdateItemSize.setValue(null);
+        cmbUpdateItemSupplier.setValue(null);
     }
     @FXML
     void btnUpdateItemSearchOnAction(ActionEvent event) {
-
+        String itemId = txtUpdateItemId.getText().trim();
+        if (itemId.isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Enter Item Id ").showAndWait();
+        }else{
+            Item item=ItemController.getInstance().searchItemById(itemId);
+            if (item==null){
+                new Alert(Alert.AlertType.ERROR,"Item Not Found ").showAndWait();
+            }else {
+                txtUpdateItemId.setEditable(false);
+                txtUpdateItemName.setText(item.getItemName());
+                txtUpdateItemStockLevel.setText(String.valueOf(item.getItemStockLevel()));
+                txtUpdateItemUnitPrice.setText(String.valueOf(item.getItemUnitPrice()));
+                cmbUpdateItemCategory.setValue(item.getItemCategory());
+                cmdUpdateItemSize.setValue(item.getItemSize());
+                cmbUpdateItemSupplier.setValue(item.getItemSupplierId());
+                updateItemSearched=true;
+            }
+        }
     }
 
     // * delete Item
+    boolean deleteItemSearched=false;
     @FXML
     void btnDeleteItemOnAction(ActionEvent event) {
-
+        if(deleteItemSearched){
+            if (ItemController.getInstance().deleteItem(txtDeleteItemId.getText().trim())) {
+                new Alert(Alert.AlertType.ERROR, "Item Deleted Successfully").showAndWait();
+                loadViewItemsTable();
+                deleteItemClearForm();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Item Deletion Failed").showAndWait();
+                deleteEmployeeClearForm();
+            }
+        }else {
+            new Alert(Alert.AlertType.INFORMATION,"Search Item First").showAndWait();
+        }
     }
     @FXML
     void btnDeleteItemSearchOnAction(ActionEvent event) {
+        String itemId = txtDeleteItemId.getText().trim();
+        if (itemId.isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Enter Item Id ").showAndWait();
+        }else{
+            Item item=ItemController.getInstance().searchItemById(itemId);
+            if (item==null){
+                new Alert(Alert.AlertType.ERROR,"Item Not Found ").showAndWait();
+            }else {
+                txtDeleteItemId.setEditable(false);
+                txtDeleteItemName.setText(item.getItemName());
+                txtDeleteItemStockLevel.setText(String.valueOf(item.getItemStockLevel()));
+                txtDeleteItemUnitPrice.setText(String.valueOf(item.getItemUnitPrice()));
+                cmbDeleteItemCategory.setValue(item.getItemCategory());
+                cmdDeleteItemSize.setValue(item.getItemSize());
+                cmbDeleteItemSupplier.setValue(item.getItemSupplierId());
+                deleteItemSearched=true;
+            }
+        }
+    }
 
+    private void deleteItemClearForm(){
+        txtDeleteItemId.setEditable(true);
+        txtDeleteItemId.setText("");
+        txtDeleteItemName.setText("");
+        txtDeleteItemStockLevel.setText("");
+        txtDeleteItemUnitPrice.setText("");
+        cmbDeleteItemCategory.setValue(null);
+        cmdDeleteItemSize.setValue(null);
+        cmbDeleteItemSupplier.setValue(null);
     }
 
     // * view Item
     @FXML
     void btnViewItemSearchOnAction(ActionEvent event) {
-
+        String itemId=txtViewItemId.getText();
+        if (itemId.isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Enter Item Id ").showAndWait();
+        }else{
+            Item item=ItemController.getInstance().searchItemById(itemId);
+            if (item==null){
+                new Alert(Alert.AlertType.ERROR,"Item Not Found ").showAndWait();
+            }else {
+                txtViewItemName.setText(item.getItemName());
+                txtViewItemStockLevel.setText(String.valueOf(item.getItemStockLevel()));
+                txtViewItemUnitPrice.setText(String.valueOf(item.getItemUnitPrice()));
+                cmbViewItemCategory.setValue(item.getItemCategory());
+                cmdViewItemSize.setValue(item.getItemSize());
+                cmbViewItemSupplierId.setValue(item.getItemSupplierId());
+            }
+        }
+    }
+    private void loadViewItemsTable(){
+        tblViewItemList.setItems(ItemController.getInstance().getAllItems());
+    }
+    private void itemListSetText(ItemEntity itemEntity){
+        txtViewItemId.setText(itemEntity.getItemId());
+        txtViewItemName.setText(itemEntity.getItemName());
+        txtViewItemStockLevel.setText(String.valueOf(itemEntity.getItemStockLevel()));
+        txtViewItemUnitPrice.setText(String.valueOf(itemEntity.getItemUnitPrice()));
+        cmdViewItemSize.setValue(itemEntity.getItemSize());
+        cmbViewItemCategory.setValue(itemEntity.getItemCategory());
+        cmbViewItemSupplierId.setValue(itemEntity.getItemSupplierId());
     }
 
     // ? Supplier Management
@@ -1186,7 +1331,6 @@ public class AdminMainFormController implements Initializable {
             if (EmployeeController.getInstance().deleteEmployee(txtDeleteEmployeeId.getText())) {
                 new Alert(Alert.AlertType.ERROR, "Employee Deleted Successfully").showAndWait();
                 deleteEmployeeClearForm();
-                deleteEmployeeSearched = false;
             } else {
                 new Alert(Alert.AlertType.ERROR, "Employee Deletion Failed").showAndWait();
                 loadViewEmployeeTable();
@@ -1206,7 +1350,7 @@ public class AdminMainFormController implements Initializable {
     // * view employee
     @FXML
     void btnViewEmployeeSearchOnAction(ActionEvent event) {
-        if (txtUpdateEmployeeId.getText().isEmpty()){
+        if (txtViewEmployeeId.getText().isEmpty()){
             new Alert(Alert.AlertType.ERROR,"Enter Employee ID").showAndWait();
         }else {
             Employee employee = EmployeeController.getInstance().searchEmployeeById(txtViewEmployeeId.getText());
@@ -1345,30 +1489,83 @@ public class AdminMainFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // ?  Initializing Table Columns
+        // !  Initializing Table Columns
+
+        // ? View Employee Table Columns
         collViewEmployeeListId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
         collViewEmployeeListName.setCellValueFactory(new PropertyValueFactory<>("name"));
         collViewEmployeeListAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         collViewEmployeeListEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         collViewEmployeeListContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
 
-        // ? Load All Tables On Initialize
+
+        // ? View Item Table Columns
+        collViewItemListItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
+        collViewItemListItemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        collViewItemListItemCategory.setCellValueFactory(new PropertyValueFactory<>("itemCategory"));
+        collViewItemListItemSize.setCellValueFactory(new PropertyValueFactory<>("itemSize"));
+        collViewItemListItemStock.setCellValueFactory(new PropertyValueFactory<>("itemStockLevel"));
+        collViewItemListItemUnitPrice.setCellValueFactory(new PropertyValueFactory<>("itemUnitPrice"));
+        collViewItemListItemSupplier.setCellValueFactory(new PropertyValueFactory<>("itemSupplierId"));
+
+        // ! Load All Tables On Initialize
 
         loadViewEmployeeTable();
+        loadViewItemsTable();
 
-
-        // ? Initializing the Navigation Panel Variables
+        // ! Initializing the Navigation Panel Variables
         currentMainPanel=pageDashboard;
         currentMainPanel.setVisible(true);
         currentSubPanel=pageAddInventory;
 
-        // ? Load Contents From Table When Click Record
+        // ! Load Contents From Table When Click Record
 
         // *  View Employee Table
 
-        tblViewEmployeeList.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
+        tblViewEmployeeList.getSelectionModel().selectedItemProperty().addListener (((observableValue, oldValue, newValue) -> {
             employeeListSetText(newValue);
         }));
+
+        // * View Item Table
+
+        tblViewItemList.getSelectionModel().selectedItemProperty().addListener (((observableValue, oldValue, newValue) ->{
+            itemListSetText(newValue);
+        }));
+
+        // ! Initializing Combo boxes
+
+        // * Inventory
+
+        // ? item categories
+        ObservableList<String> itemCategories= FXCollections.observableArrayList();
+        itemCategories.add("Gents");
+        itemCategories.add("Ladies");
+        itemCategories.add("Kids");
+        cmbAddItemCategory.setItems(itemCategories);
+        cmbUpdateItemCategory.setItems(itemCategories);
+        cmbDeleteItemCategory.setItems(itemCategories);
+        cmbViewItemCategory.setItems(itemCategories);
+
+        // ? item Sizes
+        ObservableList<String> itemSizes= FXCollections.observableArrayList();
+        itemSizes.add("XS");
+        itemSizes.add("S");
+        itemSizes.add("M");
+        itemSizes.add("L");
+        itemSizes.add("XL");
+        itemSizes.add("XXL");
+        itemSizes.add("XXXL");
+        cmdAddItemSize.setItems(itemSizes);
+        cmdUpdateItemSize.setItems(itemSizes);
+        cmdDeleteItemSize.setItems(itemSizes);
+        cmdViewItemSize.setItems(itemSizes);
+
+        // ? item Supplier
+        ObservableList<String> allSupplierIds = SupplierController.getInstance().getAllSupplierIds();
+        cmbAddItemSupplier.setItems(allSupplierIds);
+        cmbUpdateItemSupplier.setItems(allSupplierIds);
+        cmbDeleteItemSupplier.setItems(allSupplierIds);
+        cmbViewItemSupplierId.setItems(allSupplierIds);
 
     }
 
@@ -1383,6 +1580,12 @@ public class AdminMainFormController implements Initializable {
 
         btnAddSupplierClearFormOnAction(new ActionEvent());
         btnUpdateSupplierClearFormOnAction(new ActionEvent());
+
+        // * Item Pages
+
+        btnAddItemClearFormOnAction(new ActionEvent());
+        btnUpdateItemClearFormOnAction(new ActionEvent());
+        deleteItemClearForm();
     }
 
 }

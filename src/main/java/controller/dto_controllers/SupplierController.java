@@ -2,6 +2,7 @@ package controller.dto_controllers;
 
 import dto.Supplier;
 import entity.SupplierEntity;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import service.custom.SupplierService;
@@ -50,8 +51,17 @@ public class SupplierController {
     public Boolean updateSupplier(Supplier supplier){
         return supplierService.updateSupplier(supplier);
     }
-
-
+    public ObservableList<String> getAllSupplierIds(){
+        ObservableList<SupplierEntity> allSuppliers = getAllSuppliers();
+        ObservableList<String> allSuppliersIds= FXCollections.observableArrayList();
+        allSuppliers.forEach(supplierEntity -> {
+            allSuppliersIds.add(supplierEntity.getSupplierId());
+        });
+        return allSuppliersIds;
+    }
+    public ObservableList<SupplierEntity> getAllSuppliers(){
+        return supplierService.getAllSuppliers();
+    }
     public String generateSupplierId(){
         ObservableList<SupplierEntity> allSuppliers = supplierService.getAllSuppliers();
         int idNum=allSuppliers.isEmpty() ? 1 : Integer.parseInt(allSuppliers.getLast().getSupplierId().split("Sup")[1])+1;
