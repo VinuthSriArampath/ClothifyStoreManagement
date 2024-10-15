@@ -15,4 +15,6 @@ public interface ItemService extends SuperService {
     boolean updateItem(Item item);
 
     boolean deleteItem(String id);
+
+    ObservableList<ItemEntity> getAllItemsForSupplier(String id);
 }

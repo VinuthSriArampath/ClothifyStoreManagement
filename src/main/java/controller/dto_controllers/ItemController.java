@@ -71,4 +71,8 @@ public class ItemController{
     public boolean deleteItem(String id){
         return itemService.deleteItem(id);
     }
+
+    public ObservableList<ItemEntity> getAllItemsForSupplier(String id){
+        return itemService.getAllItemsForSupplier(id);
+    }
 }

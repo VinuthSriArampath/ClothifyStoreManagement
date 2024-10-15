@@ -9,6 +9,7 @@ import dto.Item;
 import dto.Supplier;
 import entity.EmployeeEntity;
 import entity.ItemEntity;
+import entity.SupplierEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -128,6 +129,12 @@ public class AdminMainFormController implements Initializable {
     @FXML
     private TableColumn<?, ?> collDeleteOrderCartListItemUnitPrice;
 
+
+
+    // * Delete Supplier Item List
+    @FXML
+    private TableView<ItemEntity> tblDeleteSupplierItemList;
+
     @FXML
     private TableColumn<?, ?> collDeleteSupplierItemId;
 
@@ -136,6 +143,9 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> collDeleteSupplierUnitPrice;
+
+
+
 
     @FXML
     private TableColumn<?, ?> collPlaceOrderCartListItemId;
@@ -227,29 +237,7 @@ public class AdminMainFormController implements Initializable {
     @FXML
     private TableColumn<?, ?> collViewOrderListTotalAmount;
 
-    @FXML
-    private TableColumn<?, ?> collViewSupplierItemId;
 
-    @FXML
-    private TableColumn<?, ?> collViewSupplierItemName;
-
-    @FXML
-    private TableColumn<?, ?> collViewSupplierListAddress;
-
-    @FXML
-    private TableColumn<?, ?> collViewSupplierListCompanyName;
-
-    @FXML
-    private TableColumn<?, ?> collViewSupplierListEmail;
-
-    @FXML
-    private TableColumn<?, ?> collViewSupplierListId;
-
-    @FXML
-    private TableColumn<?, ?> collViewSupplierListSupplierName;
-
-    @FXML
-    private TableColumn<?, ?> collViewSupplierUnitPrice;
 
     @FXML
     private AnchorPane dailySalesReportPage;
@@ -382,8 +370,7 @@ public class AdminMainFormController implements Initializable {
     @FXML
     private TableView<?> tblDeleteOrderCartList;
 
-    @FXML
-    private TableView<?> tblDeleteSupplierItemList;
+
 
     @FXML
     private TableView<?> tblPlaceOrderCartList;
@@ -421,17 +408,48 @@ public class AdminMainFormController implements Initializable {
 
 
 
+
+
+
     @FXML
     private TableView<?> tblViewOrderCartList;
 
     @FXML
     private TableView<?> tblViewOrderList;
 
+    // * View Supplier Item List
     @FXML
-    private TableView<?> tblViewSupplierItemList;
+    private TableView<ItemEntity> tblViewSupplierItemList;
+    @FXML
+    private TableColumn<?, ?> collViewSupplierItemId;
 
     @FXML
-    private TableView<?> tblViewSupplierList;
+    private TableColumn<?, ?> collViewSupplierItemName;
+
+    @FXML
+    private TableColumn<?, ?> collViewSupplierUnitPrice;
+
+
+
+    // * View All Supplier Table
+    @FXML
+    private TableView<SupplierEntity> tblViewSupplierList;
+    @FXML
+    private TableColumn<?, ?> collViewSupplierListAddress;
+
+    @FXML
+    private TableColumn<?, ?> collViewSupplierListCompanyName;
+
+    @FXML
+    private TableColumn<?, ?> collViewSupplierListEmail;
+
+    @FXML
+    private TableColumn<?, ?> collViewSupplierListId;
+
+    @FXML
+    private TableColumn<?, ?> collViewSupplierListSupplierName;
+
+
 
     @FXML
     private JFXTextArea txtAddEmployeeAddress;
@@ -1117,6 +1135,7 @@ public class AdminMainFormController implements Initializable {
         if(supplierController.validateSupplier(supplierName,supplierEmail,supplierCompanyName,supplierAddress)){
             if (SupplierController.getInstance().addSupplier(new Supplier(supplierController.generateSupplierId(), supplierName,supplierEmail,supplierCompanyName,supplierAddress))){
                 new Alert(Alert.AlertType.CONFIRMATION,"Supplier Registration Success !!").showAndWait();
+                loadViewSupplierListTable();
                 btnAddSupplierClearFormOnAction(new ActionEvent());
             }else{
                 new Alert(Alert.AlertType.ERROR,"Supplier Registration Failed !!").showAndWait();
@@ -1154,6 +1173,7 @@ public class AdminMainFormController implements Initializable {
             }
         }
     }
+
     @FXML
     void btnUpdateSupplierOnAction(ActionEvent event) {
         if (updateSupplierSearched){
@@ -1167,6 +1187,7 @@ public class AdminMainFormController implements Initializable {
             }else if (SupplierController.getInstance().validateSupplier(supplierName,supplierEmail,supplierCompanyName,supplierAddress)){
                 if (SupplierController.getInstance().updateSupplier(new Supplier(supplierId,supplierName,supplierEmail,supplierCompanyName,supplierAddress))){
                     new Alert(Alert.AlertType.CONFIRMATION,"Supplier Updated Successfully !! ").showAndWait();
+                    loadViewSupplierListTable();
                     btnUpdateSupplierClearFormOnAction(new ActionEvent());
                 }else {
                     new Alert(Alert.AlertType.ERROR,"Updating Supplier Failed !! ").showAndWait();
@@ -1181,6 +1202,7 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     void btnUpdateSupplierClearFormOnAction(ActionEvent event) {
+        updateSupplierSearched=false;
         txtUpdateSupplierId.setEditable(true);
         txtUpdateSupplierId.setText("");
         txtUpdateSupplierName.setText("");
@@ -1191,21 +1213,96 @@ public class AdminMainFormController implements Initializable {
 
 
     // * delete supplier
+    boolean isDeleteSupplerSearched=false;
+
     @FXML
     void btnDeleteSupplierOnAction(ActionEvent event) {
-
+        if(isDeleteSupplerSearched){
+            if (SupplierController.getInstance().deleteSupplier(txtDeleteSupplierId.getText().trim())) {
+                new Alert(Alert.AlertType.ERROR, "Supplier Deleted Successfully").showAndWait();
+                loadViewSupplierListTable();
+                deleteSupplierClearForm();
+                loadDeleteSupplierItemListTable(null);
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Supplier Deletion Failed").showAndWait();
+                deleteEmployeeClearForm();
+            }
+        }else {
+            new Alert(Alert.AlertType.INFORMATION,"Search Supplier First").showAndWait();
+        }
     }
+
     @FXML
     void btnDeleteSupplierSearchOnAction(ActionEvent event) {
+        if (txtDeleteSupplierId.getText().trim().isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Enter An Supplier Id").showAndWait();
+        }else {
+            Supplier supplier = SupplierController.getInstance().searchSupplierById(txtDeleteSupplierId.getText().trim());
+            if (supplier==null){
+                new Alert(Alert.AlertType.ERROR,"Supplier Not Found").showAndWait();
+            }else {
+                isDeleteSupplerSearched=true;
+                txtDeleteSupplierId.setEditable(false);
+                txtDeleteSupplierName.setText(supplier.getSupplierName());
+                txtDeleteSupplierEmail.setText(supplier.getSupplierEmail());
+                txtDeleteSupplierAddress.setText(supplier.getSupplierAddress());
+                txtDeleteSupplierCompanyName.setText(supplier.getCompanyName());
+                loadDeleteSupplierItemListTable(txtDeleteSupplierId.getText().trim());
+            }
+        }
+    }
 
+    private void loadDeleteSupplierItemListTable(String id){
+        tblDeleteSupplierItemList.setItems(ItemController.getInstance().getAllItemsForSupplier(id));
+    }
+
+    private void deleteSupplierClearForm(){
+        isDeleteSupplerSearched=false;
+        txtDeleteSupplierId.setEditable(true);
+        txtDeleteSupplierId.setText("");
+        txtDeleteSupplierName.setText("");
+        txtDeleteSupplierEmail.setText("");
+        txtDeleteSupplierAddress.setText("");
+        txtDeleteSupplierCompanyName.setText("");
+        loadDeleteSupplierItemListTable(null);
     }
 
     // * view supplier
-    @FXML
-    void btnViewSupplierSearchOnAction(ActionEvent actionEvent) {
 
+    private void loadViewSupplierListTable(){
+        tblViewSupplierList.setItems(SupplierController.getInstance().getAllSuppliers());
     }
 
+    private void loadViewSupplierItemListTable(String id){
+        tblViewSupplierItemList.setItems(ItemController.getInstance().getAllItemsForSupplier(id));
+    }
+
+    private void supplierListSetText(SupplierEntity supplierEntity){
+        loadViewSupplierItemListTable(supplierEntity.getSupplierId());
+        txtViewSupplierId.setText(supplierEntity.getSupplierId());
+        txtViewSupplierName.setText(supplierEntity.getSupplierName());
+        txtViewSupplierCompanyName.setText(supplierEntity.getCompanyName());
+        txtViewSupplierEmail.setText(supplierEntity.getSupplierEmail());
+        txtViewSupplierAddress.setText(supplierEntity.getSupplierAddress());
+    }
+    @FXML
+    void btnViewSupplierSearchOnAction(ActionEvent actionEvent) {
+        if (txtViewSupplierId.getText().trim().isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Enter An Supplier Id").showAndWait();
+        }else {
+            Supplier supplier = SupplierController.getInstance().searchSupplierById(txtViewSupplierId.getText().trim());
+            if (supplier==null){
+                new Alert(Alert.AlertType.ERROR,"Supplier Not Found").showAndWait();
+            }else {
+                txtViewSupplierId.setEditable(false);
+                txtViewSupplierName.setText(supplier.getSupplierName());
+                txtViewSupplierEmail.setText(supplier.getSupplierEmail());
+                txtViewSupplierAddress.setText(supplier.getSupplierAddress());
+                txtViewSupplierCompanyName.setText(supplier.getCompanyName());
+                loadViewSupplierItemListTable(supplier.getSupplierId());
+            }
+        }
+    }
 
     // ? Employee Management
 
@@ -1278,7 +1375,7 @@ public class AdminMainFormController implements Initializable {
         if(employeeId.isEmpty() || employeeName.trim().isEmpty() || employeeContact.trim().isEmpty() || employeeAddress.trim().isEmpty() || employeeEmail.isEmpty() || employeeHiredDate.isEmpty() || !updateEmployeeSearched){
             new Alert(Alert.AlertType.INFORMATION,"Search Employee First").showAndWait();
         }else {
-            if (EmployeeController.getInstance().validateEmployee(employeeName, employeeEmail, employeeAddress, employeeContact)) {
+            if (Boolean.TRUE.equals(EmployeeController.getInstance().validateEmployee(employeeName, employeeEmail, employeeAddress, employeeContact))) {
                 if(EmployeeController.getInstance().updateEmployee( new Employee(employeeId.trim(),employeeName.trim(),employeeEmail.trim(),tempEmployeePassword.trim(),employeeAddress.trim(),employeeContact.trim(),LocalDate.parse(employeeHiredDate.trim())))){
                     new Alert(Alert.AlertType.INFORMATION,"Employee Updated Successfully").showAndWait();
                     btnAddEmployeeClearFormOnAction(new ActionEvent());
@@ -1492,13 +1589,29 @@ public class AdminMainFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // !  Initializing Table Columns
 
+        // ? Delete Supplier Item List Columns
+        collDeleteSupplierItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
+        collDeleteSupplierItemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        collDeleteSupplierUnitPrice.setCellValueFactory(new PropertyValueFactory<>("itemUnitPrice"));
+
+        // ? View Supplier Item List Columns
+        collViewSupplierItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
+        collViewSupplierItemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        collViewSupplierUnitPrice.setCellValueFactory(new PropertyValueFactory<>("itemUnitPrice"));
+
+        // ? View Supplier List Table Columns
+        collViewSupplierListId.setCellValueFactory(new PropertyValueFactory<>("supplierId"));
+        collViewSupplierListCompanyName.setCellValueFactory(new PropertyValueFactory<>("companyName"));
+        collViewSupplierListSupplierName.setCellValueFactory(new PropertyValueFactory<>("supplierName"));
+        collViewSupplierListEmail.setCellValueFactory(new PropertyValueFactory<>("supplierEmail"));
+        collViewSupplierListAddress.setCellValueFactory(new PropertyValueFactory<>("supplierAddress"));
+
         // ? View Employee Table Columns
         collViewEmployeeListId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
         collViewEmployeeListName.setCellValueFactory(new PropertyValueFactory<>("name"));
         collViewEmployeeListAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         collViewEmployeeListEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         collViewEmployeeListContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
-
 
         // ? View Item Table Columns
         collViewItemListItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
@@ -1513,6 +1626,7 @@ public class AdminMainFormController implements Initializable {
 
         loadViewEmployeeTable();
         loadViewItemsTable();
+        loadViewSupplierListTable();
 
         // ! Initializing the Navigation Panel Variables
         currentMainPanel=pageDashboard;
@@ -1531,6 +1645,10 @@ public class AdminMainFormController implements Initializable {
 
         tblViewItemList.getSelectionModel().selectedItemProperty().addListener (((observableValue, oldValue, newValue) -> itemListSetText(newValue)
         ));
+
+        // * View Supplier Table
+
+        tblViewSupplierList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> supplierListSetText(newValue));
 
         // ! Initializing Combo boxes
 
@@ -1580,6 +1698,7 @@ public class AdminMainFormController implements Initializable {
 
         btnAddSupplierClearFormOnAction(new ActionEvent());
         btnUpdateSupplierClearFormOnAction(new ActionEvent());
+        deleteSupplierClearForm();
 
         // * Item Pages
 
@@ -1587,5 +1706,8 @@ public class AdminMainFormController implements Initializable {
         btnUpdateItemClearFormOnAction(new ActionEvent());
         deleteItemClearForm();
     }
+
+
+
 
 }

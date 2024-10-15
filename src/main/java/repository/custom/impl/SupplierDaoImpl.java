@@ -1,5 +1,6 @@
 package repository.custom.impl;
 
+import entity.ItemEntity;
 import entity.SupplierEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,7 +42,15 @@ public class SupplierDaoImpl implements SupplierDao {
 
     @Override
     public boolean delete(String id) {
-        return false;
+        try {
+            Session session = HibernateUtil.getSupplierSession();
+            session.beginTransaction();
+            session.remove(session.get(SupplierEntity.class,id));
+            session.getTransaction().commit();
+            return true;
+        }catch (HibernateException e){
+            return false;
+        }
     }
 
     @Override

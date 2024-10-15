@@ -37,4 +37,9 @@ public class ItemServiceImpl implements ItemService{
     public boolean deleteItem(String id) {
         return itemDao.delete(id);
     }
+
+    @Override
+    public ObservableList<ItemEntity> getAllItemsForSupplier(String id) {
+        return itemDao.getAllItemForSupplier(id);
+    }
 }

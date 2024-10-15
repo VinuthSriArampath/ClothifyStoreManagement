@@ -71,4 +71,20 @@ public class ItemDaoImpl implements ItemDao {
             return itemList;
         }
     }
+
+    public ObservableList<ItemEntity> getAllItemForSupplier(String id){
+        String hql = "From ItemEntity Where itemSupplierId = :supplierId";
+        ObservableList<ItemEntity> itemList = FXCollections.observableArrayList();
+        try {
+            Session session = HibernateUtil.getItemSession();
+            List<ItemEntity> itemEntityList = session.createQuery(hql, ItemEntity.class).setParameter("supplierId", id).list();
+            itemList.addAll(itemEntityList);
+            return itemList;
+        } catch (Exception e) {
+            return itemList;
+        }
+
+
+    }
+
 }

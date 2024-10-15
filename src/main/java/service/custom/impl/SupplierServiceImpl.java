@@ -34,7 +34,7 @@ public class SupplierServiceImpl implements SupplierService{
 
     @Override
     public boolean deleteSupplier(String id) {
-        return false;
+        return supplierDao.delete(id);
     }
 
 }

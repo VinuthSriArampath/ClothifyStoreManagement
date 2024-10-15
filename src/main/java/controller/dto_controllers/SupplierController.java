@@ -51,6 +51,12 @@ public class SupplierController {
     public Boolean updateSupplier(Supplier supplier){
         return supplierService.updateSupplier(supplier);
     }
+    public Boolean deleteSupplier(String id){
+        return supplierService.deleteSupplier(id);
+    }
+    public ObservableList<SupplierEntity> getAllSuppliers(){
+        return supplierService.getAllSuppliers();
+    }
     public ObservableList<String> getAllSupplierIds(){
         ObservableList<SupplierEntity> allSuppliers = getAllSuppliers();
         ObservableList<String> allSuppliersIds= FXCollections.observableArrayList();
@@ -58,9 +64,6 @@ public class SupplierController {
             allSuppliersIds.add(supplierEntity.getSupplierId());
         });
         return allSuppliersIds;
-    }
-    public ObservableList<SupplierEntity> getAllSuppliers(){
-        return supplierService.getAllSuppliers();
     }
     public String generateSupplierId(){
         ObservableList<SupplierEntity> allSuppliers = supplierService.getAllSuppliers();
