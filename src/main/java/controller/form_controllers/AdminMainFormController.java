@@ -33,7 +33,8 @@ import java.util.ResourceBundle;
 
 public class AdminMainFormController implements Initializable {
 
-    public JFXButton btnLogOut;
+    @FXML
+    private JFXButton btnLogOut;
     @FXML
     private AnchorPane annualSalesReportPage;
 
@@ -688,7 +689,7 @@ public class AdminMainFormController implements Initializable {
             btnLogOut.getScene().getWindow().hide();
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.INFORMATION,"Something Went Wrong ").showAndWait();
         }
 
     }
@@ -1220,7 +1221,7 @@ public class AdminMainFormController implements Initializable {
         String employeeAddress = txtAddEmployeeAddress.getText().trim();
         String employeeContact = txtAddEmployeeContact.getText().trim();
 
-        if (EmployeeController.getInstance().validateEmployee(employeeName, employeeEmail, employeePassword, employeeAddress, employeeContact)) {
+        if (Boolean.TRUE.equals(EmployeeController.getInstance().validateEmployee(employeeName, employeeEmail, employeePassword, employeeAddress, employeeContact))) {
             if(EmployeeController.getInstance().addEmployee( new Employee(EmployeeController.getInstance().genarateEmployeeId(),employeeName,employeeEmail,encryptor.encryptString(employeePassword),employeeAddress,employeeContact,LocalDate.now()))){
                 new Alert(Alert.AlertType.INFORMATION,"Employee Added Successfully").showAndWait();
                 loadViewEmployeeTable();
@@ -1528,9 +1529,8 @@ public class AdminMainFormController implements Initializable {
 
         // * View Item Table
 
-        tblViewItemList.getSelectionModel().selectedItemProperty().addListener (((observableValue, oldValue, newValue) ->{
-            itemListSetText(newValue);
-        }));
+        tblViewItemList.getSelectionModel().selectedItemProperty().addListener (((observableValue, oldValue, newValue) -> itemListSetText(newValue)
+        ));
 
         // ! Initializing Combo boxes
 
