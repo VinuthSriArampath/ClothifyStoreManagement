@@ -4,12 +4,16 @@ import com.jfoenix.controls.*;
 import controller.dto_controllers.EmployeeController;
 import controller.dto_controllers.ItemController;
 import controller.dto_controllers.SupplierController;
+import dto.Cart;
 import dto.Employee;
 import dto.Item;
 import dto.Supplier;
 import entity.EmployeeEntity;
 import entity.ItemEntity;
 import entity.SupplierEntity;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,12 +28,16 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import util.Encryptor;
 
 import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AdminMainFormController implements Initializable {
@@ -1482,6 +1490,7 @@ public class AdminMainFormController implements Initializable {
     // ? Order Management
 
     // * place order
+    ObservableList<Cart> placeOrderCartItemList = FXCollections.observableArrayList();
     @FXML
     void btnPlaceOrderAddToCartOnAction(ActionEvent event) {
 
@@ -1497,6 +1506,13 @@ public class AdminMainFormController implements Initializable {
 
     }
 
+    private void cmdPlaceOrderItemListSetToText(String id){
+        Item item=ItemController.getInstance().searchItemById(id);
+        txtPlaceOrderItemName.setText(item.getItemName());
+        txtPlaceOrderItemSize.setText(item.getItemSize());
+        txtPlaceOrderItemUnitPrice.setText(String.valueOf(item.getItemUnitPrice()));
+        txtPlaceOrderItemStockLevel.setText(String.valueOf(item.getItemStockLevel()));
+    }
     // * update order
 
     @FXML
@@ -1518,6 +1534,13 @@ public class AdminMainFormController implements Initializable {
     @FXML
     void btnUpdateOrderOnAction(ActionEvent event) {
 
+    }
+    private void cmdUpdateOrderItemListSetToText(String id){
+        Item item=ItemController.getInstance().searchItemById(id);
+        txtUpdateOrderItemName.setText(item.getItemName());
+        txtUpdateOrderItemSize.setText(item.getItemSize());
+        txtUpdateOrderItemUnitPrice.setText(String.valueOf(item.getItemUnitPrice()));
+        txtUpdateOrderItemStockLevel.setText(String.valueOf(item.getItemStockLevel()));
     }
 
     // * delete order
@@ -1585,6 +1608,22 @@ public class AdminMainFormController implements Initializable {
 
     }
 
+    private void loadDateAndTime(){
+        Date date=new Date();
+        SimpleDateFormat r = new SimpleDateFormat("yyyy-MM-dd");
+        String dateNow=r.format(date);
+        lblDate.setText(dateNow);
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+            LocalTime time = LocalTime.now();
+            lblTime.setText(time.getHour() + " : " + time.getMinute() + " : " + time.getSecond());
+        }),
+                new KeyFrame(Duration.seconds(1))
+        );
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // !  Initializing Table Columns
@@ -1637,19 +1676,25 @@ public class AdminMainFormController implements Initializable {
 
         // *  View Employee Table
 
-        tblViewEmployeeList.getSelectionModel().selectedItemProperty().addListener (((observableValue, oldValue, newValue) -> {
-            employeeListSetText(newValue);
-        }));
+        tblViewEmployeeList.getSelectionModel().selectedItemProperty().addListener ((observableValue, oldValue, newValue) ->  employeeListSetText(newValue));
 
         // * View Item Table
 
-        tblViewItemList.getSelectionModel().selectedItemProperty().addListener (((observableValue, oldValue, newValue) -> itemListSetText(newValue)
-        ));
+        tblViewItemList.getSelectionModel().selectedItemProperty().addListener ((observableValue, oldValue, newValue) -> itemListSetText(newValue)
+        );
 
         // * View Supplier Table
 
         tblViewSupplierList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> supplierListSetText(newValue));
 
+
+        // ! Load Content From Item List
+
+        // * Place Order Item Id
+        cmbPlaceItemId.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> cmdPlaceOrderItemListSetToText(newValue));
+
+        // * Update order item Id
+        cmbUpdateOrderItemId.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> cmdUpdateOrderItemListSetToText(newValue));
         // ! Initializing Combo boxes
 
         // * Inventory
@@ -1684,6 +1729,16 @@ public class AdminMainFormController implements Initializable {
         cmbUpdateItemSupplier.setItems(allSupplierIds);
         cmbDeleteItemSupplier.setItems(allSupplierIds);
         cmbViewItemSupplierId.setItems(allSupplierIds);
+
+        // * Order
+
+        // ? Item Ids
+        ObservableList<String> allItemIds = ItemController.getInstance().getAllItemIds();
+        cmbPlaceItemId.setItems(allItemIds);
+        cmbUpdateOrderItemId.setItems(allItemIds);
+
+        // ! Load Date And Time
+        loadDateAndTime();
 
     }
 

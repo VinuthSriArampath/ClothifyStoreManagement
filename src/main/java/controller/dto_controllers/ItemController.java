@@ -2,6 +2,7 @@ package controller.dto_controllers;
 
 import dto.Item;
 import entity.ItemEntity;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import service.ServiceFactory;
@@ -74,5 +75,14 @@ public class ItemController{
 
     public ObservableList<ItemEntity> getAllItemsForSupplier(String id){
         return itemService.getAllItemsForSupplier(id);
+    }
+
+    public ObservableList<String> getAllItemIds() {
+        ObservableList<ItemEntity> allItems = getAllItems();
+        ObservableList<String> allItemIds= FXCollections.observableArrayList();
+        allItems.forEach(item ->{
+            allItemIds.add(item.getItemId());
+        });
+        return allItemIds;
     }
 }
