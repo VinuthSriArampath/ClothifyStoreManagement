@@ -14,12 +14,16 @@ import java.util.List;
 public class EmployeeDaoImpl implements EmployeeDao {
     @Override
     public boolean save(EmployeeEntity employee) {
-        Session session = HibernateUtil.getEmployeeSession();
-        session.beginTransaction();
-        session.persist(employee);
-        session.getTransaction().commit();
-        session.close();
-        return true;
+        try {
+            Session session = HibernateUtil.getEmployeeSession();
+            session.beginTransaction();
+            session.persist(employee);
+            session.getTransaction().commit();
+            session.close();
+            return true;
+        } catch (HibernateException e) {
+            return false;
+        }
     }
 
     @Override

@@ -10,8 +10,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class OrderDetails {
-    private String orderId;
+    private Order order;
     private String itemId;
     private Integer itemQty;
     private Double itemTotalPrice;
+
+    public OrderDetails(String itemId, Integer itemQty, Double itemTotalPrice) {
+        this.itemId = itemId;
+        this.itemQty = itemQty;
+        this.itemTotalPrice = itemTotalPrice;
+    }
 }

@@ -946,7 +946,7 @@
                                     <Font name="Verdana Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <JFXTextField fx:id="txtUpdateOrderItemName" layoutX="174.0" layoutY="189.0" prefHeight="42.0" prefWidth="352.0" promptText="Item Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="449.0">
+                              <JFXTextField fx:id="txtUpdateOrderItemName" layoutX="181.0" layoutY="189.0" prefHeight="42.0" prefWidth="352.0" promptText="Item Name" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="181.0" AnchorPane.rightAnchor="442.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -1064,7 +1064,7 @@
                                     <Font name="Verdana Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <JFXButton layoutX="789.0" layoutY="251.0" onAction="#btnDeleteOrderRemoveItemFromCartOnAction" prefHeight="35.0" prefWidth="176.0" styleClass="button-delete" stylesheets="@../css/style.css" text="Remove From Cart" textFill="WHITE" AnchorPane.rightAnchor="14.0">
+                              <JFXButton layoutX="789.0" layoutY="251.0" onAction="#btnUpdateOrderRemoveItemFromCartOnAction" prefHeight="35.0" prefWidth="176.0" styleClass="button-delete" stylesheets="@../css/style.css" text="Remove From Cart" textFill="WHITE" AnchorPane.rightAnchor="14.0">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -1128,7 +1128,7 @@
                                     <Font name="Verdana Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <JFXTextField fx:id="txtDeleteOrderId" editable="false" layoutX="15.0" layoutY="32.0" prefHeight="42.0" prefWidth="143.0" promptText="Order Id" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                              <JFXTextField fx:id="txtDeleteOrderId" layoutX="15.0" layoutY="32.0" prefHeight="42.0" prefWidth="143.0" promptText="Order Id" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
                                  <styleClass>
                                     <String fx:value="border" />
                                     <String fx:value="input-text" />
@@ -1179,7 +1179,7 @@
                                  </columnResizePolicy>
                               </TableView>
                               <HBox alignment="CENTER" layoutX="520.0" layoutY="522.0" prefHeight="45.0" prefWidth="235.0" AnchorPane.bottomAnchor="9.0" AnchorPane.rightAnchor="7.0" />
-                              <JFXTextField fx:id="txtViewOrderId" editable="false" layoutX="15.0" layoutY="32.0" prefHeight="42.0" prefWidth="143.0" promptText="Order Id" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
+                              <JFXTextField fx:id="txtViewOrderId" layoutX="15.0" layoutY="32.0" prefHeight="42.0" prefWidth="143.0" promptText="Order Id" stylesheets="@../css/style.css" unFocusColor="#4d4d4d00">
                                  <styleClass>
                                     <String fx:value="border" />
                                     <String fx:value="input-text" />

@@ -1,16 +1,9 @@
 package controller.form_controllers;
 
 import com.jfoenix.controls.*;
-import controller.dto_controllers.EmployeeController;
-import controller.dto_controllers.ItemController;
-import controller.dto_controllers.SupplierController;
-import dto.Cart;
-import dto.Employee;
-import dto.Item;
-import dto.Supplier;
-import entity.EmployeeEntity;
-import entity.ItemEntity;
-import entity.SupplierEntity;
+import controller.dto_controllers.*;
+import dto.*;
+import entity.*;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -38,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdminMainFormController implements Initializable {
@@ -122,20 +116,7 @@ public class AdminMainFormController implements Initializable {
     @FXML
     private TableColumn<?, ?> collAddSupplierItemListUnitPrice;
 
-    @FXML
-    private TableColumn<?, ?> collDeleteOrderCartListItemId;
 
-    @FXML
-    private TableColumn<?, ?> collDeleteOrderCartListItemName;
-
-    @FXML
-    private TableColumn<?, ?> collDeleteOrderCartListItemQuantity;
-
-    @FXML
-    private TableColumn<?, ?> collDeleteOrderCartListItemTotalAmount;
-
-    @FXML
-    private TableColumn<?, ?> collDeleteOrderCartListItemUnitPrice;
 
 
 
@@ -155,35 +136,9 @@ public class AdminMainFormController implements Initializable {
 
 
 
-    @FXML
-    private TableColumn<?, ?> collPlaceOrderCartListItemId;
 
-    @FXML
-    private TableColumn<?, ?> collPlaceOrderCartListItemName;
 
-    @FXML
-    private TableColumn<?, ?> collPlaceOrderCartListItemQuantity;
 
-    @FXML
-    private TableColumn<?, ?> collPlaceOrderCartListItemTotalAmount;
-
-    @FXML
-    private TableColumn<?, ?> collPlaceOrderCartListItemUnitPrice;
-
-    @FXML
-    private TableColumn<?, ?> collUpdateOrderCartIListItemName;
-
-    @FXML
-    private TableColumn<?, ?> collUpdateOrderCartListItemId;
-
-    @FXML
-    private TableColumn<?, ?> collUpdateOrderCartListItemQuantity;
-
-    @FXML
-    private TableColumn<?, ?> collUpdateOrderCartListItemTotalAmount;
-
-    @FXML
-    private TableColumn<?, ?> collUpdateOrderCartListItemUnitPrice;
 
     @FXML
     private TableColumn<?, ?> collUpdateSupplierItemId;
@@ -195,55 +150,14 @@ public class AdminMainFormController implements Initializable {
     private TableColumn<?, ?> collUpdateSupplierUnitPrice;
 
 
-    // * View Employee Table
-
-    @FXML
-    private TableView<EmployeeEntity> tblViewEmployeeList;
-    @FXML
-    private TableColumn collViewEmployeeListAddress;
-
-    @FXML
-    private TableColumn collViewEmployeeListContact;
-
-    @FXML
-    private TableColumn collViewEmployeeListEmail;
-
-    @FXML
-    private TableColumn collViewEmployeeListId;
-
-    @FXML
-    private TableColumn collViewEmployeeListName;
 
 
 
 
 
-    @FXML
-    private TableColumn<?, ?> collViewOrderCartListItemId;
 
-    @FXML
-    private TableColumn<?, ?> collViewOrderCartListItemName;
 
-    @FXML
-    private TableColumn<?, ?> collViewOrderCartListItemQuantity;
 
-    @FXML
-    private TableColumn<?, ?> collViewOrderCartListItemTotalAmount;
-
-    @FXML
-    private TableColumn<?, ?> collViewOrderCartListItemUnitPrice;
-
-    @FXML
-    private TableColumn<?, ?> collViewOrderListCustomerId;
-
-    @FXML
-    private TableColumn<?, ?> collViewOrderListDate;
-
-    @FXML
-    private TableColumn<?, ?> collViewOrderListId;
-
-    @FXML
-    private TableColumn<?, ?> collViewOrderListTotalAmount;
 
 
 
@@ -364,8 +278,6 @@ public class AdminMainFormController implements Initializable {
     @FXML
     private JFXPasswordField pfAddEmployeeLoginPassword;
 
-
-
     @FXML
     private AnchorPane productReportPage;
 
@@ -375,55 +287,161 @@ public class AdminMainFormController implements Initializable {
     @FXML
     private TableView<?> tblAddSupplierItemList;
 
+    // * Delete Order Cart Table
     @FXML
-    private TableView<?> tblDeleteOrderCartList;
-
-
-
-    @FXML
-    private TableView<?> tblPlaceOrderCartList;
+    private TableView<Cart> tblDeleteOrderCartList;
 
     @FXML
-    private TableView<?> tblUpdateOrderCartList;
+    private TableColumn<?, ?> collDeleteOrderCartListItemId;
+
+    @FXML
+    private TableColumn<?, ?> collDeleteOrderCartListItemName;
+
+    @FXML
+    private TableColumn<?, ?> collDeleteOrderCartListItemQuantity;
+
+    @FXML
+    private TableColumn<?, ?> collDeleteOrderCartListItemTotalAmount;
+
+    @FXML
+    private TableColumn<?, ?> collDeleteOrderCartListItemUnitPrice;
+
+
+    // *  Place Order Cart Table
+    @FXML
+    private TableView<Cart> tblPlaceOrderCartList;
+
+    @FXML
+    private TableColumn<?, ?> collPlaceOrderCartListItemId;
+
+    @FXML
+    private TableColumn<?, ?> collPlaceOrderCartListItemName;
+
+    @FXML
+    private TableColumn<?, ?> collPlaceOrderCartListItemQuantity;
+
+    @FXML
+    private TableColumn<?, ?> collPlaceOrderCartListItemTotalAmount;
+
+    @FXML
+    private TableColumn<?, ?> collPlaceOrderCartListItemUnitPrice;
+
+
+    // * View Employee Table
+
+    @FXML
+    private TableView<EmployeeEntity> tblViewEmployeeList;
+    @FXML
+    private TableColumn<?, ?> collViewEmployeeListAddress;
+
+    @FXML
+    private TableColumn<?, ?> collViewEmployeeListContact;
+
+    @FXML
+    private TableColumn<?, ?> collViewEmployeeListEmail;
+
+    @FXML
+    private TableColumn<?, ?> collViewEmployeeListId;
+
+    @FXML
+    private TableColumn<?, ?> collViewEmployeeListName;
+
+
+    // * Update Order Cart Table
+    @FXML
+    private TableView<Cart> tblUpdateOrderCartList;
+
+    @FXML
+    private TableColumn<?, ?> collUpdateOrderCartIListItemName;
+
+    @FXML
+    private TableColumn<?, ?> collUpdateOrderCartListItemId;
+
+    @FXML
+    private TableColumn<?, ?> collUpdateOrderCartListItemQuantity;
+
+    @FXML
+    private TableColumn<?, ?> collUpdateOrderCartListItemTotalAmount;
+
+    @FXML
+    private TableColumn<?, ?> collUpdateOrderCartListItemUnitPrice;
+
+
+
 
     @FXML
     private TableView<?> tblUpdateSupplierItemList;
+
+
+
+
 
     // * View Items Tables
     @FXML
     private TableView<ItemEntity> tblViewItemList;
 
     @FXML
-    private TableColumn collViewItemListItemCategory;
+    private TableColumn<?, ?> collViewItemListItemCategory;
 
     @FXML
-    private TableColumn collViewItemListItemId;
+    private TableColumn<?, ?> collViewItemListItemId;
 
     @FXML
-    private TableColumn collViewItemListItemName;
+    private TableColumn<?, ?> collViewItemListItemName;
 
     @FXML
-    private TableColumn collViewItemListItemSize;
+    private TableColumn<?, ?> collViewItemListItemSize;
 
     @FXML
-    private TableColumn collViewItemListItemStock;
+    private TableColumn<?, ?> collViewItemListItemStock;
 
     @FXML
-    private TableColumn collViewItemListItemSupplier;
+    private TableColumn<?, ?> collViewItemListItemSupplier;
 
     @FXML
-    private TableColumn collViewItemListItemUnitPrice;
+    private TableColumn<?, ?> collViewItemListItemUnitPrice;
 
 
 
 
 
+    // * View Order Item Cart
+    @FXML
+    private TableView<Cart> tblViewOrderCartList;
 
     @FXML
-    private TableView<?> tblViewOrderCartList;
+    private TableColumn<?, ?> collViewOrderCartListItemId;
 
     @FXML
-    private TableView<?> tblViewOrderList;
+    private TableColumn<?, ?> collViewOrderCartListItemName;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderCartListItemQuantity;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderCartListItemTotalAmount;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderCartListItemUnitPrice;
+
+
+
+
+    // * View Order List Table
+    @FXML
+    private TableView<OrderEntity> tblViewOrderList;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderListCustomerId;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderListDate;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderListId;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderListTotalAmount;
 
     // * View Supplier Item List
     @FXML
@@ -1493,17 +1511,55 @@ public class AdminMainFormController implements Initializable {
     ObservableList<Cart> placeOrderCartItemList = FXCollections.observableArrayList();
     @FXML
     void btnPlaceOrderAddToCartOnAction(ActionEvent event) {
+        String itemId = cmbPlaceItemId.getValue();
+        if (Boolean.TRUE.equals(CartController.getInstance().validateCartItemsSelected(itemId))) {
+            String itemName = txtPlaceOrderItemName.getText();
+            Double itemUnitPrice = Double.parseDouble(txtPlaceOrderItemUnitPrice.getText());
+            Integer itemStockLevel = Integer.parseInt(txtPlaceOrderItemStockLevel.getText());
+            Integer itemAddingQty = Integer.parseInt(txtPlaceOrderQty.getText());
+            Double itemTotalAmount = itemUnitPrice * itemAddingQty;
+            if (Boolean.TRUE.equals(CartController.getInstance().validateAddingQty(itemStockLevel, itemAddingQty))){
+                placeOrderCartItemList.add(new Cart(itemId, itemName, itemUnitPrice, itemAddingQty, itemTotalAmount));
+                loadPlaceOrderItemCart(placeOrderCartItemList);
+                lblPlaceOrderFinalTotalAmount.setText(calculateTotalAmount().toString());
+            }
 
+        }
     }
-
     @FXML
     void btnPlaceOrderClearCartOnAction(ActionEvent event) {
-
+        placeOrderCartItemList=FXCollections.observableArrayList();
+        loadPlaceOrderItemCart(placeOrderCartItemList);
+        lblPlaceOrderFinalTotalAmount.setText("0.00");
     }
-
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
 
+        if (OrderController.getInstance().validateOrderDetails(txtPlaceOrderCustomerName.getText().trim(),txtPlaceOrderCustomerEmail.getText().trim(),placeOrderCartItemList)){
+            Order order=new Order(OrderController.getInstance().generateOrderId(),txtPlaceOrderCustomerName.getText(),txtPlaceOrderCustomerEmail.getText(),LocalDate.parse(lblDate.getText()),Double.parseDouble(lblPlaceOrderFinalTotalAmount.getText()));
+            ObservableList<OrderDetails> orderDetailsList=FXCollections.observableArrayList();
+            placeOrderCartItemList.forEach(orderDetail -> orderDetailsList.add(new OrderDetails(order,orderDetail.getItemId(),orderDetail.getItemQty(),orderDetail.getItemTotal())));
+            if (OrderController.getInstance().placeOrder(order,orderDetailsList)){
+                new Alert(Alert.AlertType.INFORMATION,"Order Placed Successfully");
+                loadViewAllOrdersTable();
+                PlaceOrderClearForm();
+                btnPlaceOrderClearCartOnAction(new ActionEvent());
+            }else {
+                new Alert(Alert.AlertType.INFORMATION,"Order Placement Failed");
+            }
+        }
+    }
+
+    private Double calculateTotalAmount() {
+        Double total = 0.00;
+        for (int i = 0; i < placeOrderCartItemList.size(); i++) {
+            total += placeOrderCartItemList.get(i).getItemTotal();
+        }
+        return total;
+    }
+
+    private void loadPlaceOrderItemCart(ObservableList<Cart> cart) {
+        tblPlaceOrderCartList.setItems(cart);
     }
 
     private void cmdPlaceOrderItemListSetToText(String id){
@@ -1513,27 +1569,126 @@ public class AdminMainFormController implements Initializable {
         txtPlaceOrderItemUnitPrice.setText(String.valueOf(item.getItemUnitPrice()));
         txtPlaceOrderItemStockLevel.setText(String.valueOf(item.getItemStockLevel()));
     }
-    // * update order
 
+    private void PlaceOrderClearForm(){
+        txtPlaceOrderCustomerName.setText("");
+        txtPlaceOrderCustomerEmail.setText("");
+        txtPlaceOrderItemName.setText("");
+        txtPlaceOrderItemSize.setText("");
+        txtPlaceOrderItemUnitPrice.setText("");
+        txtPlaceOrderItemStockLevel.setText("");
+        txtPlaceOrderQty.setText("");
+    }
+
+
+    // * update order
+    ObservableList<Cart> cartUpdate=FXCollections.observableArrayList();
+    Boolean isUpdateOrderSearched=false;
     @FXML
     void btnUpdateOrderSearch(ActionEvent event) {
+        cartUpdate=FXCollections.observableArrayList();
+        if (txtUpdateOrderId.getText().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Enter Order ID").showAndWait();
+        } else {
+            OrderEntity orderEntity = OrderController.getInstance().searchOrder(txtUpdateOrderId.getText());
+            if (orderEntity != null) {
+                txtUpdateOrderCustomerName.setText(orderEntity.getCustomerName());
+                txtUpdateOrderCustomerEmail.setText(orderEntity.getCustomerEmail());
 
+                List<OrderDetailEntity> orderDetails = orderEntity.getOrderDetails();
+
+                if (orderDetails != null && !orderDetails.isEmpty()) {
+                    for (int i = 0; i < orderDetails.size(); i++) {
+                        OrderDetailEntity detail = orderDetails.get(i);
+                        Item item=ItemController.getInstance().searchItemById(detail.getItemId());
+                        cartUpdate.add(new Cart(
+                                detail.getItemId(),
+                                item.getItemName(),
+                                item.getItemUnitPrice(),
+                                detail.getItemQty(),
+                                detail.getItemTotalPrice()
+                        ));
+                        lblUpdateOrderFinalTotalAmount.setText(String.valueOf(Double.parseDouble(lblUpdateOrderFinalTotalAmount.getText())+detail.getItemTotalPrice()));
+                    }
+                    loadUpdateOrderCartItems(cartUpdate);
+                    txtUpdateOrderId.setEditable(false);
+                    isUpdateOrderSearched=true;
+                }
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Order not found").showAndWait();
+            }
+        }
+    }
+    public Boolean updateOrderCheckItemOnCart(String id){
+        for(Cart cart: cartUpdate){
+            if (cart.getItemId().equals(id)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public Boolean updateItemOnCart(){
+        String itemId = cmbUpdateOrderItemId.getValue();
+        String orderQty = txtUpdateOrderQty.getText();
+        for(Cart cart: cartUpdate){
+            if (cart.getItemId().equals(itemId)){
+                cart.setItemQty(Integer.parseInt(orderQty));
+                cart.setItemTotal(Integer.parseInt(orderQty)*cart.getItemUnitPrice());
+                return true;
+            }
+        }
+        return false;
     }
     @FXML
     void btnUpdateOrderAddToCartOnAction(ActionEvent event) {
-
+        String itemId = cmbUpdateOrderItemId.getValue();
+        if (updateOrderCheckItemOnCart(itemId)){
+            new Alert(Alert.AlertType.ERROR,"item Already Exists").showAndWait();
+        }else {
+            cartUpdate.add(new Cart(cmbUpdateOrderItemId.getValue(),txtUpdateOrderItemName.getText(),Double.parseDouble(txtUpdateOrderItemUnitPrice.getText()),Integer.parseInt(txtUpdateOrderQty.getText()),Double.parseDouble(txtUpdateOrderItemUnitPrice.getText())*Integer.parseInt(txtUpdateOrderQty.getText())));
+            loadUpdateOrderCartItems(cartUpdate);
+        }
     }
     @FXML
     void btnUpdateOrderItemQtyOnAction(ActionEvent event) {
-
+        String itemId = cmbUpdateOrderItemId.getValue();
+        if (updateOrderCheckItemOnCart(itemId)){
+            System.out.println(cartUpdate);
+            if (updateItemOnCart()){
+                System.out.println(cartUpdate);
+                loadUpdateOrderCartItems(cartUpdate);
+                new Alert(Alert.AlertType.INFORMATION,"Item Update On Cart").showAndWait();
+            }else{
+                new Alert(Alert.AlertType.ERROR,"item Not Updated").showAndWait();
+            }
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Item Not Found On Cart").showAndWait();
+        }
     }
     @FXML
     void btnUpdateOrderClearCartOnAction(ActionEvent event) {
-
+        cartUpdate=FXCollections.observableArrayList();
+        loadUpdateOrderCartItems(cartUpdate);
     }
     @FXML
     void btnUpdateOrderOnAction(ActionEvent event) {
-
+        if(isUpdateOrderSearched) {
+            if (OrderController.getInstance().validateOrderDetails(txtUpdateOrderCustomerName.getText().trim(), txtUpdateOrderCustomerEmail.getText().trim(), cartUpdate)) {
+                Order order = new Order(txtUpdateOrderId.getText(), txtUpdateOrderCustomerName.getText(), txtUpdateOrderCustomerEmail.getText(), LocalDate.parse(lblDate.getText()), Double.parseDouble(lblUpdateOrderFinalTotalAmount.getText()));
+                ObservableList<OrderDetails> orderDetailsList = FXCollections.observableArrayList();
+                cartUpdate.forEach(orderDetail -> orderDetailsList.add(new OrderDetails(order, orderDetail.getItemId(), orderDetail.getItemQty(), orderDetail.getItemTotal())));
+                if (OrderController.getInstance().updateOrder(order, orderDetailsList)) {
+                    new Alert(Alert.AlertType.INFORMATION, "Order Update Successfully");
+                    txtUpdateOrderId.setEditable(true);
+                    loadViewAllOrdersTable();
+                    updateOrderClearForm();
+                } else {
+                    new Alert(Alert.AlertType.INFORMATION, "Order Updating Failed");
+                }
+            }
+        }else{
+            new Alert(Alert.AlertType.INFORMATION, "Search an order first !!");
+        }
     }
     private void cmdUpdateOrderItemListSetToText(String id){
         Item item=ItemController.getInstance().searchItemById(id);
@@ -1542,29 +1697,147 @@ public class AdminMainFormController implements Initializable {
         txtUpdateOrderItemUnitPrice.setText(String.valueOf(item.getItemUnitPrice()));
         txtUpdateOrderItemStockLevel.setText(String.valueOf(item.getItemStockLevel()));
     }
+    private void loadUpdateOrderCartItems(ObservableList<Cart> cart){
+        lblUpdateOrderFinalTotalAmount.setText(String.valueOf(updateCartCalculateTotalAmount()));
+        tblUpdateOrderCartList.setItems(cart);
+        tblUpdateOrderCartList.refresh();
+    }
+    private void updateCartItemSetToText(Cart cart){
+        Item item = ItemController.getInstance().searchItemById(cart.getItemId());
+        cmbUpdateOrderItemId.setValue(cart.getItemId());
+        txtUpdateItemName.setText(cart.getItemName());
+        txtUpdateOrderItemSize.setText(item.getItemSize());
+        txtUpdateItemStockLevel.setText(String.valueOf(item.getItemStockLevel()));
+        txtUpdateOrderQty.setText(String.valueOf(cart.getItemQty()));
+    }
+    private Double updateCartCalculateTotalAmount() {
+        Double total = 0.00;
+        for (int i = 0; i < cartUpdate.size(); i++) {
+            total += cartUpdate.get(i).getItemTotal();
+        }
+        return total;
+    }
+    @FXML
+    void btnUpdateOrderRemoveItemFromCartOnAction(ActionEvent event) {
+        String itemId = cmbUpdateOrderItemId.getValue();
+        int count=0;
+        for (Cart cart:cartUpdate){
+            if (cart.getItemId().equals(itemId)){
+                break;
+            }
+            count++;
+        }
+        cartUpdate.remove(count);
+        loadUpdateOrderCartItems(cartUpdate);
+    }
+    private void updateOrderClearForm(){
+        btnUpdateOrderClearCartOnAction(new ActionEvent());
+        txtUpdateOrderId.setText("");
+        txtUpdateOrderCustomerName.setText("");
+        txtUpdateOrderCustomerEmail.setText("");
+        txtUpdateOrderItemName.setText("");
+        txtUpdateOrderItemSize.setText("");
+        txtUpdateItemUnitPrice.setText("");
+        txtUpdateItemStockLevel.setText("");
+        txtUpdateOrderQty.setText("");
 
+    }
     // * delete order
-
+    ObservableList<Cart> cartDelete=FXCollections.observableArrayList();
+    Boolean isDeleteOrderSearched=false;
     @FXML
     void btnDeleteOrderPageSearch(ActionEvent event) {
+        cartDelete=FXCollections.observableArrayList();
+        if (txtDeleteOrderId.getText().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Enter Order ID").showAndWait();
+        } else {
+            OrderEntity orderEntity = OrderController.getInstance().searchOrder(txtDeleteOrderId.getText());
+            if (orderEntity != null) {
+                txtDeleteOrderCustomerName.setText(orderEntity.getCustomerName());
+                txtDeleteOrderCustomerEmail.setText(orderEntity.getCustomerEmail());
+                dpDeleteOrderDate.setValue(orderEntity.getOrderDate());
+                List<OrderDetailEntity> orderDetails = orderEntity.getOrderDetails();
 
+                if (orderDetails != null && !orderDetails.isEmpty()) {
+                    for (int i = 0; i < orderDetails.size(); i++) {
+                        OrderDetailEntity detail = orderDetails.get(i);
+                        Item item=ItemController.getInstance().searchItemById(detail.getItemId());
+                        cartDelete.add(new Cart(
+                                detail.getItemId(),
+                                item.getItemName(),
+                                item.getItemUnitPrice(),
+                                detail.getItemQty(),
+                                detail.getItemTotalPrice()
+                        ));
+                    }
+                    loadDeleteOrderCartItems(cartDelete);
+                    txtDeleteOrderId.setEditable(false);
+                    isDeleteOrderSearched=true;
+                }
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Order not found").showAndWait();
+            }
+        }
     }
     @FXML
     void btnDeleteOrderOnAction(ActionEvent event) {
-
+        if (isDeleteOrderSearched){
+            if (OrderController.getInstance().deleteOrder(txtDeleteOrderId.getText().trim())){
+                new Alert(Alert.AlertType.INFORMATION, "Order Deleted Successfully !").showAndWait();
+                txtDeleteOrderId.setEditable(true);
+                loadViewAllOrdersTable();
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Order Deletion Failed !").showAndWait();
+            }
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Search an Order First !").showAndWait();
+        }
     }
-    @FXML
-    void btnDeleteOrderRemoveItemFromCartOnAction(ActionEvent event) {
-
+    private void loadDeleteOrderCartItems(ObservableList<Cart> cart){
+        tblDeleteOrderCartList.setItems(cart);
     }
 
     // * view order
 
     @FXML
     void btnViewOrderSearch(ActionEvent event) {
+        ObservableList<Cart> cart=FXCollections.observableArrayList();
+        if (txtViewOrderId.getText().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Enter Order ID").showAndWait();
+        } else {
+            OrderEntity orderEntity = OrderController.getInstance().searchOrder(txtViewOrderId.getText());
+            if (orderEntity != null) {
+                txtViewOrderCustomerName1.setText(orderEntity.getCustomerName());
+                txtViewOrderCustomerEmail.setText(orderEntity.getCustomerEmail());
+                dpViewOrderDate.setValue(orderEntity.getOrderDate());
 
+                List<OrderDetailEntity> orderDetails = orderEntity.getOrderDetails();
+
+                if (orderDetails != null && !orderDetails.isEmpty()) {
+                    for (int i = 0; i < orderDetails.size(); i++) {
+                        OrderDetailEntity detail = orderDetails.get(i);
+                        Item item=ItemController.getInstance().searchItemById(detail.getItemId());
+                        cart.add(new Cart(
+                                detail.getItemId(),
+                                item.getItemName(),
+                                item.getItemUnitPrice(),
+                                detail.getItemQty(),
+                                detail.getItemTotalPrice()
+                        ));
+                    }
+                    loadViewOrderCartItems(cart);
+                }
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Order not found").showAndWait();
+            }
+        }
     }
-
+    private void loadViewOrderCartItems(ObservableList<Cart> cart){
+        tblViewOrderCartList.setItems(cart);
+    }
+    private void  loadViewAllOrdersTable(){
+        tblViewOrderList.setItems(OrderController.getInstance().getAllOrders());
+    }
     // ? Generate Report
 
     // * Product Report
@@ -1626,6 +1899,7 @@ public class AdminMainFormController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         // !  Initializing Table Columns
 
         // ? Delete Supplier Item List Columns
@@ -1661,11 +1935,46 @@ public class AdminMainFormController implements Initializable {
         collViewItemListItemUnitPrice.setCellValueFactory(new PropertyValueFactory<>("itemUnitPrice"));
         collViewItemListItemSupplier.setCellValueFactory(new PropertyValueFactory<>("itemSupplierId"));
 
+        // ? Cart At Place Order
+        collPlaceOrderCartListItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
+        collPlaceOrderCartListItemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        collPlaceOrderCartListItemUnitPrice.setCellValueFactory(new PropertyValueFactory<>("itemUnitPrice"));
+        collPlaceOrderCartListItemQuantity.setCellValueFactory(new PropertyValueFactory<>("itemQty"));
+        collPlaceOrderCartListItemTotalAmount.setCellValueFactory(new PropertyValueFactory<>("itemTotal"));
+
+        // ? Cart At View Order
+        collViewOrderCartListItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
+        collViewOrderCartListItemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        collViewOrderCartListItemUnitPrice.setCellValueFactory(new PropertyValueFactory<>("itemUnitPrice"));
+        collViewOrderCartListItemQuantity.setCellValueFactory(new PropertyValueFactory<>("itemQty"));
+        collViewOrderCartListItemTotalAmount.setCellValueFactory(new PropertyValueFactory<>("itemTotal"));
+
+        // ? View Order List Table
+        collViewOrderListId.setCellValueFactory(new PropertyValueFactory<>("orderId"));
+        collViewOrderListCustomerId.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        collViewOrderListDate.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
+        collViewOrderListTotalAmount.setCellValueFactory(new PropertyValueFactory<>("orderTotal"));
+
+        // ? Cart At update Order Table
+        collUpdateOrderCartListItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
+        collUpdateOrderCartIListItemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        collUpdateOrderCartListItemUnitPrice.setCellValueFactory(new PropertyValueFactory<>("itemUnitPrice"));
+        collUpdateOrderCartListItemQuantity.setCellValueFactory(new PropertyValueFactory<>("itemQty"));
+        collUpdateOrderCartListItemTotalAmount.setCellValueFactory(new PropertyValueFactory<>("itemTotal"));
+
+        // ? Cart At Delete Order Table
+        collDeleteOrderCartListItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
+        collDeleteOrderCartListItemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        collDeleteOrderCartListItemUnitPrice.setCellValueFactory(new PropertyValueFactory<>("itemUnitPrice"));
+        collDeleteOrderCartListItemQuantity.setCellValueFactory(new PropertyValueFactory<>("itemQty"));
+        collDeleteOrderCartListItemTotalAmount.setCellValueFactory(new PropertyValueFactory<>("itemTotal"));
+
         // ! Load All Tables On Initialize
 
         loadViewEmployeeTable();
         loadViewItemsTable();
         loadViewSupplierListTable();
+        loadViewAllOrdersTable();
 
         // ! Initializing the Navigation Panel Variables
         currentMainPanel=pageDashboard;
@@ -1676,18 +1985,35 @@ public class AdminMainFormController implements Initializable {
 
         // *  View Employee Table
 
-        tblViewEmployeeList.getSelectionModel().selectedItemProperty().addListener ((observableValue, oldValue, newValue) ->  employeeListSetText(newValue));
+        tblViewEmployeeList.getSelectionModel().selectedItemProperty().addListener ((observableValue, oldValue, newValue) -> {
+            if (newValue != null) {
+                employeeListSetText(newValue);
+            }
+        });
 
         // * View Item Table
 
-        tblViewItemList.getSelectionModel().selectedItemProperty().addListener ((observableValue, oldValue, newValue) -> itemListSetText(newValue)
-        );
+        tblViewItemList.getSelectionModel().selectedItemProperty().addListener ((observableValue, oldValue, newValue) -> {
+            if (newValue != null) {
+                itemListSetText(newValue);
+            }
+        });
 
         // * View Supplier Table
 
-        tblViewSupplierList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> supplierListSetText(newValue));
+        tblViewSupplierList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                supplierListSetText(newValue);
+            }
+        });
 
+        // * Cart On Update Order
 
+        tblUpdateOrderCartList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                updateCartItemSetToText(newValue);
+            }
+        });
         // ! Load Content From Item List
 
         // * Place Order Item Id
@@ -1695,6 +2021,7 @@ public class AdminMainFormController implements Initializable {
 
         // * Update order item Id
         cmbUpdateOrderItemId.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> cmdUpdateOrderItemListSetToText(newValue));
+
         // ! Initializing Combo boxes
 
         // * Inventory
@@ -1760,6 +2087,12 @@ public class AdminMainFormController implements Initializable {
         btnAddItemClearFormOnAction(new ActionEvent());
         btnUpdateItemClearFormOnAction(new ActionEvent());
         deleteItemClearForm();
+
+        // * Order pages
+        btnPlaceOrderClearCartOnAction(new ActionEvent());
+        PlaceOrderClearForm();
+
+
     }
 
 

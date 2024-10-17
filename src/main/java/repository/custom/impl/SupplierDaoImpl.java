@@ -59,7 +59,6 @@ public class SupplierDaoImpl implements SupplierDao {
             Session session = HibernateUtil.getSupplierSession();
             return session.get(SupplierEntity.class,id);
         }catch (HibernateException e){
-            System.out.println(e.getMessage());
             return null;
         }
     }
