@@ -1521,6 +1521,7 @@ public class AdminMainFormController implements Initializable {
             if (Boolean.TRUE.equals(CartController.getInstance().validateAddingQty(itemStockLevel, itemAddingQty))){
                 placeOrderCartItemList.add(new Cart(itemId, itemName, itemUnitPrice, itemAddingQty, itemTotalAmount));
                 loadPlaceOrderItemCart(placeOrderCartItemList);
+                loadViewItemsTable();
                 lblPlaceOrderFinalTotalAmount.setText(calculateTotalAmount().toString());
             }
 
@@ -1682,6 +1683,7 @@ public class AdminMainFormController implements Initializable {
                     txtUpdateOrderId.setEditable(true);
                     loadViewAllOrdersTable();
                     updateOrderClearForm();
+                    loadViewItemsTable();
                 } else {
                     new Alert(Alert.AlertType.INFORMATION, "Order Updating Failed");
                 }
@@ -1786,6 +1788,7 @@ public class AdminMainFormController implements Initializable {
                 new Alert(Alert.AlertType.INFORMATION, "Order Deleted Successfully !").showAndWait();
                 txtDeleteOrderId.setEditable(true);
                 loadViewAllOrdersTable();
+                loadViewItemsTable();
             }else {
                 new Alert(Alert.AlertType.ERROR, "Order Deletion Failed !").showAndWait();
             }
@@ -1838,6 +1841,8 @@ public class AdminMainFormController implements Initializable {
     private void  loadViewAllOrdersTable(){
         tblViewOrderList.setItems(OrderController.getInstance().getAllOrders());
     }
+
+
     // ? Generate Report
 
     // * Product Report

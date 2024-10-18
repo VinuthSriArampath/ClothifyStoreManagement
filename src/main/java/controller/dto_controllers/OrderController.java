@@ -23,6 +23,7 @@ public class OrderController {
     OrderService orderService= ServiceFactory.getInstance().getService(ServiceType.ORDER);
 
     public Boolean placeOrder(Order order,ObservableList<OrderDetails> orderDetails){
+        System.out.println(orderDetails.get(1));
         return orderService.addOrder(order,orderDetails);
     }
     public OrderEntity searchOrder(String id){

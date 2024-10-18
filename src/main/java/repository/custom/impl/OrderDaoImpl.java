@@ -37,8 +37,8 @@ public class OrderDaoImpl implements OrderDao {
                     if (existingDetail.getItemId().equals(newDetail.getItemId())) {
 
                         found = true;
+                        int qtyDifference = existingDetail.getItemQty() - newDetail.getItemQty();
 
-                        int qtyDifference = newDetail.getItemQty() - existingDetail.getItemQty();
 
                         existingDetail.setItemQty(newDetail.getItemQty());
                         existingDetail.setItemTotalPrice(newDetail.getItemTotalPrice());
@@ -82,7 +82,10 @@ public class OrderDaoImpl implements OrderDao {
                 }
 
                 if (!isStillPresent) {
+                    System.out.println(existingDetail);
                     detailsToRemove.add(existingDetail);
+                    ItemEntity item = session.get(ItemEntity.class, existingDetail.getItemId());
+                    item.setItemStockLevel(item.getItemStockLevel() + existingDetail.getItemQty());
                 }
             }
 
@@ -183,7 +186,7 @@ public class OrderDaoImpl implements OrderDao {
                 transaction.rollback();
             }
             e.printStackTrace();
-            return false; // Deletion failed
+            return false;
         } finally {
             orderSession.close();
         }
