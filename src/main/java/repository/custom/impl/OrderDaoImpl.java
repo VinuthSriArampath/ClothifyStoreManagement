@@ -1,4 +1,5 @@
 package repository.custom.impl;
+
 import dto.OrderDetails;
 import entity.ItemEntity;
 import entity.OrderDetailEntity;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDaoImpl implements OrderDao {
+
     @Override
     public boolean update(OrderEntity orderEntity, ObservableList<OrderDetailEntity> orderDetailEntities) {
         Session session = HibernateUtil.getOrderSession();
@@ -27,22 +29,25 @@ public class OrderDaoImpl implements OrderDao {
             if (existingOrder == null) {
                 return false;
             }
+
+            // Update order details
             existingOrder.setCustomerName(orderEntity.getCustomerName());
             existingOrder.setCustomerEmail(orderEntity.getCustomerEmail());
             existingOrder.setOrderTotal(orderEntity.getOrderTotal());
 
+            // Handle new and existing items in order details
             for (OrderDetailEntity newDetail : orderDetailEntities) {
                 boolean found = false;
                 for (OrderDetailEntity existingDetail : existingOrder.getOrderDetails()) {
                     if (existingDetail.getItemId().equals(newDetail.getItemId())) {
-
                         found = true;
                         int qtyDifference = existingDetail.getItemQty() - newDetail.getItemQty();
 
-
+                        // Update existing detail
                         existingDetail.setItemQty(newDetail.getItemQty());
                         existingDetail.setItemTotalPrice(newDetail.getItemTotalPrice());
 
+                        // Update stock levels
                         ItemEntity item = session.get(ItemEntity.class, newDetail.getItemId());
                         if (item.getItemStockLevel() + qtyDifference >= 0) {
                             item.setItemStockLevel(item.getItemStockLevel() + qtyDifference);
@@ -55,6 +60,7 @@ public class OrderDaoImpl implements OrderDao {
                     }
                 }
 
+                // If new item is not found, add it to the order
                 if (!found) {
                     existingOrder.getOrderDetails().add(newDetail);
 
@@ -69,11 +75,11 @@ public class OrderDaoImpl implements OrderDao {
                     session.persist(newDetail);
                 }
             }
-            List<OrderDetailEntity> detailsToRemove = new ArrayList<>();
 
+            // Remove items that are not in the new order details
+            List<OrderDetailEntity> detailsToRemove = new ArrayList<>();
             for (OrderDetailEntity existingDetail : existingOrder.getOrderDetails()) {
                 boolean isStillPresent = false;
-
                 for (OrderDetailEntity newDetail : orderDetailEntities) {
                     if (newDetail.getItemId().equals(existingDetail.getItemId())) {
                         isStillPresent = true;
@@ -81,19 +87,27 @@ public class OrderDaoImpl implements OrderDao {
                     }
                 }
 
+                // If the detail is not present in the new list, mark for removal
                 if (!isStillPresent) {
-                    System.out.println(existingDetail);
                     detailsToRemove.add(existingDetail);
+
+                    // Update stock level before removal
                     ItemEntity item = session.get(ItemEntity.class, existingDetail.getItemId());
                     item.setItemStockLevel(item.getItemStockLevel() + existingDetail.getItemQty());
+                    session.merge(item);
                 }
             }
 
+            // Remove the items from the existing order and delete them from the database
+            for (OrderDetailEntity detailToRemove : detailsToRemove) {
+                session.remove(detailToRemove);  // Deletes the record from the database
+            }
             existingOrder.getOrderDetails().removeAll(detailsToRemove);
 
-
+            // Merge the updated order
             session.merge(existingOrder);
 
+            // Commit transaction
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -107,34 +121,36 @@ public class OrderDaoImpl implements OrderDao {
         }
     }
 
-
     @Override
     public boolean save(OrderEntity orderEntity, ObservableList<OrderDetailEntity> orderDetailEntity) {
         Session orderSession = HibernateUtil.getOrderSession();
         Transaction transaction = null;
         try {
-            transaction=orderSession.beginTransaction();
+            transaction = orderSession.beginTransaction();
 
             orderSession.persist(orderEntity);
 
-            for (OrderDetailEntity orderDetail:orderDetailEntity){
+            for (OrderDetailEntity orderDetail : orderDetailEntity) {
                 orderSession.persist(orderDetail);
 
-                ItemEntity item = orderSession.get(ItemEntity.class,orderDetail.getItemId());
-                if (item.getItemStockLevel()>orderDetail.getItemQty()){
-                    item.setItemStockLevel(item.getItemStockLevel()- orderDetail.getItemQty());
-                }else {
+                // Update stock levels
+                ItemEntity item = orderSession.get(ItemEntity.class, orderDetail.getItemId());
+                if (item.getItemStockLevel() > orderDetail.getItemQty()) {
+                    item.setItemStockLevel(item.getItemStockLevel() - orderDetail.getItemQty());
+                } else {
                     throw new RuntimeException("Insufficient stock level");
                 }
             }
+
             transaction.commit();
             return true;
         } catch (Exception e) {
-            if (transaction != null){
+            if (transaction != null) {
                 transaction.rollback();
             }
+            e.printStackTrace();
             return false;
-        }finally {
+        } finally {
             orderSession.close();
         }
     }
@@ -149,6 +165,7 @@ public class OrderDaoImpl implements OrderDao {
             session.close();
             return true;
         } catch (HibernateException e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -169,8 +186,9 @@ public class OrderDaoImpl implements OrderDao {
             if (orderEntity == null) {
                 return false;
             }
-            List<OrderDetailEntity> orderDetails = orderEntity.getOrderDetails();
 
+            // Update stock levels for each order detail before deleting the order
+            List<OrderDetailEntity> orderDetails = orderEntity.getOrderDetails();
             for (OrderDetailEntity detail : orderDetails) {
                 ItemEntity item = orderSession.get(ItemEntity.class, detail.getItemId());
                 if (item != null) {
@@ -178,6 +196,8 @@ public class OrderDaoImpl implements OrderDao {
                     orderSession.merge(item);
                 }
             }
+
+            // Delete the order
             orderSession.remove(orderEntity);
             transaction.commit();
             return true;
@@ -196,8 +216,8 @@ public class OrderDaoImpl implements OrderDao {
     public OrderEntity searchById(String id) {
         try {
             Session session = HibernateUtil.getOrderSession();
-            return session.get(OrderEntity.class,id);
-        }catch (HibernateException e){
+            return session.get(OrderEntity.class, id);
+        } catch (HibernateException e) {
             System.out.println(e.getMessage());
             return null;
         }
@@ -205,13 +225,14 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public ObservableList<OrderEntity> getAll() {
-        ObservableList<OrderEntity> orderList= FXCollections.observableArrayList();
+        ObservableList<OrderEntity> orderList = FXCollections.observableArrayList();
         try {
             Session session = HibernateUtil.getOrderSession();
             List<OrderEntity> orderEntityList = session.createQuery("From OrderEntity", OrderEntity.class).list();
             orderList.addAll(orderEntityList);
             return orderList;
         } catch (Exception e) {
+            e.printStackTrace();
             return orderList;
         }
     }
