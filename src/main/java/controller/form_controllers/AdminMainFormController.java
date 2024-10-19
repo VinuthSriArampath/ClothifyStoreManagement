@@ -22,7 +22,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.modelmapper.internal.bytebuddy.matcher.ElementMatcher;
+import util.EmailSendingUtil;
 import util.Encryptor;
+import util.PdfGenerateUtil;
 
 import java.io.IOException;
 import java.net.URL;
@@ -1147,7 +1150,12 @@ public class AdminMainFormController implements Initializable {
         cmbViewItemCategory.setValue(itemEntity.getItemCategory());
         cmbViewItemSupplierId.setValue(itemEntity.getItemSupplierId());
     }
+    private void viewItemsClearForm(){
+        txtViewItemId.setText("");
+        txtViewItemName.setText("");
+        cmdViewItemSize.setValue(null);
 
+    }
     // ? Supplier Management
 
     // * add supplier
@@ -1510,6 +1518,35 @@ public class AdminMainFormController implements Initializable {
     // * place order
     ObservableList<Cart> placeOrderCartItemList = FXCollections.observableArrayList();
     @FXML
+    void btnPlaceOrderOnAction(ActionEvent event) {
+        if (OrderController.getInstance().validateOrderDetails(txtPlaceOrderCustomerName.getText().trim(),txtPlaceOrderCustomerEmail.getText().trim(),placeOrderCartItemList)){
+            String orderID = OrderController.getInstance().generateOrderId();
+            Order order=new Order(orderID,txtPlaceOrderCustomerName.getText(),txtPlaceOrderCustomerEmail.getText(),LocalDate.parse(lblDate.getText()),Double.parseDouble(lblPlaceOrderFinalTotalAmount.getText()));
+            ObservableList<OrderDetails> orderDetailsList=FXCollections.observableArrayList();
+            placeOrderCartItemList.forEach(orderDetail -> orderDetailsList.add(new OrderDetails(order,orderDetail.getItemId(),orderDetail.getItemQty(),orderDetail.getItemTotal())));
+            if (OrderController.getInstance().placeOrder(order,orderDetailsList)){
+                EmailSendingUtil.create(txtPlaceOrderCustomerEmail.getText().trim(),orderID+"Invoice","Please Refer The Following Bill For Your Order", PdfGenerateUtil.create(generateBill(placeOrderCartItemList)));
+                new Alert(Alert.AlertType.INFORMATION,"Order Placed Successfully");
+                loadViewAllOrdersTable();
+                setSalesIncomeToLabels();
+                placeOrderClearForm();
+                btnPlaceOrderClearCartOnAction(new ActionEvent());
+            }else {
+                new Alert(Alert.AlertType.INFORMATION,"Order Placement Failed");
+            }
+        }
+    }
+    private String generateBill(ObservableList<Cart> cart){
+        String text = "Item Name      Qty          Price\n";
+        double total = 0;
+        for (int i = 0; i <cart.size(); i++) {
+            text +=cart.get(i).getItemId()+"\t\t\t"+cart.get(i).getItemQty()+"\t\t\t"+cart.get(i).getItemTotal()+"\n";
+            total+=cart.get(i).getItemTotal();
+        }
+        text+="----------------------------------\n\t\t\t\t\t\t\t"+total+"\n\n\n\t\tThank you for Purchasing!";
+        return text;
+    }
+    @FXML
     void btnPlaceOrderAddToCartOnAction(ActionEvent event) {
         String itemId = cmbPlaceItemId.getValue();
         if (Boolean.TRUE.equals(CartController.getInstance().validateCartItemsSelected(itemId))) {
@@ -1532,23 +1569,6 @@ public class AdminMainFormController implements Initializable {
         placeOrderCartItemList=FXCollections.observableArrayList();
         loadPlaceOrderItemCart(placeOrderCartItemList);
         lblPlaceOrderFinalTotalAmount.setText("0.00");
-    }
-    @FXML
-    void btnPlaceOrderOnAction(ActionEvent event) {
-
-        if (OrderController.getInstance().validateOrderDetails(txtPlaceOrderCustomerName.getText().trim(),txtPlaceOrderCustomerEmail.getText().trim(),placeOrderCartItemList)){
-            Order order=new Order(OrderController.getInstance().generateOrderId(),txtPlaceOrderCustomerName.getText(),txtPlaceOrderCustomerEmail.getText(),LocalDate.parse(lblDate.getText()),Double.parseDouble(lblPlaceOrderFinalTotalAmount.getText()));
-            ObservableList<OrderDetails> orderDetailsList=FXCollections.observableArrayList();
-            placeOrderCartItemList.forEach(orderDetail -> orderDetailsList.add(new OrderDetails(order,orderDetail.getItemId(),orderDetail.getItemQty(),orderDetail.getItemTotal())));
-            if (OrderController.getInstance().placeOrder(order,orderDetailsList)){
-                new Alert(Alert.AlertType.INFORMATION,"Order Placed Successfully");
-                loadViewAllOrdersTable();
-                placeOrderClearForm();
-                btnPlaceOrderClearCartOnAction(new ActionEvent());
-            }else {
-                new Alert(Alert.AlertType.INFORMATION,"Order Placement Failed");
-            }
-        }
     }
 
     private Double calculateTotalAmount() {
@@ -1681,6 +1701,7 @@ public class AdminMainFormController implements Initializable {
                 if (OrderController.getInstance().updateOrder(order, orderDetailsList)) {
                     new Alert(Alert.AlertType.INFORMATION, "Order Update Successfully");
                     txtUpdateOrderId.setEditable(true);
+                    setSalesIncomeToLabels();
                     loadViewAllOrdersTable();
                     updateOrderClearForm();
                     loadViewItemsTable();
@@ -1744,9 +1765,26 @@ public class AdminMainFormController implements Initializable {
         txtUpdateOrderQty.setText("");
 
     }
+
+
     // * delete order
+
     ObservableList<Cart> cartDelete=FXCollections.observableArrayList();
     Boolean isDeleteOrderSearched=false;
+    @FXML
+    void btnDeleteOrderOnAction(ActionEvent event) {
+        if (isDeleteOrderSearched){
+            if (OrderController.getInstance().deleteOrder(txtDeleteOrderId.getText().trim())){
+                new Alert(Alert.AlertType.INFORMATION, "Order Deleted Successfully !").showAndWait();
+                reloadAllContents();
+                deleteOrderClearForm();
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Order Deletion Failed !").showAndWait();
+            }
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Search an Order First !").showAndWait();
+        }
+    }
     @FXML
     void btnDeleteOrderPageSearch(ActionEvent event) {
         cartDelete=FXCollections.observableArrayList();
@@ -1781,23 +1819,15 @@ public class AdminMainFormController implements Initializable {
             }
         }
     }
-    @FXML
-    void btnDeleteOrderOnAction(ActionEvent event) {
-        if (isDeleteOrderSearched){
-            if (OrderController.getInstance().deleteOrder(txtDeleteOrderId.getText().trim())){
-                new Alert(Alert.AlertType.INFORMATION, "Order Deleted Successfully !").showAndWait();
-                txtDeleteOrderId.setEditable(true);
-                loadViewAllOrdersTable();
-                loadViewItemsTable();
-            }else {
-                new Alert(Alert.AlertType.ERROR, "Order Deletion Failed !").showAndWait();
-            }
-        }else {
-            new Alert(Alert.AlertType.ERROR, "Search an Order First !").showAndWait();
-        }
-    }
     private void loadDeleteOrderCartItems(ObservableList<Cart> cart){
         tblDeleteOrderCartList.setItems(cart);
+    }
+    private void deleteOrderClearForm(){
+        txtDeleteOrderId.setEditable(true);
+        txtDeleteOrderCustomerName.setText("");
+        txtDeleteOrderCustomerEmail.setText("");
+        dpDeleteOrderDate.setValue(null);
+        loadDeleteOrderCartItems(null);
     }
 
     // * view order
@@ -1977,10 +2007,7 @@ public class AdminMainFormController implements Initializable {
 
         // ! Load All Tables On Initialize
 
-        loadViewEmployeeTable();
-        loadViewItemsTable();
-        loadViewSupplierListTable();
-        loadViewAllOrdersTable();
+        loadAllTablesOnNavigation();
 
         // ! Initializing the Navigation Panel Variables
         currentMainPanel=pageDashboard;
@@ -2097,6 +2124,8 @@ public class AdminMainFormController implements Initializable {
         // * Order pages
         btnPlaceOrderClearCartOnAction(new ActionEvent());
         placeOrderClearForm();
+        updateOrderClearForm();
+        deleteOrderClearForm();
 
 
     }
@@ -2107,6 +2136,25 @@ public class AdminMainFormController implements Initializable {
     }
 
 
+    private void loadAllTablesOnNavigation(){
+        loadViewItemsTable();
+        loadViewAllOrdersTable();
+        loadViewSupplierListTable();
+        loadViewEmployeeTable();
+    }
+
+    private void reloadAllContents(){
+        setSalesIncomeToLabels();
+        loadAllTablesOnNavigation();
+        loadAllComboBoxesOnNavigation();
+        loadAllCharts();
+    }
+    private void loadAllComboBoxesOnNavigation(){
+
+    }
+    private void loadAllCharts(){
+
+    }
 
 
 }
