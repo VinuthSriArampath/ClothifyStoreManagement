@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Data
@@ -21,7 +22,7 @@ public class OrderEntity {
     private String customerName;
     private String customerEmail;
     private LocalDate orderDate;
-
+    private LocalTime orderTime;
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<OrderDetailEntity> orderDetails;
 

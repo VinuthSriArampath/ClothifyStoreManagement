@@ -17,12 +17,12 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.modelmapper.internal.bytebuddy.matcher.ElementMatcher;
 import util.EmailSendingUtil;
 import util.Encryptor;
 import util.PdfGenerateUtil;
@@ -33,6 +33,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -750,6 +751,7 @@ public class AdminMainFormController implements Initializable {
         currentMainPanel=pageDashboard;
         currentMainPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnInventoryManagementPageOnAction(ActionEvent event) {
@@ -760,6 +762,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageAddInventory;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnSupplierManagementPageOnAction(ActionEvent event) {
@@ -770,6 +773,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageAddSupplier;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnOrderManagementPageOnAction(ActionEvent event) {
@@ -780,6 +784,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pagePlaceOrder;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnEmployeeManagementPageOnAction(ActionEvent event) {
@@ -790,6 +795,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageAddEmployee;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnReportGenerationPageOnAction(ActionEvent event) {
@@ -800,6 +806,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=employeeReportPage;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
 
 
@@ -811,6 +818,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageAddInventory;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnUpdateItemPageOnAction(ActionEvent event) {
@@ -818,6 +826,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageUpdateInventory;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnDeleteItemPageOnAction(ActionEvent event) {
@@ -825,6 +834,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageDeleteInventory;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnViewItemPageOnAction(ActionEvent event) {
@@ -832,6 +842,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageViewInventory;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
 
 
@@ -842,6 +853,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageAddSupplier;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnUpdateSupplierPageOnAction(ActionEvent event) {
@@ -849,6 +861,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageUpdateSupplier;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnDeleteSupplierPageOnAction(ActionEvent event) {
@@ -856,6 +869,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageDeleteSupplier;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnViewSupplierPageOnAction(ActionEvent event) {
@@ -863,6 +877,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageViewSupplier;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
 
 
@@ -873,6 +888,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageAddEmployee;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnUpdateEmployeePageOnAction(ActionEvent event) {
@@ -880,6 +896,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageUpdateEmployee;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnDeleteEmployeePageOnAction(ActionEvent event) {
@@ -887,6 +904,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageDeleteEmployee;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnViewEmployeePageOnAction(ActionEvent event) {
@@ -895,6 +913,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageViewEmployee;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
 
 
@@ -905,6 +924,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pagePlaceOrder;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnUpdateOrderPageOnAction(ActionEvent event) {
@@ -912,6 +932,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageUpdateOrder;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnDeleteOrderPageOnAction(ActionEvent event) {
@@ -919,6 +940,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageDeleteOrder;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnViewOrderPageOnAction(ActionEvent event) {
@@ -926,6 +948,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageViewOrder;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
 
 
@@ -936,6 +959,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=productReportPage;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnSupplierReportPageOnAction(ActionEvent event) {
@@ -943,6 +967,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=supplierReportPage;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     void btnEmployeeReportPageOnAction(ActionEvent event) {
@@ -950,6 +975,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=employeeReportPage;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     public void btnDailyReportPageOnAction(ActionEvent actionEvent) {
@@ -957,6 +983,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=dailySalesReportPage;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     public void btnMonthlyReportPageOnAction(ActionEvent actionEvent) {
@@ -964,6 +991,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=monthlySalesReportPage;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
     @FXML
     public void btnAnnualSalesReportPageOnAction(ActionEvent actionEvent) {
@@ -971,6 +999,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=annualSalesReportPage;
         currentSubPanel.setVisible(true);
         clearAllForms();
+        reloadAllContents();
     }
 
     // ? FUNCTIONALITIES OF BUTTONS
@@ -1521,7 +1550,8 @@ public class AdminMainFormController implements Initializable {
     void btnPlaceOrderOnAction(ActionEvent event) {
         if (OrderController.getInstance().validateOrderDetails(txtPlaceOrderCustomerName.getText().trim(),txtPlaceOrderCustomerEmail.getText().trim(),placeOrderCartItemList)){
             String orderID = OrderController.getInstance().generateOrderId();
-            Order order=new Order(orderID,txtPlaceOrderCustomerName.getText(),txtPlaceOrderCustomerEmail.getText(),LocalDate.parse(lblDate.getText()),Double.parseDouble(lblPlaceOrderFinalTotalAmount.getText()));
+            Order order=new Order(orderID,txtPlaceOrderCustomerName.getText(),txtPlaceOrderCustomerEmail.getText(),LocalDate.parse(lblDate.getText()),LocalTime.now(),Double.parseDouble(lblPlaceOrderFinalTotalAmount.getText()));
+            System.out.println(order.getOrderTime());
             ObservableList<OrderDetails> orderDetailsList=FXCollections.observableArrayList();
             placeOrderCartItemList.forEach(orderDetail -> orderDetailsList.add(new OrderDetails(order,orderDetail.getItemId(),orderDetail.getItemQty(),orderDetail.getItemTotal())));
             if (OrderController.getInstance().placeOrder(order,orderDetailsList)){
@@ -1605,6 +1635,7 @@ public class AdminMainFormController implements Initializable {
     // * update order
     ObservableList<Cart> cartUpdate=FXCollections.observableArrayList();
     Boolean isUpdateOrderSearched=false;
+    LocalTime searchedOrderTime=null;
     @FXML
     void btnUpdateOrderSearch(ActionEvent event) {
         cartUpdate=FXCollections.observableArrayList();
@@ -1615,7 +1646,7 @@ public class AdminMainFormController implements Initializable {
             if (orderEntity != null) {
                 txtUpdateOrderCustomerName.setText(orderEntity.getCustomerName());
                 txtUpdateOrderCustomerEmail.setText(orderEntity.getCustomerEmail());
-
+                searchedOrderTime=orderEntity.getOrderTime();
                 List<OrderDetailEntity> orderDetails = orderEntity.getOrderDetails();
 
                 if (orderDetails != null && !orderDetails.isEmpty()) {
@@ -1695,11 +1726,12 @@ public class AdminMainFormController implements Initializable {
     void btnUpdateOrderOnAction(ActionEvent event) {
         if(isUpdateOrderSearched) {
             if (OrderController.getInstance().validateOrderDetails(txtUpdateOrderCustomerName.getText().trim(), txtUpdateOrderCustomerEmail.getText().trim(), cartUpdate)) {
-                Order order = new Order(txtUpdateOrderId.getText(), txtUpdateOrderCustomerName.getText(), txtUpdateOrderCustomerEmail.getText(), LocalDate.parse(lblDate.getText()), Double.parseDouble(lblUpdateOrderFinalTotalAmount.getText()));
+                Order order = new Order(txtUpdateOrderId.getText(), txtUpdateOrderCustomerName.getText(), txtUpdateOrderCustomerEmail.getText(), LocalDate.parse(lblDate.getText()),searchedOrderTime, Double.parseDouble(lblUpdateOrderFinalTotalAmount.getText()));
                 ObservableList<OrderDetails> orderDetailsList = FXCollections.observableArrayList();
                 cartUpdate.forEach(orderDetail -> orderDetailsList.add(new OrderDetails(order, orderDetail.getItemId(), orderDetail.getItemQty(), orderDetail.getItemTotal())));
                 if (OrderController.getInstance().updateOrder(order, orderDetailsList)) {
                     new Alert(Alert.AlertType.INFORMATION, "Order Update Successfully");
+                    searchedOrderTime=null;
                     txtUpdateOrderId.setEditable(true);
                     setSalesIncomeToLabels();
                     loadViewAllOrdersTable();
@@ -1796,6 +1828,7 @@ public class AdminMainFormController implements Initializable {
                 txtDeleteOrderCustomerName.setText(orderEntity.getCustomerName());
                 txtDeleteOrderCustomerEmail.setText(orderEntity.getCustomerEmail());
                 dpDeleteOrderDate.setValue(orderEntity.getOrderDate());
+
                 List<OrderDetailEntity> orderDetails = orderEntity.getOrderDetails();
 
                 if (orderDetails != null && !orderDetails.isEmpty()) {
@@ -1879,41 +1912,41 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     void btnGenerateProductReportOnAction(ActionEvent event) {
-
+        loadProductChart();
     }
 
     // * Employee Report
 
     @FXML
     void btnGenerateEmployeeReportOnAction(ActionEvent event) {
-
+        loadEmployeeChart();
     }
 
     // * Supplier Report
 
     @FXML
     void btnGenerateSupplierReportOnAction(ActionEvent event) {
-
+        loadSupplierChart();
     }
 
     // * Daily Sales Report
 
     @FXML
     void btnGenerateDailySalesReportOnAction(ActionEvent event) {
-
+        loadDailySalesChart();
     }
 
     // * Monthly Sales Report
 
     @FXML
     void btnGenerateMonthlySalesReportOnAction(ActionEvent actionEvent) {
-
+        loadMonthlySalesChart();
     }
 
     // * Annual Sales Report
     @FXML
     void btnGenerateAnnualSalesReportOnAction(ActionEvent event) {
-
+        loadAnnualSalesChart();
     }
 
     private void loadDateAndTime(){
@@ -2100,6 +2133,10 @@ public class AdminMainFormController implements Initializable {
         // ! Load Date And Time
         loadDateAndTime();
 
+
+        // ! initialize charts
+
+        loadAllCharts();
     }
 
     private void clearAllForms(){
@@ -2153,8 +2190,68 @@ public class AdminMainFormController implements Initializable {
 
     }
     private void loadAllCharts(){
-
+        loadEmployeeChart();
+        loadProductChart();
+        loadSupplierChart();
+        loadDailySalesChart();
+        loadMonthlySalesChart();
+        loadAnnualSalesChart();
     }
 
+    private void loadEmployeeChart(){
 
+    }
+    private  void loadProductChart(){
+
+    }
+    private void loadSupplierChart(){
+
+    }
+    private void loadDailySalesChart(){
+        XYChart.Series series = new XYChart.Series();
+        Double[] hourlySalesForTheDay = OrderController.getInstance().getHourlySalesForTheDay();
+
+        for (int i = 0; i < hourlySalesForTheDay.length; i++) {
+            String hourLabel = String.format("%02d:00", i);
+            series.getData().add(new XYChart.Data<>(hourLabel, hourlySalesForTheDay[i]));
+        }
+        chartDailySales.getData().clear();
+        chartDailySales.getData().add(series);
+    }
+    private void loadMonthlySalesChart(){
+        Month month = LocalDate.now().getMonth();
+
+        XYChart.Series series = new XYChart.Series();
+
+        LocalDate firstDayOfMonth = LocalDate.of(LocalDate.now().getYear(), month, 1);
+        int daysInMonth = firstDayOfMonth.lengthOfMonth();
+
+        for (int day = 1; day <= daysInMonth; day++) {
+            LocalDate date = LocalDate.of(LocalDate.now().getYear(), month, day);
+            double dailyIncome = OrderController.getInstance().getDailySalesIncome(date);
+
+            series.getData().add(new XYChart.Data<>(String.valueOf(day), dailyIncome));
+        }
+
+        chartMonthlySales.getData().clear();
+        chartMonthlySales.getData().add(series);
+    }
+    private void loadAnnualSalesChart(){
+        XYChart.Series series=new XYChart.Series();
+        series.getData().add(new XYChart.Data<>("JANUARY",OrderController.getInstance().getMonthlySalesIncome(Month.JANUARY)));
+        series.getData().add(new XYChart.Data<>("FEBRUARY",OrderController.getInstance().getMonthlySalesIncome(Month.FEBRUARY)));
+        series.getData().add(new XYChart.Data<>("MARCH",OrderController.getInstance().getMonthlySalesIncome(Month.MARCH)));
+        series.getData().add(new XYChart.Data<>("APRIL",OrderController.getInstance().getMonthlySalesIncome(Month.APRIL)));
+        series.getData().add(new XYChart.Data<>("MAY",OrderController.getInstance().getMonthlySalesIncome(Month.MAY)));
+        series.getData().add(new XYChart.Data<>("JUNE",OrderController.getInstance().getMonthlySalesIncome(Month.JUNE)));
+        series.getData().add(new XYChart.Data<>("JULY",OrderController.getInstance().getMonthlySalesIncome(Month.JULY)));
+        series.getData().add(new XYChart.Data<>("AUGUST",OrderController.getInstance().getMonthlySalesIncome(Month.AUGUST)));
+        series.getData().add(new XYChart.Data<>("SEPTEMBER",OrderController.getInstance().getMonthlySalesIncome(Month.SEPTEMBER)));
+        series.getData().add(new XYChart.Data<>("OCTOBER",OrderController.getInstance().getMonthlySalesIncome(Month.OCTOBER)));
+        series.getData().add(new XYChart.Data<>("NOVEMBER",OrderController.getInstance().getMonthlySalesIncome(Month.NOVEMBER)));
+        series.getData().add(new XYChart.Data<>("DECEMBER",OrderController.getInstance().getMonthlySalesIncome(Month.DECEMBER)));
+
+        chartAnnualSales.getData().clear();
+        chartAnnualSales.getData().add(series);
+    }
 }

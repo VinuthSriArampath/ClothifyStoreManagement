@@ -12,7 +12,6 @@ import util.ServiceType;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.Year;
 import java.util.regex.Pattern;
 
 public class OrderController {
@@ -100,6 +99,24 @@ public class OrderController {
             }
         }
         return annualSalesIncome;
+    }
+    
+    public Double[] getHourlySalesForTheDay(){
+        Double[] hourlySales = new Double[24];
+
+        for (int i = 0; i < hourlySales.length; i++) {
+            hourlySales[i] = 0.0;
+        }
+
+        ObservableList<OrderEntity> allOrders = getAllOrders();
+        for (OrderEntity order : allOrders) {
+            if (order.getOrderDate().equals(LocalDate.now())) {
+                int orderHour = order.getOrderTime().getHour();
+                hourlySales[orderHour] += order.getOrderTotal();
+            }
+        }
+
+        return hourlySales;
     }
 
 
