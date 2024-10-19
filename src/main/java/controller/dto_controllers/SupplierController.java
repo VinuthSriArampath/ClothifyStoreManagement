@@ -67,6 +67,11 @@ public class SupplierController {
     }
     public String generateSupplierId(){
         ObservableList<SupplierEntity> allSuppliers = supplierService.getAllSuppliers();
+        allSuppliers.sort((sup1,sup2) ->{
+            int id1= Integer.parseInt(sup1.getSupplierId().split("Sup")[1]);
+            int id2= Integer.parseInt(sup2.getSupplierId().split("Sup")[1]);
+            return Integer.compare(id1,id2);
+        });
         int idNum=allSuppliers.isEmpty() ? 1 : Integer.parseInt(allSuppliers.getLast().getSupplierId().split("Sup")[1])+1;
         return "Sup"+idNum;
     }

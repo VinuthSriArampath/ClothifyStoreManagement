@@ -87,9 +87,14 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
-    public String genarateEmployeeId(){
+    public String generateEmployeeId(){
         ObservableList<EmployeeEntity> allEmployees = employeeService.getAllEmployees();
-        int id = allEmployees.isEmpty() ? 1 : Integer.parseInt((allEmployees.getLast().getEmployeeId().split("Emp")[1]))+1;
+        allEmployees.sort((emp1,emp2)->{
+            int id1=Integer.parseInt(emp1.getEmployeeId().split("Emp")[1]);
+            int id2=Integer.parseInt(emp2.getEmployeeId().split("Emp")[1]);
+            return Integer.compare(id1,id2);
+        });
+        int id = allEmployees.isEmpty() ? 1 : Integer.parseInt(allEmployees.getLast().getEmployeeId().split("Emp")[1])+1;
         return "Emp"+id;
     }
 

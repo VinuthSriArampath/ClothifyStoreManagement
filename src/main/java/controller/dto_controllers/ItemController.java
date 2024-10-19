@@ -4,11 +4,13 @@ import dto.Item;
 import entity.ItemEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.control.Alert;
 import service.ServiceFactory;
 import service.custom.impl.ItemServiceImpl;
 import util.ServiceType;
 
+import java.util.Comparator;
 import java.util.regex.Pattern;
 
 
@@ -59,9 +61,14 @@ public class ItemController{
         return itemService.searchItemById(id);
     }
 
-    public String genarateItemId(){
+    public String generateItemId(){
         ObservableList<ItemEntity> allItems = getAllItems();
-        int idNum= allItems.isEmpty() ? 1 : Integer.parseInt(allItems.getLast().getItemId().split("Itm")[1])+1;
+        allItems.sort((item1,item2) ->{
+            int id1=Integer.parseInt(item1.getItemId().split("Itm")[1]);
+            int id2=Integer.parseInt(item2.getItemId().split("Itm")[1]);
+            return Integer.compare(id1,id2);
+        });
+        int idNum= allItems.isEmpty() ? 1 : (Integer.parseInt(allItems.getLast().getItemId().split("Itm")[1]))+1;
         return "Itm"+idNum;
     }
 

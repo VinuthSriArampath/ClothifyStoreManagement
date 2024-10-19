@@ -985,7 +985,7 @@ public class AdminMainFormController implements Initializable {
         String itemSupplierId = cmbAddItemSupplier.getValue();
 
         if(ItemController.getInstance().validateItem(itemName,itemStockLevel,itemUnitPrize,itemCategory,itemSize,itemSupplierId)){
-            if (ItemController.getInstance().addItem(new Item(ItemController.getInstance().genarateItemId(), itemName,itemCategory,itemSize,Integer.parseInt(itemStockLevel),Double.parseDouble(itemUnitPrize),itemSupplierId))){
+            if (ItemController.getInstance().addItem(new Item(ItemController.getInstance().generateItemId(), itemName,itemCategory,itemSize,Integer.parseInt(itemStockLevel),Double.parseDouble(itemUnitPrize),itemSupplierId))){
                 new Alert(Alert.AlertType.CONFIRMATION,"Item Added Successfully").showAndWait();
                 loadViewItemsTable();
                 btnAddItemClearFormOnAction(new ActionEvent());
@@ -1345,7 +1345,7 @@ public class AdminMainFormController implements Initializable {
         String employeeContact = txtAddEmployeeContact.getText().trim();
 
         if (Boolean.TRUE.equals(EmployeeController.getInstance().validateEmployee(employeeName, employeeEmail, employeePassword, employeeAddress, employeeContact))) {
-            if(EmployeeController.getInstance().addEmployee( new Employee(EmployeeController.getInstance().genarateEmployeeId(),employeeName,employeeEmail,encryptor.encryptString(employeePassword),employeeAddress,employeeContact,LocalDate.now()))){
+            if(EmployeeController.getInstance().addEmployee( new Employee(EmployeeController.getInstance().generateEmployeeId(),employeeName,employeeEmail,encryptor.encryptString(employeePassword),employeeAddress,employeeContact,LocalDate.now()))){
                 new Alert(Alert.AlertType.INFORMATION,"Employee Added Successfully").showAndWait();
                 loadViewEmployeeTable();
                 btnAddEmployeeClearFormOnAction(new ActionEvent());
@@ -1543,7 +1543,7 @@ public class AdminMainFormController implements Initializable {
             if (OrderController.getInstance().placeOrder(order,orderDetailsList)){
                 new Alert(Alert.AlertType.INFORMATION,"Order Placed Successfully");
                 loadViewAllOrdersTable();
-                PlaceOrderClearForm();
+                placeOrderClearForm();
                 btnPlaceOrderClearCartOnAction(new ActionEvent());
             }else {
                 new Alert(Alert.AlertType.INFORMATION,"Order Placement Failed");
@@ -1553,8 +1553,8 @@ public class AdminMainFormController implements Initializable {
 
     private Double calculateTotalAmount() {
         Double total = 0.00;
-        for (int i = 0; i < placeOrderCartItemList.size(); i++) {
-            total += placeOrderCartItemList.get(i).getItemTotal();
+        for (Cart cart : placeOrderCartItemList) {
+            total += cart.getItemTotal();
         }
         return total;
     }
@@ -1571,7 +1571,7 @@ public class AdminMainFormController implements Initializable {
         txtPlaceOrderItemStockLevel.setText(String.valueOf(item.getItemStockLevel()));
     }
 
-    private void PlaceOrderClearForm(){
+    private void placeOrderClearForm(){
         txtPlaceOrderCustomerName.setText("");
         txtPlaceOrderCustomerEmail.setText("");
         txtPlaceOrderItemName.setText("");
@@ -1904,7 +1904,8 @@ public class AdminMainFormController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        // ! Load Daily Sales And Annual Sales
+        setSalesIncomeToLabels();
         // !  Initializing Table Columns
 
         // ? Delete Supplier Item List Columns
@@ -2095,9 +2096,14 @@ public class AdminMainFormController implements Initializable {
 
         // * Order pages
         btnPlaceOrderClearCartOnAction(new ActionEvent());
-        PlaceOrderClearForm();
+        placeOrderClearForm();
 
 
+    }
+    private void setSalesIncomeToLabels(){
+        lblDailyIncome.setText(String.valueOf(OrderController.getInstance().getDailySalesIncome(LocalDate.now())));
+        lblMonthlyIncome.setText(String.valueOf(OrderController.getInstance().getMonthlySalesIncome(LocalDate.now().getMonth())));
+        lblAnnualIncome.setText(String.valueOf(OrderController.getInstance().getAnnualSalesIncome(LocalDate.now().getYear())));
     }
 
 

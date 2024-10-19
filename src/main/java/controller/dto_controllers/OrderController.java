@@ -10,6 +10,9 @@ import service.ServiceFactory;
 import service.custom.OrderService;
 import util.ServiceType;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
 import java.util.regex.Pattern;
 
 public class OrderController {
@@ -23,7 +26,6 @@ public class OrderController {
     OrderService orderService= ServiceFactory.getInstance().getService(ServiceType.ORDER);
 
     public Boolean placeOrder(Order order,ObservableList<OrderDetails> orderDetails){
-        System.out.println(orderDetails.get(1));
         return orderService.addOrder(order,orderDetails);
     }
     public OrderEntity searchOrder(String id){
@@ -31,7 +33,11 @@ public class OrderController {
     }
     public String generateOrderId(){
         ObservableList<OrderEntity> allOrders = orderService.getAllOrders();
-        System.out.println(allOrders.isEmpty());
+        allOrders.sort((order1,order2) ->{
+            int id1=Integer.parseInt(order1.getOrderId().split("Ord")[1]);
+            int id2=Integer.parseInt(order2.getOrderId().split("Ord")[1]);
+            return Integer.compare(id1,id2);
+        });
         int idNum=allOrders.isEmpty() ? 1 : Integer.parseInt(allOrders.getLast().getOrderId().split("Ord")[1])+1;
         return "Ord"+idNum;
     }
@@ -62,4 +68,39 @@ public class OrderController {
     public boolean updateOrder(Order order, ObservableList<OrderDetails> orderDetailsList) {
         return orderService.updateOrder(order,orderDetailsList);
     }
+
+    public Double getDailySalesIncome(LocalDate date){
+        ObservableList<OrderEntity> allOrders = getAllOrders();
+        double dailySalesIncome = 0.00;
+        for(OrderEntity order: allOrders){
+            if (order.getOrderDate().equals(date)){
+                dailySalesIncome+=order.getOrderTotal();
+            }
+        }
+        return dailySalesIncome;
+    }
+
+    public Double getMonthlySalesIncome(Month month){
+        ObservableList<OrderEntity> allOrders = getAllOrders();
+        double monthlySalesIncome = 0.00;
+        for(OrderEntity order: allOrders){
+            if (order.getOrderDate().getMonth().equals(month)){
+                monthlySalesIncome +=order.getOrderTotal();
+            }
+        }
+        return monthlySalesIncome;
+    }
+
+    public Double getAnnualSalesIncome(int year){
+        ObservableList<OrderEntity> allOrders = getAllOrders();
+        double annualSalesIncome = 0.00;
+        for(OrderEntity order: allOrders){
+            if (order.getOrderDate().getYear() == year){
+                annualSalesIncome +=order.getOrderTotal();
+            }
+        }
+        return annualSalesIncome;
+    }
+
+
 }
