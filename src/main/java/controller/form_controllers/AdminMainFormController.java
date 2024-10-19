@@ -1933,22 +1933,58 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     void btnGenerateDailySalesReportOnAction(ActionEvent event) {
-        loadDailySalesChart();
+        if (PdfGenerateUtil.generateDailySalesReport(getReport("Daily"),LocalDate.now())){
+            new Alert(Alert.AlertType.INFORMATION,"Daily Sales Report Generated Successfully");
+        }else
+        {
+            new Alert(Alert.AlertType.ERROR,"Something Went Wrong");
+        }
     }
 
     // * Monthly Sales Report
 
     @FXML
     void btnGenerateMonthlySalesReportOnAction(ActionEvent actionEvent) {
-        loadMonthlySalesChart();
+        if (PdfGenerateUtil.generateMonthlySalesReport(getReport("Monthly"),LocalDate.now())){
+            new Alert(Alert.AlertType.INFORMATION,"Monthly Sales Report Generated Successfully");
+        }else
+        {
+            new Alert(Alert.AlertType.ERROR,"Something Went Wrong");
+        }
     }
 
     // * Annual Sales Report
     @FXML
     void btnGenerateAnnualSalesReportOnAction(ActionEvent event) {
-        loadAnnualSalesChart();
+        if (PdfGenerateUtil.generateAnnualSalesReport(getReport("Annual"),LocalDate.now())){
+            new Alert(Alert.AlertType.INFORMATION,"Annual Sales Report Generated Successfully");
+        }else
+        {
+            new Alert(Alert.AlertType.ERROR,"Something Went Wrong");
+        }
     }
+    public String getReport(String type){
+        String text ="\t\t\t\t\t\t\t\t\t\t\t\tSALES REPORT\n\n\nOrder\t\tCustomer\t\tDate/Time/Month\t\tPrice\n";
+        if(type.equals("Daily")){
+            ObservableList<OrderEntity> dailyOrders = OrderController.getInstance().getDailyOrders(LocalDate.now());
+            for (OrderEntity order: dailyOrders){
+                text += order.getOrderId()+"\t\t\t"+order.getCustomerName()+"\t\t"+order.getOrderTime()+"\t\t\t"+order.getOrderTotal()+"\n";
+            }
+        } else if (type.equals("Monthly")) {
+            ObservableList<OrderEntity> monthlyOrders = OrderController.getInstance().getMonthlyOrders(LocalDate.now().getMonth());
+            for (OrderEntity order: monthlyOrders){
+                text += order.getOrderId()+"\t\t\t"+order.getCustomerName()+"\t\t"+order.getOrderDate()+"\t\t\t"+order.getOrderTotal()+"\n";
+            }
 
+        } else if (type.equals("Annual")) {
+            ObservableList<OrderEntity> annualOrders = OrderController.getInstance().getAnnualOrders(LocalDate.now().getYear());
+            for (OrderEntity order: annualOrders){
+                text += order.getOrderId()+"\t\t\t"+order.getCustomerName()+"\t\t"+order.getOrderDate().getMonth()+"\t\t\t"+order.getOrderTotal()+"\n";
+            }
+
+        }
+        return  text;
+    }
     private void loadDateAndTime(){
         Date date=new Date();
         SimpleDateFormat r = new SimpleDateFormat("yyyy-MM-dd");
@@ -2204,9 +2240,25 @@ public class AdminMainFormController implements Initializable {
     private  void loadProductChart(){
 
     }
-    private void loadSupplierChart(){
+    private void loadSupplierChart() {
+        // Create a new Series for the BarChart
+        XYChart.Series series = new XYChart.Series<>();
 
+
+        ObservableList<SupplierEntity> allSuppliers = SupplierController.getInstance().getAllSuppliers();
+
+        for (SupplierEntity supplier : allSuppliers) {
+            int itemCount = ItemController.getInstance().getAllItemsForSupplier(supplier.getSupplierId()).size();
+            series.getData().add(new XYChart.Data<>(supplier.getCompanyName(), itemCount));
+        }
+
+        // Clear any existing data in the chart
+        chartSupplierReport.getData().clear();
+
+        // Add the new data series to the chart
+        chartSupplierReport.getData().add(series);
     }
+
     private void loadDailySalesChart(){
         XYChart.Series series = new XYChart.Series();
         Double[] hourlySalesForTheDay = OrderController.getInstance().getHourlySalesForTheDay();

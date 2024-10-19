@@ -4,6 +4,7 @@ import dto.Cart;
 import dto.Order;
 import dto.OrderDetails;
 import entity.OrderEntity;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import service.ServiceFactory;
@@ -117,6 +118,39 @@ public class OrderController {
         }
 
         return hourlySales;
+    }
+
+    public ObservableList<OrderEntity> getDailyOrders(LocalDate date){
+        ObservableList<OrderEntity> allOrders = getAllOrders();
+        ObservableList<OrderEntity> dailySalesOrders= FXCollections.observableArrayList();
+        for(OrderEntity order: allOrders){
+            if (order.getOrderDate().equals(date)){
+                dailySalesOrders.add(order);
+            }
+        }
+        return dailySalesOrders;
+    }
+
+    public ObservableList<OrderEntity> getMonthlyOrders(Month month){
+        ObservableList<OrderEntity> allOrders = getAllOrders();
+        ObservableList<OrderEntity> monthlySalesOrders= FXCollections.observableArrayList();
+        for(OrderEntity order: allOrders){
+            if (order.getOrderDate().getMonth().equals(month)){
+                monthlySalesOrders.add(order);
+            }
+        }
+        return monthlySalesOrders;
+    }
+
+    public ObservableList<OrderEntity> getAnnualOrders(int year){
+        ObservableList<OrderEntity> allOrders = getAllOrders();
+        ObservableList<OrderEntity> annualSalesOrders= FXCollections.observableArrayList();
+        for(OrderEntity order: allOrders){
+            if (order.getOrderDate().getYear() == year){
+                annualSalesOrders.add(order);
+            }
+        }
+        return annualSalesOrders;
     }
 
 
