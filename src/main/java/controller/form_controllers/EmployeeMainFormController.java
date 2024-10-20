@@ -564,6 +564,7 @@ public class EmployeeMainFormController implements Initializable {
             stage.setResizable(false);
             new Alert(Alert.AlertType.INFORMATION,"Log Out Successfully").showAndWait();
             btnEmployeeLogOut.getScene().getWindow().hide();
+            EmployeeController.getInstance().setCurrentEmployee(null);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -1547,6 +1548,14 @@ public class EmployeeMainFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // ! Loading Contents to Dashboard
+
+        lblDashboardEmployeeId.setText(EmployeeController.getInstance().getCurrentEmployee().getEmployeeId());
+        lblDashboardEmployeeName.setText(EmployeeController.getInstance().getCurrentEmployee().getName());
+        lblDashboardEmployeeEmail.setText(EmployeeController.getInstance().getCurrentEmployee().getEmail());
+        lblDashboardEmployeeContactNo.setText(EmployeeController.getInstance().getCurrentEmployee().getContact());
+        lblDashboardEmployeeAddress.setText(EmployeeController.getInstance().getCurrentEmployee().getAddress());
+
         // !  Initializing Table Columns
 
         // ? Delete Supplier Item List Columns

@@ -5,23 +5,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
+import lombok.Data;
+import org.modelmapper.ModelMapper;
 import service.custom.EmployeeService;
 import service.custom.impl.EmployeeServiceImpl;
-
+import util.Encryptor;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-
+@Data
 public class EmployeeController {
     private final EmployeeService employeeService= new EmployeeServiceImpl();
     private static EmployeeController instance;
     private EmployeeController(){}
-
     public static EmployeeController getInstance() {
         return instance==null?instance=new EmployeeController():instance;
     }
-
+    private Employee currentEmployee;
     public Boolean validateEmployee(String employeeName, String employeeEmail, String employeePassword, String employeeAddress,String employeeContact){
         String regPasswordPattern ="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#^$%!&*])[A-Za-z\\d@#^$%!&]{8,}$";
         String regEmailPattern = "^[A-Za-z0-9._%+-]+@gmail\\.com$";
@@ -128,4 +130,20 @@ public class EmployeeController {
         return employeeHires;
     }
 
+
+    public boolean authenticateEmployee(String email, String password) {
+        ObservableList<EmployeeEntity> allEmployees = getAllEmployees();
+        Encryptor encryptor = new Encryptor();
+        try {
+            for (EmployeeEntity employee:allEmployees){
+                if (employee.getEmail().equals(email) && employee.getPassword().equals(encryptor.encryptString(password))){
+                    currentEmployee=new ModelMapper().map(employee,Employee.class);
+                    return true;
+                }
+            }
+            return false;
+        } catch (NoSuchAlgorithmException e) {
+            return false;
+        }
+    }
 }

@@ -1088,11 +1088,6 @@
                                     <Font name="Verdana Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <JFXButton layoutX="789.0" layoutY="251.0" onAction="#btnDeleteOrderRemoveItemFromCartOnAction" prefHeight="35.0" prefWidth="176.0" styleClass="button-delete" stylesheets="@../css/style.css" text="Remove From Cart" textFill="WHITE" AnchorPane.rightAnchor="14.0">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </JFXButton>
                               <JFXButton layoutX="626.0" layoutY="251.0" onAction="#btnUpdateOrderItemQtyOnAction" prefHeight="35.0" prefWidth="156.0" styleClass="button-update" stylesheets="@../css/style.css" text="Update Qty" textFill="WHITE" AnchorPane.rightAnchor="197.0">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
@@ -1276,7 +1271,7 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="pageSupplierManagement" prefHeight="674.0" prefWidth="994.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                  <AnchorPane fx:id="pageSupplierManagement" prefHeight="674.0" prefWidth="994.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <children>
                         <HBox alignment="CENTER" layoutX="-2.0" layoutY="7.0" prefHeight="52.0" prefWidth="989.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                            <children>
@@ -1353,14 +1348,6 @@
                               </JFXTextField>
                               <HBox alignment="CENTER" layoutX="521.0" layoutY="387.0" prefHeight="45.0" prefWidth="441.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="384.0">
                                  <children>
-                                    <JFXButton onAction="#btnAddSupplierClearItemListOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-view-search" stylesheets="@../css/style.css" text="Clear Item List" textFill="WHITE">
-                                       <font>
-                                          <Font name="System Bold" size="16.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin>
-                                    </JFXButton>
                                     <JFXButton onAction="#btnAddSupplierOnAction" prefHeight="33.0" prefWidth="200.0" styleClass="button-add" stylesheets="@../css/style.css" text="Add Suppler" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
@@ -1401,7 +1388,7 @@
                               </JFXTextField>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="pageUpdateSupplier" layoutX="10.0" layoutY="82.0" prefHeight="674.0" prefWidth="994.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                        <AnchorPane fx:id="pageUpdateSupplier" layoutX="10.0" layoutY="82.0" prefHeight="674.0" prefWidth="994.0" stylesheets="@../css/style.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
                            <styleClass>
                               <String fx:value="ternary-background-colour" />
                               <String fx:value="border" />
