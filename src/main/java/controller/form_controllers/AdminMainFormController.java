@@ -1035,7 +1035,7 @@ public class AdminMainFormController implements Initializable {
                 deleteItemClearForm();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Item Deletion Failed").showAndWait();
-                deleteEmployeeClearForm();
+                deleteItemClearForm();
             }
         }else {
             new Alert(Alert.AlertType.INFORMATION,"Search Item First").showAndWait();
@@ -1215,7 +1215,7 @@ public class AdminMainFormController implements Initializable {
                 loadDeleteSupplierItemListTable(null);
             } else {
                 new Alert(Alert.AlertType.ERROR, "Supplier Deletion Failed").showAndWait();
-                deleteEmployeeClearForm();
+                deleteSupplierClearForm();
             }
         }else {
             new Alert(Alert.AlertType.INFORMATION,"Search Supplier First").showAndWait();
@@ -1598,26 +1598,6 @@ public class AdminMainFormController implements Initializable {
             }
         }
     }
-    public Boolean updateOrderCheckItemOnCart(String id){
-        for(Cart cart: cartUpdate){
-            if (cart.getItemId().equals(id)){
-                return true;
-            }
-        }
-        return false;
-    }
-    public Boolean updateItemOnCart(){
-        String itemId = cmbUpdateOrderItemId.getValue();
-        String orderQty = txtUpdateOrderQty.getText();
-        for(Cart cart: cartUpdate){
-            if (cart.getItemId().equals(itemId)){
-                cart.setItemQty(Integer.parseInt(orderQty));
-                cart.setItemTotal(Integer.parseInt(orderQty)*cart.getItemUnitPrice());
-                return true;
-            }
-        }
-        return false;
-    }
     @FXML
     void btnUpdateOrderAddToCartOnAction(ActionEvent event) {
         String itemId = cmbUpdateOrderItemId.getValue();
@@ -1672,6 +1652,39 @@ public class AdminMainFormController implements Initializable {
             new Alert(Alert.AlertType.INFORMATION, "Search an order first !!");
         }
     }
+    @FXML
+    void btnUpdateOrderRemoveItemFromCartOnAction(ActionEvent event) {
+        String itemId = cmbUpdateOrderItemId.getValue();
+        int count=0;
+        for (Cart cart:cartUpdate){
+            if (cart.getItemId().equals(itemId)){
+                break;
+            }
+            count++;
+        }
+        cartUpdate.remove(count);
+        loadUpdateOrderCartItems(cartUpdate);
+    }
+    public Boolean updateOrderCheckItemOnCart(String id){
+        for(Cart cart: cartUpdate){
+            if (cart.getItemId().equals(id)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public Boolean updateItemOnCart(){
+        String itemId = cmbUpdateOrderItemId.getValue();
+        String orderQty = txtUpdateOrderQty.getText();
+        for(Cart cart: cartUpdate){
+            if (cart.getItemId().equals(itemId)){
+                cart.setItemQty(Integer.parseInt(orderQty));
+                cart.setItemTotal(Integer.parseInt(orderQty)*cart.getItemUnitPrice());
+                return true;
+            }
+        }
+        return false;
+    }
     private void cmdUpdateOrderItemListSetToText(String id){
         Item item=ItemController.getInstance().searchItemById(id);
         txtUpdateOrderItemName.setText(item.getItemName());
@@ -1698,19 +1711,6 @@ public class AdminMainFormController implements Initializable {
             total += cartUpdate.get(i).getItemTotal();
         }
         return total;
-    }
-    @FXML
-    void btnUpdateOrderRemoveItemFromCartOnAction(ActionEvent event) {
-        String itemId = cmbUpdateOrderItemId.getValue();
-        int count=0;
-        for (Cart cart:cartUpdate){
-            if (cart.getItemId().equals(itemId)){
-                break;
-            }
-            count++;
-        }
-        cartUpdate.remove(count);
-        loadUpdateOrderCartItems(cartUpdate);
     }
     private void updateOrderClearForm(){
         btnUpdateOrderClearCartOnAction(new ActionEvent());
