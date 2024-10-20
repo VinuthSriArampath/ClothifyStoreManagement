@@ -1,10 +1,15 @@
 package controller.dto_controllers;
 import dto.Employee;
 import entity.EmployeeEntity;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import service.custom.EmployeeService;
 import service.custom.impl.EmployeeServiceImpl;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 
@@ -96,6 +101,31 @@ public class EmployeeController {
         });
         int id = allEmployees.isEmpty() ? 1 : Integer.parseInt(allEmployees.getLast().getEmployeeId().split("Emp")[1])+1;
         return "Emp"+id;
+    }
+    public ObservableList<XYChart.Data> getEmployeeHiresByYear() {
+        ObservableList<XYChart.Data> employeeHires = FXCollections.observableArrayList();
+
+        ObservableList<EmployeeEntity> allEmployees = getAllEmployees();
+        List<Integer> yearsProcessed = new ArrayList<>();
+
+        for (EmployeeEntity employee : allEmployees) {
+            int hireYear = employee.getHiredDate().getYear();
+
+            if (!yearsProcessed.contains(hireYear)) {
+
+                int count = 0;
+                for (EmployeeEntity emp : allEmployees) {
+                    if (emp.getHiredDate().getYear() == hireYear) {
+                        count++;
+                    }
+                }
+
+                employeeHires.add(new XYChart.Data(String.valueOf(hireYear), count));
+                yearsProcessed.add(hireYear);
+            }
+        }
+
+        return employeeHires;
     }
 
 }

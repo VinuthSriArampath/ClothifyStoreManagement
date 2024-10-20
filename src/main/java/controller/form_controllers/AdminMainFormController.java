@@ -97,29 +97,13 @@ public class AdminMainFormController implements Initializable {
     private JFXComboBox<String> cmdAddItemSize;
 
     @FXML
-    private JFXComboBox<String> cmdAddSupplierItemId;
-
-    @FXML
     private JFXComboBox<String> cmdDeleteItemSize;
 
     @FXML
     private JFXComboBox<String> cmdUpdateItemSize;
 
     @FXML
-    private JFXComboBox<String> cmdUpdateSupplierItemId;
-
-    @FXML
     private JFXComboBox<String> cmdViewItemSize;
-
-    @FXML
-    private TableColumn<?, ?> collAddSupplierItemListId;
-
-    @FXML
-    private TableColumn<?, ?> collAddSupplierItemListName;
-
-    @FXML
-    private TableColumn<?, ?> collAddSupplierItemListUnitPrice;
-
 
 
 
@@ -136,34 +120,6 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> collDeleteSupplierUnitPrice;
-
-
-
-
-
-
-
-
-    @FXML
-    private TableColumn<?, ?> collUpdateSupplierItemId;
-
-    @FXML
-    private TableColumn<?, ?> collUpdateSupplierItemName;
-
-    @FXML
-    private TableColumn<?, ?> collUpdateSupplierUnitPrice;
-
-
-
-
-
-
-
-
-
-
-
-
 
     @FXML
     private AnchorPane dailySalesReportPage;
@@ -188,9 +144,6 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private Label lblDeleteEmployeeHiredDate;
-
-    @FXML
-    private Label lblDeleteOrderFinalTotalAmount;
 
     @FXML
     private Label lblMonthlyIncome;
@@ -289,199 +242,6 @@ public class AdminMainFormController implements Initializable {
     private AnchorPane supplierReportPage;
 
     @FXML
-    private TableView<?> tblAddSupplierItemList;
-
-    // * Delete Order Cart Table
-    @FXML
-    private TableView<Cart> tblDeleteOrderCartList;
-
-    @FXML
-    private TableColumn<?, ?> collDeleteOrderCartListItemId;
-
-    @FXML
-    private TableColumn<?, ?> collDeleteOrderCartListItemName;
-
-    @FXML
-    private TableColumn<?, ?> collDeleteOrderCartListItemQuantity;
-
-    @FXML
-    private TableColumn<?, ?> collDeleteOrderCartListItemTotalAmount;
-
-    @FXML
-    private TableColumn<?, ?> collDeleteOrderCartListItemUnitPrice;
-
-
-    // *  Place Order Cart Table
-    @FXML
-    private TableView<Cart> tblPlaceOrderCartList;
-
-    @FXML
-    private TableColumn<?, ?> collPlaceOrderCartListItemId;
-
-    @FXML
-    private TableColumn<?, ?> collPlaceOrderCartListItemName;
-
-    @FXML
-    private TableColumn<?, ?> collPlaceOrderCartListItemQuantity;
-
-    @FXML
-    private TableColumn<?, ?> collPlaceOrderCartListItemTotalAmount;
-
-    @FXML
-    private TableColumn<?, ?> collPlaceOrderCartListItemUnitPrice;
-
-
-    // * View Employee Table
-
-    @FXML
-    private TableView<EmployeeEntity> tblViewEmployeeList;
-    @FXML
-    private TableColumn<?, ?> collViewEmployeeListAddress;
-
-    @FXML
-    private TableColumn<?, ?> collViewEmployeeListContact;
-
-    @FXML
-    private TableColumn<?, ?> collViewEmployeeListEmail;
-
-    @FXML
-    private TableColumn<?, ?> collViewEmployeeListId;
-
-    @FXML
-    private TableColumn<?, ?> collViewEmployeeListName;
-
-
-    // * Update Order Cart Table
-    @FXML
-    private TableView<Cart> tblUpdateOrderCartList;
-
-    @FXML
-    private TableColumn<?, ?> collUpdateOrderCartIListItemName;
-
-    @FXML
-    private TableColumn<?, ?> collUpdateOrderCartListItemId;
-
-    @FXML
-    private TableColumn<?, ?> collUpdateOrderCartListItemQuantity;
-
-    @FXML
-    private TableColumn<?, ?> collUpdateOrderCartListItemTotalAmount;
-
-    @FXML
-    private TableColumn<?, ?> collUpdateOrderCartListItemUnitPrice;
-
-
-
-
-    @FXML
-    private TableView<?> tblUpdateSupplierItemList;
-
-
-
-
-
-    // * View Items Tables
-    @FXML
-    private TableView<ItemEntity> tblViewItemList;
-
-    @FXML
-    private TableColumn<?, ?> collViewItemListItemCategory;
-
-    @FXML
-    private TableColumn<?, ?> collViewItemListItemId;
-
-    @FXML
-    private TableColumn<?, ?> collViewItemListItemName;
-
-    @FXML
-    private TableColumn<?, ?> collViewItemListItemSize;
-
-    @FXML
-    private TableColumn<?, ?> collViewItemListItemStock;
-
-    @FXML
-    private TableColumn<?, ?> collViewItemListItemSupplier;
-
-    @FXML
-    private TableColumn<?, ?> collViewItemListItemUnitPrice;
-
-
-
-
-
-    // * View Order Item Cart
-    @FXML
-    private TableView<Cart> tblViewOrderCartList;
-
-    @FXML
-    private TableColumn<?, ?> collViewOrderCartListItemId;
-
-    @FXML
-    private TableColumn<?, ?> collViewOrderCartListItemName;
-
-    @FXML
-    private TableColumn<?, ?> collViewOrderCartListItemQuantity;
-
-    @FXML
-    private TableColumn<?, ?> collViewOrderCartListItemTotalAmount;
-
-    @FXML
-    private TableColumn<?, ?> collViewOrderCartListItemUnitPrice;
-
-
-
-
-    // * View Order List Table
-    @FXML
-    private TableView<OrderEntity> tblViewOrderList;
-
-    @FXML
-    private TableColumn<?, ?> collViewOrderListCustomerId;
-
-    @FXML
-    private TableColumn<?, ?> collViewOrderListDate;
-
-    @FXML
-    private TableColumn<?, ?> collViewOrderListId;
-
-    @FXML
-    private TableColumn<?, ?> collViewOrderListTotalAmount;
-
-    // * View Supplier Item List
-    @FXML
-    private TableView<ItemEntity> tblViewSupplierItemList;
-    @FXML
-    private TableColumn<?, ?> collViewSupplierItemId;
-
-    @FXML
-    private TableColumn<?, ?> collViewSupplierItemName;
-
-    @FXML
-    private TableColumn<?, ?> collViewSupplierUnitPrice;
-
-
-
-    // * View All Supplier Table
-    @FXML
-    private TableView<SupplierEntity> tblViewSupplierList;
-    @FXML
-    private TableColumn<?, ?> collViewSupplierListAddress;
-
-    @FXML
-    private TableColumn<?, ?> collViewSupplierListCompanyName;
-
-    @FXML
-    private TableColumn<?, ?> collViewSupplierListEmail;
-
-    @FXML
-    private TableColumn<?, ?> collViewSupplierListId;
-
-    @FXML
-    private TableColumn<?, ?> collViewSupplierListSupplierName;
-
-
-
-    @FXML
     private JFXTextArea txtAddEmployeeAddress;
 
     @FXML
@@ -510,12 +270,6 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private JFXTextField txtAddSupplierEmail;
-
-    @FXML
-    private JFXTextField txtAddSupplierItemName;
-
-    @FXML
-    private JFXTextField txtAddSupplierItemUnitPrice;
 
     @FXML
     private JFXTextField txtAddSupplierName;
@@ -656,12 +410,6 @@ public class AdminMainFormController implements Initializable {
     private JFXTextField txtUpdateSupplierId;
 
     @FXML
-    private JFXTextField txtUpdateSupplierItemName;
-
-    @FXML
-    private JFXTextField txtUpdateSupplierItemUnitPrice;
-
-    @FXML
     private JFXTextField txtUpdateSupplierName;
 
     @FXML
@@ -678,9 +426,6 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private JFXTextField txtViewEmployeeName;
-
-    @FXML
-    private JFXTextField txtViewEmployeePassword;
 
     @FXML
     private JFXTextField txtViewItemId;
@@ -717,6 +462,188 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private JFXTextField txtViewSupplierName;
+
+    // * Delete Order Cart Table
+    @FXML
+    private TableView<Cart> tblDeleteOrderCartList;
+
+    @FXML
+    private TableColumn<?, ?> collDeleteOrderCartListItemId;
+
+    @FXML
+    private TableColumn<?, ?> collDeleteOrderCartListItemName;
+
+    @FXML
+    private TableColumn<?, ?> collDeleteOrderCartListItemQuantity;
+
+    @FXML
+    private TableColumn<?, ?> collDeleteOrderCartListItemTotalAmount;
+
+    @FXML
+    private TableColumn<?, ?> collDeleteOrderCartListItemUnitPrice;
+
+
+    // *  Place Order Cart Table
+    @FXML
+    private TableView<Cart> tblPlaceOrderCartList;
+
+    @FXML
+    private TableColumn<?, ?> collPlaceOrderCartListItemId;
+
+    @FXML
+    private TableColumn<?, ?> collPlaceOrderCartListItemName;
+
+    @FXML
+    private TableColumn<?, ?> collPlaceOrderCartListItemQuantity;
+
+    @FXML
+    private TableColumn<?, ?> collPlaceOrderCartListItemTotalAmount;
+
+    @FXML
+    private TableColumn<?, ?> collPlaceOrderCartListItemUnitPrice;
+
+
+    // * View Employee Table
+
+    @FXML
+    private TableView<EmployeeEntity> tblViewEmployeeList;
+    @FXML
+    private TableColumn<?, ?> collViewEmployeeListAddress;
+
+    @FXML
+    private TableColumn<?, ?> collViewEmployeeListContact;
+
+    @FXML
+    private TableColumn<?, ?> collViewEmployeeListEmail;
+
+    @FXML
+    private TableColumn<?, ?> collViewEmployeeListId;
+
+    @FXML
+    private TableColumn<?, ?> collViewEmployeeListName;
+
+
+    // * Update Order Cart Table
+    @FXML
+    private TableView<Cart> tblUpdateOrderCartList;
+
+    @FXML
+    private TableColumn<?, ?> collUpdateOrderCartIListItemName;
+
+    @FXML
+    private TableColumn<?, ?> collUpdateOrderCartListItemId;
+
+    @FXML
+    private TableColumn<?, ?> collUpdateOrderCartListItemQuantity;
+
+    @FXML
+    private TableColumn<?, ?> collUpdateOrderCartListItemTotalAmount;
+
+    @FXML
+    private TableColumn<?, ?> collUpdateOrderCartListItemUnitPrice;
+
+
+    // * View Items Tables
+    @FXML
+    private TableView<ItemEntity> tblViewItemList;
+
+    @FXML
+    private TableColumn<?, ?> collViewItemListItemCategory;
+
+    @FXML
+    private TableColumn<?, ?> collViewItemListItemId;
+
+    @FXML
+    private TableColumn<?, ?> collViewItemListItemName;
+
+    @FXML
+    private TableColumn<?, ?> collViewItemListItemSize;
+
+    @FXML
+    private TableColumn<?, ?> collViewItemListItemStock;
+
+    @FXML
+    private TableColumn<?, ?> collViewItemListItemSupplier;
+
+    @FXML
+    private TableColumn<?, ?> collViewItemListItemUnitPrice;
+
+
+
+
+
+    // * View Order Item Cart
+    @FXML
+    private TableView<Cart> tblViewOrderCartList;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderCartListItemId;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderCartListItemName;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderCartListItemQuantity;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderCartListItemTotalAmount;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderCartListItemUnitPrice;
+
+
+
+
+    // * View Order List Table
+    @FXML
+    private TableView<OrderEntity> tblViewOrderList;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderListCustomerId;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderListDate;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderListId;
+
+    @FXML
+    private TableColumn<?, ?> collViewOrderListTotalAmount;
+
+    // * View Supplier Item List
+    @FXML
+    private TableView<ItemEntity> tblViewSupplierItemList;
+    @FXML
+    private TableColumn<?, ?> collViewSupplierItemId;
+
+    @FXML
+    private TableColumn<?, ?> collViewSupplierItemName;
+
+    @FXML
+    private TableColumn<?, ?> collViewSupplierUnitPrice;
+
+
+
+    // * View All Supplier Table
+    @FXML
+    private TableView<SupplierEntity> tblViewSupplierList;
+    @FXML
+    private TableColumn<?, ?> collViewSupplierListAddress;
+
+    @FXML
+    private TableColumn<?, ?> collViewSupplierListCompanyName;
+
+    @FXML
+    private TableColumn<?, ?> collViewSupplierListEmail;
+
+    @FXML
+    private TableColumn<?, ?> collViewSupplierListId;
+
+    @FXML
+    private TableColumn<?, ?> collViewSupplierListSupplierName;
+
+
+
 
     private AnchorPane currentMainPanel;
     private AnchorPane currentSubPanel;
@@ -1912,21 +1839,36 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     void btnGenerateProductReportOnAction(ActionEvent event) {
-        loadProductChart();
+        if (PdfGenerateUtil.generateItemReport(getProductReport(),LocalDate.now())){
+            new Alert(Alert.AlertType.INFORMATION,"Product Report Generated Successfully");
+        }else
+        {
+            new Alert(Alert.AlertType.ERROR,"Something Went Wrong");
+        }
     }
 
     // * Employee Report
 
     @FXML
     void btnGenerateEmployeeReportOnAction(ActionEvent event) {
-        loadEmployeeChart();
+        if (PdfGenerateUtil.generateEmployeeReport(getEmployeeReport(),LocalDate.now())){
+            new Alert(Alert.AlertType.INFORMATION,"Employee Report Generated Successfully");
+        }else
+        {
+            new Alert(Alert.AlertType.ERROR,"Something Went Wrong");
+        }
     }
 
     // * Supplier Report
 
     @FXML
     void btnGenerateSupplierReportOnAction(ActionEvent event) {
-        loadSupplierChart();
+        if (PdfGenerateUtil.generateSupplierReport(getSupplierReport(),LocalDate.now())){
+            new Alert(Alert.AlertType.INFORMATION,"Supplier Report Generated Successfully");
+        }else
+        {
+            new Alert(Alert.AlertType.ERROR,"Something Went Wrong");
+        }
     }
 
     // * Daily Sales Report
@@ -1963,6 +1905,40 @@ public class AdminMainFormController implements Initializable {
             new Alert(Alert.AlertType.ERROR,"Something Went Wrong");
         }
     }
+    public String getEmployeeReport() {
+        String text = "\t\t\t\t\t\t\t\t\t\t\t\tEMPLOYEE REPORT\n\n\nEmployee ID\t\tName\t\tHired Date\n";
+
+        ObservableList<EmployeeEntity> allEmployees = EmployeeController.getInstance().getAllEmployees();
+
+        for (EmployeeEntity employee : allEmployees) {
+            text += employee.getEmployeeId() + "\t\t" + employee.getName() + "\t\t" + employee.getHiredDate() + "\n";
+        }
+
+        return text;
+    }
+    public String getSupplierReport() {
+        String text = "\t\t\t\t\t\t\t\t\t\t\t\tSUPPLIER REPORT\n\n\nSupplier ID\t\tName\t\tCompany\t\tEmail\n";
+
+        ObservableList<SupplierEntity> allSuppliers = SupplierController.getInstance().getAllSuppliers();
+
+        for (SupplierEntity supplier : allSuppliers) {
+            text += supplier.getSupplierId() + "\t\t" + supplier.getSupplierName() + "\t\t" + supplier.getCompanyName() + "\t\t" + supplier.getSupplierEmail() + "\n";
+        }
+
+        return text;
+    }
+    public String getProductReport() {
+        String text = "\t\t\t\t\t\t\t\t\t\t\t\tPRODUCT REPORT\n\n\nProduct ID\t\tName\t\tCategory\t\tPrice\t\tStock\n";
+
+        ObservableList<ItemEntity> allProducts = ItemController.getInstance().getAllItems();
+
+        for (ItemEntity product : allProducts) {
+            text += product.getItemId() + "\t\t" + product.getItemName() + "\t\t" + product.getItemCategory() + "\t\t" + product.getItemUnitPrice() + "\t\t" + product.getItemStockLevel() + "\n";
+        }
+
+        return text;
+    }
+
     public String getReport(String type){
         String text ="\t\t\t\t\t\t\t\t\t\t\t\tSALES REPORT\n\n\nOrder\t\tCustomer\t\tDate/Time/Month\t\tPrice\n";
         if(type.equals("Daily")){
@@ -2235,27 +2211,42 @@ public class AdminMainFormController implements Initializable {
     }
 
     private void loadEmployeeChart(){
+        XYChart.Series series = new XYChart.Series<>();
+        series.setName("Employees Hired");
+
+        ObservableList<XYChart.Data> employeeHires = EmployeeController.getInstance().getEmployeeHiresByYear();
+
+        series.getData().addAll(employeeHires);
+
+        chartEmployeeReport.getData().clear();
+        chartEmployeeReport.getData().add(series);
 
     }
     private  void loadProductChart(){
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+        int menStock = ItemController.getInstance().getTotalStockByCategory("Men");
+        int ladiesStock = ItemController.getInstance().getTotalStockByCategory("Ladies");
+        int kidsStock = ItemController.getInstance().getTotalStockByCategory("Kids");
+
+        pieChartData.add(new PieChart.Data("Gents", menStock));
+        pieChartData.add(new PieChart.Data("Ladies", ladiesStock));
+        pieChartData.add(new PieChart.Data("Kids", kidsStock));
+
+        chartProductMovement.getData().clear();
+        chartProductMovement.setData(pieChartData);
 
     }
     private void loadSupplierChart() {
-        // Create a new Series for the BarChart
         XYChart.Series series = new XYChart.Series<>();
-
 
         ObservableList<SupplierEntity> allSuppliers = SupplierController.getInstance().getAllSuppliers();
 
         for (SupplierEntity supplier : allSuppliers) {
             int itemCount = ItemController.getInstance().getAllItemsForSupplier(supplier.getSupplierId()).size();
-            series.getData().add(new XYChart.Data<>(supplier.getCompanyName(), itemCount));
+            series.getData().add(new XYChart.Data<>(supplier.getSupplierName(), itemCount));
         }
-
-        // Clear any existing data in the chart
         chartSupplierReport.getData().clear();
-
-        // Add the new data series to the chart
         chartSupplierReport.getData().add(series);
     }
 

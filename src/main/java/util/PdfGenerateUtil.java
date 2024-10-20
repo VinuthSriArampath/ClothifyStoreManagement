@@ -68,4 +68,49 @@ public class PdfGenerateUtil {
             return false;
         }
     }
+    public static Boolean generateEmployeeReport(String text,LocalDate date) {
+        try {
+            String path = "Documents/EmployeeReport For "+date+".pdf";
+            PdfWriter writer = new PdfWriter(path);
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf);
+            document.add(new Paragraph(text));
+            document.close();
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public static Boolean generateItemReport(String text, LocalDate date) {
+        try {
+            String path = "Documents/ItemReport For "+date+".pdf";
+            PdfWriter writer = new PdfWriter(path);
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf);
+            document.add(new Paragraph(text));
+            document.close();
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public static Boolean generateSupplierReport(String text, LocalDate date) {
+        try {
+            String path = "Documents/SupplierReport For "+date+".pdf";
+            PdfWriter writer = new PdfWriter(path);
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf);
+            document.add(new Paragraph(text));
+            document.close();
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

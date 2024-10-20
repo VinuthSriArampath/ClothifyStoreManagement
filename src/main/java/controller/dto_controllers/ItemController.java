@@ -92,4 +92,16 @@ public class ItemController{
         });
         return allItemIds;
     }
+
+    public int getTotalStockByCategory(String category) {
+        ObservableList<ItemEntity> allItems = getAllItems();
+        int totalStock = 0;
+        for (ItemEntity item : allItems) {
+            if (item.getItemCategory().equals(category)) {
+                totalStock += item.getItemStockLevel();
+            }
+        }
+        return totalStock;
+    }
+
 }
