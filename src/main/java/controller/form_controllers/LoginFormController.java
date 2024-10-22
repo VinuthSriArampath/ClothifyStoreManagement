@@ -47,7 +47,6 @@ public class LoginFormController implements Initializable {
             }
         }else{
             if (EmployeeController.getInstance().authenticateEmployee(email, password)){
-                System.out.println("Go 1");
                 try {
                     stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee-main-form.fxml"))));
                     stage.setTitle("Clothify Shop Management System | Employee Panel");

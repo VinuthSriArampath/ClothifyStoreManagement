@@ -37,8 +37,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class EmployeeMainFormController implements Initializable {
-
-    public JFXButton btnEmployeeLogOut;
+    @FXML
+    private JFXButton btnEmployeeLogOut;
     @FXML
     private BarChart<?, ?> chartEmployeeReport;
 
@@ -82,28 +82,13 @@ public class EmployeeMainFormController implements Initializable {
     private JFXComboBox<String> cmdAddItemSize;
 
     @FXML
-    private JFXComboBox<String> cmdAddSupplierItemId;
-
-    @FXML
     private JFXComboBox<String> cmdDeleteItemSize;
 
     @FXML
     private JFXComboBox<String> cmdUpdateItemSize;
 
     @FXML
-    private JFXComboBox<String> cmdUpdateSupplierItemId;
-
-    @FXML
     private JFXComboBox<String> cmdViewItemSize;
-
-    @FXML
-    private TableColumn<?, ?> collAddSupplierItemListId;
-
-    @FXML
-    private TableColumn<?, ?> collAddSupplierItemListName;
-
-    @FXML
-    private TableColumn<?, ?> collAddSupplierItemListUnitPrice;
 
     @FXML
     private TableColumn<?, ?> collDeleteOrderCartListItemId;
@@ -158,15 +143,6 @@ public class EmployeeMainFormController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> collUpdateOrderCartListItemUnitPrice;
-
-    @FXML
-    private TableColumn<?, ?> collUpdateSupplierItemId;
-
-    @FXML
-    private TableColumn<?, ?> collUpdateSupplierItemName;
-
-    @FXML
-    private TableColumn<?, ?> collUpdateSupplierUnitPrice;
 
     @FXML
     private TableColumn<?, ?> collViewItemListItemCategory;
@@ -268,9 +244,6 @@ public class EmployeeMainFormController implements Initializable {
     private Label lblDate;
 
     @FXML
-    private Label lblDeleteOrderFinalTotalAmount;
-
-    @FXML
     private Label lblPlaceOrderFinalTotalAmount;
 
     @FXML
@@ -337,9 +310,6 @@ public class EmployeeMainFormController implements Initializable {
     private AnchorPane supplierReportPage;
 
     @FXML
-    private TableView<?> tblAddSupplierItemList;
-
-    @FXML
     private TableView<Cart> tblDeleteOrderCartList;
 
     @FXML
@@ -386,12 +356,6 @@ public class EmployeeMainFormController implements Initializable {
 
     @FXML
     private JFXTextField txtAddSupplierEmail;
-
-    @FXML
-    private JFXTextField txtAddSupplierItemName;
-
-    @FXML
-    private JFXTextField txtAddSupplierItemUnitPrice;
 
     @FXML
     private JFXTextField txtAddSupplierName;
@@ -500,12 +464,6 @@ public class EmployeeMainFormController implements Initializable {
 
     @FXML
     private JFXTextField txtUpdateSupplierId;
-
-    @FXML
-    private JFXTextField txtUpdateSupplierItemName;
-
-    @FXML
-    private JFXTextField txtUpdateSupplierItemUnitPrice;
 
     @FXML
     private JFXTextField txtUpdateSupplierName;
@@ -703,18 +661,24 @@ public class EmployeeMainFormController implements Initializable {
         currentSubPanel.setVisible(false);
         currentSubPanel=productReportPage;
         currentSubPanel.setVisible(true);
+        clearAllForms();
+        loadProductChart();
     }
     @FXML
     void btnSupplierReportPageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=supplierReportPage;
         currentSubPanel.setVisible(true);
+        clearAllForms();
+        loadSupplierChart();
     }
     @FXML
     void btnEmployeeReportPageOnAction(ActionEvent event) {
         currentSubPanel.setVisible(false);
         currentSubPanel=employeeReportPage;
         currentSubPanel.setVisible(true);
+        clearAllForms();
+        loadEmployeeChart();
     }
 
 
@@ -1774,5 +1738,28 @@ public class EmployeeMainFormController implements Initializable {
         }
         chartSupplierReport.getData().clear();
         chartSupplierReport.getData().add(series);
+    }
+
+    private void clearAllForms(){
+
+        // * Supplier Pages
+
+        btnAddSupplierClearFormOnAction(new ActionEvent());
+        btnUpdateSupplierClearFormOnAction(new ActionEvent());
+        deleteSupplierClearForm();
+
+        // * Item Pages
+
+        btnAddItemClearFormOnAction(new ActionEvent());
+        btnUpdateItemClearFormOnAction(new ActionEvent());
+        deleteItemClearForm();
+
+        // * Order pages
+        btnPlaceOrderClearCartOnAction(new ActionEvent());
+        placeOrderClearForm();
+        updateOrderClearForm();
+        deleteOrderClearForm();
+
+
     }
 }

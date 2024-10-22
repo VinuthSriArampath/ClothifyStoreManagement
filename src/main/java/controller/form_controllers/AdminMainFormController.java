@@ -678,7 +678,7 @@ public class AdminMainFormController implements Initializable {
         currentMainPanel=pageDashboard;
         currentMainPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        setSalesIncomeToLabels();
     }
     @FXML
     void btnInventoryManagementPageOnAction(ActionEvent event) {
@@ -689,7 +689,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageAddInventory;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadSupplierIdsOnComboBoxes();
     }
     @FXML
     void btnSupplierManagementPageOnAction(ActionEvent event) {
@@ -700,7 +700,6 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageAddSupplier;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
     }
     @FXML
     void btnOrderManagementPageOnAction(ActionEvent event) {
@@ -711,7 +710,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pagePlaceOrder;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadItemIdsOnComboBoxes();
     }
     @FXML
     void btnEmployeeManagementPageOnAction(ActionEvent event) {
@@ -722,7 +721,6 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageAddEmployee;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
     }
     @FXML
     void btnReportGenerationPageOnAction(ActionEvent event) {
@@ -733,7 +731,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=employeeReportPage;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadEmployeeChart();
     }
 
 
@@ -745,7 +743,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageAddInventory;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadSupplierIdsOnComboBoxes();
     }
     @FXML
     void btnUpdateItemPageOnAction(ActionEvent event) {
@@ -753,7 +751,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageUpdateInventory;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadSupplierIdsOnComboBoxes();
     }
     @FXML
     void btnDeleteItemPageOnAction(ActionEvent event) {
@@ -761,7 +759,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageDeleteInventory;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadSupplierIdsOnComboBoxes();
     }
     @FXML
     void btnViewItemPageOnAction(ActionEvent event) {
@@ -769,7 +767,8 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageViewInventory;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadSupplierIdsOnComboBoxes();
+        loadViewItemsTable();
     }
 
 
@@ -780,7 +779,6 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageAddSupplier;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
     }
     @FXML
     void btnUpdateSupplierPageOnAction(ActionEvent event) {
@@ -788,7 +786,6 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageUpdateSupplier;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
     }
     @FXML
     void btnDeleteSupplierPageOnAction(ActionEvent event) {
@@ -796,7 +793,6 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageDeleteSupplier;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
     }
     @FXML
     void btnViewSupplierPageOnAction(ActionEvent event) {
@@ -804,7 +800,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageViewSupplier;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadViewSupplierListTable();
     }
 
 
@@ -815,7 +811,6 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageAddEmployee;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
     }
     @FXML
     void btnUpdateEmployeePageOnAction(ActionEvent event) {
@@ -823,7 +818,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageUpdateEmployee;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+
     }
     @FXML
     void btnDeleteEmployeePageOnAction(ActionEvent event) {
@@ -831,7 +826,6 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageDeleteEmployee;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
     }
     @FXML
     void btnViewEmployeePageOnAction(ActionEvent event) {
@@ -840,7 +834,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageViewEmployee;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadViewEmployeeTable();
     }
 
 
@@ -851,7 +845,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pagePlaceOrder;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadItemIdsOnComboBoxes();
     }
     @FXML
     void btnUpdateOrderPageOnAction(ActionEvent event) {
@@ -859,7 +853,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageUpdateOrder;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadItemIdsOnComboBoxes();
     }
     @FXML
     void btnDeleteOrderPageOnAction(ActionEvent event) {
@@ -867,7 +861,6 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageDeleteOrder;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
     }
     @FXML
     void btnViewOrderPageOnAction(ActionEvent event) {
@@ -875,7 +868,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=pageViewOrder;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadViewAllOrdersTable();
     }
 
 
@@ -886,7 +879,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=productReportPage;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadProductChart();
     }
     @FXML
     void btnSupplierReportPageOnAction(ActionEvent event) {
@@ -894,7 +887,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=supplierReportPage;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadSupplierChart();
     }
     @FXML
     void btnEmployeeReportPageOnAction(ActionEvent event) {
@@ -902,7 +895,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=employeeReportPage;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadEmployeeChart();
     }
     @FXML
     public void btnDailyReportPageOnAction(ActionEvent actionEvent) {
@@ -910,7 +903,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=dailySalesReportPage;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadDailySalesChart();
     }
     @FXML
     public void btnMonthlyReportPageOnAction(ActionEvent actionEvent) {
@@ -918,7 +911,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=monthlySalesReportPage;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadMonthlySalesChart();
     }
     @FXML
     public void btnAnnualSalesReportPageOnAction(ActionEvent actionEvent) {
@@ -926,7 +919,7 @@ public class AdminMainFormController implements Initializable {
         currentSubPanel=annualSalesReportPage;
         currentSubPanel.setVisible(true);
         clearAllForms();
-        reloadAllContents();
+        loadAnnualSalesChart();
     }
 
     // ? FUNCTIONALITIES OF BUTTONS
@@ -946,7 +939,6 @@ public class AdminMainFormController implements Initializable {
         if(ItemController.getInstance().validateItem(itemName,itemStockLevel,itemUnitPrize,itemCategory,itemSize,itemSupplierId)){
             if (ItemController.getInstance().addItem(new Item(ItemController.getInstance().generateItemId(), itemName,itemCategory,itemSize,Integer.parseInt(itemStockLevel),Double.parseDouble(itemUnitPrize),itemSupplierId))){
                 new Alert(Alert.AlertType.CONFIRMATION,"Item Added Successfully").showAndWait();
-                loadViewItemsTable();
                 btnAddItemClearFormOnAction(new ActionEvent());
             }else {
                 new Alert(Alert.AlertType.ERROR,"Item Adding Failed").showAndWait();
@@ -981,7 +973,6 @@ public class AdminMainFormController implements Initializable {
             }else if (ItemController.getInstance().validateItem(itemName,itemStockLevel,itemUnitPrice,itemCategory,itemSize,itemSupplierId)){
                 if (ItemController.getInstance().updateItem(new Item(itemId,itemName,itemCategory,itemSize,Integer.parseInt(itemStockLevel.split("\\.")[0]),Double.parseDouble(itemUnitPrice),itemSupplierId))){
                     new Alert(Alert.AlertType.INFORMATION,"Item Updated Successfully !!").showAndWait();
-                    loadViewItemsTable();
                     btnUpdateItemClearFormOnAction(new ActionEvent());
                 }else {
                     new Alert(Alert.AlertType.ERROR,"Item Update Failed !! ").showAndWait();
@@ -1031,7 +1022,6 @@ public class AdminMainFormController implements Initializable {
         if(deleteItemSearched){
             if (ItemController.getInstance().deleteItem(txtDeleteItemId.getText().trim())) {
                 new Alert(Alert.AlertType.ERROR, "Item Deleted Successfully").showAndWait();
-                loadViewItemsTable();
                 deleteItemClearForm();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Item Deletion Failed").showAndWait();
@@ -1110,8 +1100,13 @@ public class AdminMainFormController implements Initializable {
         txtViewItemId.setText("");
         txtViewItemName.setText("");
         cmdViewItemSize.setValue(null);
-
     }
+    private void loadItemIdsOnComboBoxes(){
+        ObservableList<String> allItemIds = ItemController.getInstance().getAllItemIds();
+        cmbPlaceItemId.setItems(allItemIds);
+        cmbUpdateOrderItemId.setItems(allItemIds);
+    }
+
     // ? Supplier Management
 
     // * add supplier
@@ -1125,7 +1120,6 @@ public class AdminMainFormController implements Initializable {
         if(supplierController.validateSupplier(supplierName,supplierEmail,supplierCompanyName,supplierAddress)){
             if (SupplierController.getInstance().addSupplier(new Supplier(supplierController.generateSupplierId(), supplierName,supplierEmail,supplierCompanyName,supplierAddress))){
                 new Alert(Alert.AlertType.CONFIRMATION,"Supplier Registration Success !!").showAndWait();
-                loadViewSupplierListTable();
                 btnAddSupplierClearFormOnAction(new ActionEvent());
             }else{
                 new Alert(Alert.AlertType.ERROR,"Supplier Registration Failed !!").showAndWait();
@@ -1177,7 +1171,6 @@ public class AdminMainFormController implements Initializable {
             }else if (SupplierController.getInstance().validateSupplier(supplierName,supplierEmail,supplierCompanyName,supplierAddress)){
                 if (SupplierController.getInstance().updateSupplier(new Supplier(supplierId,supplierName,supplierEmail,supplierCompanyName,supplierAddress))){
                     new Alert(Alert.AlertType.CONFIRMATION,"Supplier Updated Successfully !! ").showAndWait();
-                    loadViewSupplierListTable();
                     btnUpdateSupplierClearFormOnAction(new ActionEvent());
                 }else {
                     new Alert(Alert.AlertType.ERROR,"Updating Supplier Failed !! ").showAndWait();
@@ -1210,7 +1203,6 @@ public class AdminMainFormController implements Initializable {
         if(isDeleteSupplerSearched){
             if (SupplierController.getInstance().deleteSupplier(txtDeleteSupplierId.getText().trim())) {
                 new Alert(Alert.AlertType.ERROR, "Supplier Deleted Successfully").showAndWait();
-                loadViewSupplierListTable();
                 deleteSupplierClearForm();
                 loadDeleteSupplierItemListTable(null);
             } else {
@@ -1294,6 +1286,14 @@ public class AdminMainFormController implements Initializable {
         }
     }
 
+    private void loadSupplierIdsOnComboBoxes(){
+        ObservableList<String> allSupplierIds = SupplierController.getInstance().getAllSupplierIds();
+        cmbAddItemSupplier.setItems(allSupplierIds);
+        cmbUpdateItemSupplier.setItems(allSupplierIds);
+        cmbDeleteItemSupplier.setItems(allSupplierIds);
+        cmbViewItemSupplierId.setItems(allSupplierIds);
+    }
+
     // ? Employee Management
 
     // * add employee
@@ -1311,7 +1311,6 @@ public class AdminMainFormController implements Initializable {
         if (Boolean.TRUE.equals(EmployeeController.getInstance().validateEmployee(employeeName, employeeEmail, employeePassword, employeeAddress, employeeContact))) {
             if(EmployeeController.getInstance().addEmployee( new Employee(EmployeeController.getInstance().generateEmployeeId(),employeeName,employeeEmail,encryptor.encryptString(employeePassword),employeeAddress,employeeContact,LocalDate.now()))){
                 new Alert(Alert.AlertType.INFORMATION,"Employee Added Successfully").showAndWait();
-                loadViewEmployeeTable();
                 btnAddEmployeeClearFormOnAction(new ActionEvent());
             }else {
                 new Alert(Alert.AlertType.ERROR,"Failed To Add Employee").showAndWait();
@@ -1370,14 +1369,12 @@ public class AdminMainFormController implements Initializable {
                     new Alert(Alert.AlertType.INFORMATION,"Employee Updated Successfully").showAndWait();
                     btnAddEmployeeClearFormOnAction(new ActionEvent());
                     txtUpdateEmployeeId.setEditable(true);
-                    loadViewEmployeeTable();
                 }else {
                     new Alert(Alert.AlertType.ERROR,"Failed To Update Employee").showAndWait();
                     btnUpdateEmployeeClearFormOnAction(new ActionEvent());
                 }
             }
         }
-
     }
     @FXML
     void btnUpdateEmployeeClearFormOnAction(ActionEvent event) {
@@ -1421,7 +1418,6 @@ public class AdminMainFormController implements Initializable {
                 deleteEmployeeClearForm();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Employee Deletion Failed").showAndWait();
-                loadViewEmployeeTable();
                 deleteEmployeeClearForm();
             }
         }
@@ -1484,8 +1480,6 @@ public class AdminMainFormController implements Initializable {
             if (OrderController.getInstance().placeOrder(order,orderDetailsList)){
                 EmailSendingUtil.create(txtPlaceOrderCustomerEmail.getText().trim(),orderID+"Invoice","Please Refer The Following Bill For Your Order", PdfGenerateUtil.create(generateBill(placeOrderCartItemList)));
                 new Alert(Alert.AlertType.INFORMATION,"Order Placed Successfully");
-                loadViewAllOrdersTable();
-                setSalesIncomeToLabels();
                 placeOrderClearForm();
                 btnPlaceOrderClearCartOnAction(new ActionEvent());
             }else {
@@ -1515,7 +1509,6 @@ public class AdminMainFormController implements Initializable {
             if (Boolean.TRUE.equals(CartController.getInstance().validateAddingQty(itemStockLevel, itemAddingQty))){
                 placeOrderCartItemList.add(new Cart(itemId, itemName, itemUnitPrice, itemAddingQty, itemTotalAmount));
                 loadPlaceOrderItemCart(placeOrderCartItemList);
-                loadViewItemsTable();
                 lblPlaceOrderFinalTotalAmount.setText(calculateTotalAmount().toString());
             }
 
@@ -1612,9 +1605,7 @@ public class AdminMainFormController implements Initializable {
     void btnUpdateOrderItemQtyOnAction(ActionEvent event) {
         String itemId = cmbUpdateOrderItemId.getValue();
         if (updateOrderCheckItemOnCart(itemId)){
-            System.out.println(cartUpdate);
             if (updateItemOnCart()){
-                System.out.println(cartUpdate);
                 loadUpdateOrderCartItems(cartUpdate);
                 new Alert(Alert.AlertType.INFORMATION,"Item Update On Cart").showAndWait();
             }else{
@@ -1640,10 +1631,7 @@ public class AdminMainFormController implements Initializable {
                     new Alert(Alert.AlertType.INFORMATION, "Order Update Successfully");
                     searchedOrderTime=null;
                     txtUpdateOrderId.setEditable(true);
-                    setSalesIncomeToLabels();
-                    loadViewAllOrdersTable();
                     updateOrderClearForm();
-                    loadViewItemsTable();
                 } else {
                     new Alert(Alert.AlertType.INFORMATION, "Order Updating Failed");
                 }
@@ -1735,7 +1723,6 @@ public class AdminMainFormController implements Initializable {
         if (isDeleteOrderSearched){
             if (OrderController.getInstance().deleteOrder(txtDeleteOrderId.getText().trim())){
                 new Alert(Alert.AlertType.INFORMATION, "Order Deleted Successfully !").showAndWait();
-                reloadAllContents();
                 deleteOrderClearForm();
             }else {
                 new Alert(Alert.AlertType.ERROR, "Order Deletion Failed !").showAndWait();
@@ -1841,8 +1828,7 @@ public class AdminMainFormController implements Initializable {
     void btnGenerateProductReportOnAction(ActionEvent event) {
         if (PdfGenerateUtil.generateItemReport(getProductReport(),LocalDate.now())){
             new Alert(Alert.AlertType.INFORMATION,"Product Report Generated Successfully");
-        }else
-        {
+        }else{
             new Alert(Alert.AlertType.ERROR,"Something Went Wrong");
         }
     }
@@ -1853,8 +1839,7 @@ public class AdminMainFormController implements Initializable {
     void btnGenerateEmployeeReportOnAction(ActionEvent event) {
         if (PdfGenerateUtil.generateEmployeeReport(getEmployeeReport(),LocalDate.now())){
             new Alert(Alert.AlertType.INFORMATION,"Employee Report Generated Successfully");
-        }else
-        {
+        }else{
             new Alert(Alert.AlertType.ERROR,"Something Went Wrong");
         }
     }
@@ -1865,8 +1850,7 @@ public class AdminMainFormController implements Initializable {
     void btnGenerateSupplierReportOnAction(ActionEvent event) {
         if (PdfGenerateUtil.generateSupplierReport(getSupplierReport(),LocalDate.now())){
             new Alert(Alert.AlertType.INFORMATION,"Supplier Report Generated Successfully");
-        }else
-        {
+        }else{
             new Alert(Alert.AlertType.ERROR,"Something Went Wrong");
         }
     }
@@ -1877,8 +1861,7 @@ public class AdminMainFormController implements Initializable {
     void btnGenerateDailySalesReportOnAction(ActionEvent event) {
         if (PdfGenerateUtil.generateDailySalesReport(getReport("Daily"),LocalDate.now())){
             new Alert(Alert.AlertType.INFORMATION,"Daily Sales Report Generated Successfully");
-        }else
-        {
+        }else{
             new Alert(Alert.AlertType.ERROR,"Something Went Wrong");
         }
     }
@@ -1889,8 +1872,7 @@ public class AdminMainFormController implements Initializable {
     void btnGenerateMonthlySalesReportOnAction(ActionEvent actionEvent) {
         if (PdfGenerateUtil.generateMonthlySalesReport(getReport("Monthly"),LocalDate.now())){
             new Alert(Alert.AlertType.INFORMATION,"Monthly Sales Report Generated Successfully");
-        }else
-        {
+        }else{
             new Alert(Alert.AlertType.ERROR,"Something Went Wrong");
         }
     }
@@ -1900,8 +1882,7 @@ public class AdminMainFormController implements Initializable {
     void btnGenerateAnnualSalesReportOnAction(ActionEvent event) {
         if (PdfGenerateUtil.generateAnnualSalesReport(getReport("Annual"),LocalDate.now())){
             new Alert(Alert.AlertType.INFORMATION,"Annual Sales Report Generated Successfully");
-        }else
-        {
+        }else{
             new Alert(Alert.AlertType.ERROR,"Something Went Wrong");
         }
     }
@@ -2050,10 +2031,6 @@ public class AdminMainFormController implements Initializable {
         collDeleteOrderCartListItemQuantity.setCellValueFactory(new PropertyValueFactory<>("itemQty"));
         collDeleteOrderCartListItemTotalAmount.setCellValueFactory(new PropertyValueFactory<>("itemTotal"));
 
-        // ! Load All Tables On Initialize
-
-        loadAllTablesOnNavigation();
-
         // ! Initializing the Navigation Panel Variables
         currentMainPanel=pageDashboard;
         currentMainPanel.setVisible(true);
@@ -2129,26 +2106,15 @@ public class AdminMainFormController implements Initializable {
         cmdViewItemSize.setItems(itemSizes);
 
         // ? item Supplier
-        ObservableList<String> allSupplierIds = SupplierController.getInstance().getAllSupplierIds();
-        cmbAddItemSupplier.setItems(allSupplierIds);
-        cmbUpdateItemSupplier.setItems(allSupplierIds);
-        cmbDeleteItemSupplier.setItems(allSupplierIds);
-        cmbViewItemSupplierId.setItems(allSupplierIds);
+        loadSupplierIdsOnComboBoxes();
 
         // * Order
 
         // ? Item Ids
-        ObservableList<String> allItemIds = ItemController.getInstance().getAllItemIds();
-        cmbPlaceItemId.setItems(allItemIds);
-        cmbUpdateOrderItemId.setItems(allItemIds);
+        loadItemIdsOnComboBoxes();
 
         // ! Load Date And Time
         loadDateAndTime();
-
-
-        // ! initialize charts
-
-        loadAllCharts();
     }
 
     private void clearAllForms(){
@@ -2169,45 +2135,18 @@ public class AdminMainFormController implements Initializable {
         btnAddItemClearFormOnAction(new ActionEvent());
         btnUpdateItemClearFormOnAction(new ActionEvent());
         deleteItemClearForm();
+        viewItemsClearForm();
 
         // * Order pages
         btnPlaceOrderClearCartOnAction(new ActionEvent());
         placeOrderClearForm();
         updateOrderClearForm();
         deleteOrderClearForm();
-
-
     }
     private void setSalesIncomeToLabels(){
         lblDailyIncome.setText(String.valueOf(OrderController.getInstance().getDailySalesIncome(LocalDate.now())));
         lblMonthlyIncome.setText(String.valueOf(OrderController.getInstance().getMonthlySalesIncome(LocalDate.now().getMonth())));
         lblAnnualIncome.setText(String.valueOf(OrderController.getInstance().getAnnualSalesIncome(LocalDate.now().getYear())));
-    }
-
-
-    private void loadAllTablesOnNavigation(){
-        loadViewItemsTable();
-        loadViewAllOrdersTable();
-        loadViewSupplierListTable();
-        loadViewEmployeeTable();
-    }
-
-    private void reloadAllContents(){
-        setSalesIncomeToLabels();
-        loadAllTablesOnNavigation();
-        loadAllComboBoxesOnNavigation();
-        loadAllCharts();
-    }
-    private void loadAllComboBoxesOnNavigation(){
-
-    }
-    private void loadAllCharts(){
-        loadEmployeeChart();
-        loadProductChart();
-        loadSupplierChart();
-        loadDailySalesChart();
-        loadMonthlySalesChart();
-        loadAnnualSalesChart();
     }
 
     private void loadEmployeeChart(){
