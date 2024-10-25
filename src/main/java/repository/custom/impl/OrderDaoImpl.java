@@ -30,12 +30,10 @@ public class OrderDaoImpl implements OrderDao {
                 return false;
             }
 
-            // Update order details
             existingOrder.setCustomerName(orderEntity.getCustomerName());
             existingOrder.setCustomerEmail(orderEntity.getCustomerEmail());
             existingOrder.setOrderTotal(orderEntity.getOrderTotal());
 
-            // Handle new and existing items in order details
             for (OrderDetailEntity newDetail : orderDetailEntities) {
                 boolean found = false;
                 for (OrderDetailEntity existingDetail : existingOrder.getOrderDetails()) {
@@ -43,11 +41,9 @@ public class OrderDaoImpl implements OrderDao {
                         found = true;
                         int qtyDifference = existingDetail.getItemQty() - newDetail.getItemQty();
 
-                        // Update existing detail
                         existingDetail.setItemQty(newDetail.getItemQty());
                         existingDetail.setItemTotalPrice(newDetail.getItemTotalPrice());
 
-                        // Update stock levels
                         ItemEntity item = session.get(ItemEntity.class, newDetail.getItemId());
                         if (item.getItemStockLevel() + qtyDifference >= 0) {
                             item.setItemStockLevel(item.getItemStockLevel() + qtyDifference);
@@ -59,8 +55,6 @@ public class OrderDaoImpl implements OrderDao {
                         session.merge(existingDetail);
                     }
                 }
-
-                // If new item is not found, add it to the order
                 if (!found) {
                     existingOrder.getOrderDetails().add(newDetail);
 
@@ -75,8 +69,6 @@ public class OrderDaoImpl implements OrderDao {
                     session.persist(newDetail);
                 }
             }
-
-            // Remove items that are not in the new order details
             List<OrderDetailEntity> detailsToRemove = new ArrayList<>();
             for (OrderDetailEntity existingDetail : existingOrder.getOrderDetails()) {
                 boolean isStillPresent = false;
@@ -86,28 +78,19 @@ public class OrderDaoImpl implements OrderDao {
                         break;
                     }
                 }
-
-                // If the detail is not present in the new list, mark for removal
                 if (!isStillPresent) {
                     detailsToRemove.add(existingDetail);
-
-                    // Update stock level before removal
                     ItemEntity item = session.get(ItemEntity.class, existingDetail.getItemId());
                     item.setItemStockLevel(item.getItemStockLevel() + existingDetail.getItemQty());
                     session.merge(item);
                 }
             }
 
-            // Remove the items from the existing order and delete them from the database
             for (OrderDetailEntity detailToRemove : detailsToRemove) {
-                session.remove(detailToRemove);  // Deletes the record from the database
+                session.remove(detailToRemove);
             }
             existingOrder.getOrderDetails().removeAll(detailsToRemove);
-
-            // Merge the updated order
             session.merge(existingOrder);
-
-            // Commit transaction
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -133,7 +116,6 @@ public class OrderDaoImpl implements OrderDao {
             for (OrderDetailEntity orderDetail : orderDetailEntity) {
                 orderSession.persist(orderDetail);
 
-                // Update stock levels
                 ItemEntity item = orderSession.get(ItemEntity.class, orderDetail.getItemId());
                 if (item.getItemStockLevel() > orderDetail.getItemQty()) {
                     item.setItemStockLevel(item.getItemStockLevel() - orderDetail.getItemQty());

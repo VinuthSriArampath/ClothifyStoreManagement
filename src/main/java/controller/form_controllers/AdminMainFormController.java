@@ -1474,7 +1474,6 @@ public class AdminMainFormController implements Initializable {
         if (OrderController.getInstance().validateOrderDetails(txtPlaceOrderCustomerName.getText().trim(),txtPlaceOrderCustomerEmail.getText().trim(),placeOrderCartItemList)){
             String orderID = OrderController.getInstance().generateOrderId();
             Order order=new Order(orderID,txtPlaceOrderCustomerName.getText(),txtPlaceOrderCustomerEmail.getText(),LocalDate.parse(lblDate.getText()),LocalTime.now(),Double.parseDouble(lblPlaceOrderFinalTotalAmount.getText()));
-            System.out.println(order.getOrderTime());
             ObservableList<OrderDetails> orderDetailsList=FXCollections.observableArrayList();
             placeOrderCartItemList.forEach(orderDetail -> orderDetailsList.add(new OrderDetails(order,orderDetail.getItemId(),orderDetail.getItemQty(),orderDetail.getItemTotal())));
             if (OrderController.getInstance().placeOrder(order,orderDetailsList)){
@@ -2072,10 +2071,18 @@ public class AdminMainFormController implements Initializable {
         // ! Load Content From Item List
 
         // * Place Order Item Id
-        cmbPlaceItemId.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> cmdPlaceOrderItemListSetToText(newValue));
+        cmbPlaceItemId.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                cmdPlaceOrderItemListSetToText(newValue);
+            }
+        });
 
         // * Update order item Id
-        cmbUpdateOrderItemId.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> cmdUpdateOrderItemListSetToText(newValue));
+        cmbUpdateOrderItemId.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null) {
+                cmdUpdateOrderItemListSetToText(newValue);
+            }
+        });
 
         // ! Initializing Combo boxes
 
